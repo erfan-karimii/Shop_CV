@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block body %}
 
 <!--==================== Slider Section End ====================-->
@@ -3158,7 +3160,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-4 col-lg-4 md-mb-30 mx-auto">
-                <div class="categories-banner d-flex flex-column h-100 bg-secondary sm-bg-img-none" style="background: url(assets/images/banner/67.png) no-repeat right top / cover;">
+                <div class="categories-banner d-flex flex-column h-100 bg-secondary sm-bg-img-none" style="background: url({% static 'assets/images/banner/67.png' %}) no-repeat right top / cover;">
                     <div class="p-30">
                         <h4 class="mb-20"><a href="#" class="text-white">پوشاک مردانه</a></h4>
                         <div class="mb-20">
@@ -5801,7 +5803,7 @@
 </div>
 <!--==================== Formal Shirt Section End ====================-->
 
-<div class="full-row banner-913 py-5" style="background: url(assets/images/banner/110.png) no-repeat; background-size: cover;">
+<div class="full-row banner-913 py-5" style="background: url({% static 'assets/images/banner/110.png' %}) no-repeat; background-size: cover;">
     <div class="container">
         <div class="row offer-product">
             <div class="col-xl-6 col-lg-7 d-flex align-items-center">

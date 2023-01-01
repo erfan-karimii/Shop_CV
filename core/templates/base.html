@@ -14,7 +14,7 @@
     <title>BigBazar - قالب HTML فروشگاهی چند منظوره بیگ بازار</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.png" />
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.png' %}" />
 
     <!--  CSS Style -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
@@ -94,7 +94,7 @@
                                         <li class="highlight"><a href="#">کالاهای شگفت انگیز</a></li>
                                         <li class="menu-item-has-children unicode-megamenu-dropdown unicode-megamenu-item-full-width">
                                             <a href="#">پوشاک زنانه</a>
-                                            <div class="unicode-megamenu-wrapper" style="background-image: url(assets/images/banner/49.png); background-size: cover; background-position: 0px;">
+                                            <div class="unicode-megamenu-wrapper" style="background-image: url({% static 'assets/images/banner/49.png' %}); background-size: cover; background-position: 0px;">
                                                 <div class="unicode-megamenu-holder">
                                                     <div class="row row-cols-3">
                                                         <div class="col">
@@ -408,7 +408,7 @@
                                         <li class="menu-item-has-children"><a href="#">پلی استیشن بازی</a></li>
                                         <li class="menu-item-has-children unicode-megamenu-dropdown unicode-megamenu-item-full-width">
                                             <a href="#">ماشین های اداری</a>
-                                            <div class="unicode-megamenu-wrapper" style="background-image: url(assets/images/banner/20.png); background-size: 40%; background-position: left bottom; background-repeat: no-repeat;">
+                                            <div class="unicode-megamenu-wrapper" style="background-image: url({% static 'assets/images/banner/20.png' %}); background-size: 40%; background-position: left bottom; background-repeat: no-repeat;">
                                                 <div class="unicode-megamenu-holder">
                                                     <div class="row row-cols-3">
                                                         <div class="col">
@@ -544,7 +544,7 @@
                                         <li class="menu-item-has-children"><a href="#">ورزش و سفر</a></li>
                                         <li class="menu-item-has-children unicode-megamenu-dropdown unicode-megamenu-item-full-width">
                                             <a href="#">زیبایی و سلامت</a>
-                                            <div class="unicode-megamenu-wrapper" style="background-image: url(assets/images/banner/6.png); background-size: cover; background-position: top left;">
+                                            <div class="unicode-megamenu-wrapper" style="background-image: url({% static 'assets/images/banner/6.png' %}); background-size: cover; background-position: top left;">
                                                 <div class="unicode-megamenu-holder">
                                                     <div class="row row-cols-3">
                                                         <div class="col">
@@ -1654,7 +1654,7 @@
                 skin: "v6",
                 navPrevNext: false,
                 navStartStop: false,
-                skinsPath: "assets/skins/",
+                skinsPath: "{% static 'assets/skins/' %}",
                 height: 550,
             });
         });
