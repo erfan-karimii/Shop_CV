@@ -15,8 +15,8 @@ class SiteSetting(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False,verbose_name='تنظیمات فعال؟')
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.email
 
 class NavOne(models.Model):
     name = models.CharField(max_length=100,verbose_name='نام نوبار')
@@ -54,7 +54,7 @@ class Tabligh(models.Model):
     diraction = models.CharField(max_length=100,choices=position,verbose_name='مکان تبلیغ')
     link = models.CharField(max_length=400,null=True,verbose_name='لینک تبلیغ')
     def __str__(self):
-        return self.text + " " + self.link
+        return self.text + " | " + self.link
 
 class FooterOne(models.Model):
     name = models.CharField(max_length=100)
@@ -66,4 +66,4 @@ class FooterTwo(models.Model):
     name = models.CharField(max_length=50,verbose_name='نام')
     link = models.CharField(max_length=100,null=True,verbose_name='لینک صفحه')
     def __str__(self):
-        return  str(self.footer.name) + " | " +  self.name + " | " + self.link
+        return  str(self.parent.name) + " | " +  self.name 

@@ -6,7 +6,7 @@
 <!--==================== Slider Section End ====================-->
 <div class="bg-light">
     <div id="slider" style="width: 1200px; margin: 0 auto; margin-bottom: 0px;">
-        <!-- Slide 1 -->
+        {% comment %} <!-- Slide 1 -->
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #e8ecf0; top: 50%; left: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
 
@@ -56,8 +56,8 @@
                     مشاهده و خرید
                 </p>
             </a>
-        </div>
-        <!-- Slide 2 -->
+        </div> {% endcomment %}
+         {% comment %} <!-- Slide 2 -->
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #98b0d1; top: 50%; right: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
 
@@ -113,8 +113,9 @@
                     مشاهده و خرید
                 </p>
             </a>
-        </div>
+        </div> {% endcomment %}
         <!-- Slide 3 -->
+        {% for slider in Sliders %}
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #f1e63d; top: 50%; left: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
 
@@ -123,17 +124,17 @@
                 class="ls-l text-dark f-vazir-bold"
                 data-ls="offsetyin:150; durationin:700; delayin:200; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
             >
-                حراج انواع عطر و اُدکلن
+                {{slider.text1}}
             </p>
 
-            <img width="488" height="530" src="{% static 'assets/images/slider/16.png' %}" alt="" style="top: 55%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
+            <img width="488" height="530" src="{{slider.image.url}}" alt="{{slider.alt}}" style="top: 55%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
 
             <p
                 style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
                 class="ls-l ls-hide-phone text-dark"
                 data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0; delayin:500;"
             >
-                5% اعتبار بیشتر با خرید کارت هدیه دیجیتالی + 5% تخفیف
+                {{slider.text2}}
             </p>
 
             <p
@@ -141,12 +142,12 @@
                 class="ls-l ordenery-font text-dark font-600 ls-hide-phone"
                 data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
             >
-                شروع قیمت از 650 هزار تومان
+                {{slider.text3}}
             </p>
 
             <a
                 class="ls-l ls-hide-phone"
-                href="#"
+                href="{{slider.link}}"
                 target="_self"
                 data-ls="offsetyin:150; durationin:700; delayin:2100; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; hover:true; hoveropacity:1; hoverbgcolor:#1a1c1f; parallaxlevel:0;"
             >
@@ -167,10 +168,11 @@
                     "
                     class=""
                 >
-                    مشاهده و خرید
+                    {{slider.name_button}}
                 </p>
             </a>
         </div>
+        {% endfor %}
     </div>
 </div>
 <!--==================== Slider Section End ====================-->
