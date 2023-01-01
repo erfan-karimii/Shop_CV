@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # Django App
     'account',
     'product',
+    'home',
 
     #-----------package--------
     'ckeditor',
