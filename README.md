@@ -1,2 +1,2 @@
-# Shop
+# Django Projects CV
  
