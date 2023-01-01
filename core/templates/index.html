@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block body %}
 
 <!--==================== Slider Section End ====================-->
 <div class="bg-light">
     <div id="slider" style="width: 1200px; margin: 0 auto; margin-bottom: 0px;">
-        <!-- Slide 1 -->
+        {% comment %} <!-- Slide 1 -->
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #e8ecf0; top: 50%; left: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
 
@@ -18,7 +20,7 @@
 
             <div style="top: 50%; right: 75%; width: 430px; height: 430px;" class="ls-l bg-primary rounded-circle" data-ls="offsetxin:500; delayin:300; parallax:false; parallaxlevel:1;"></div>
 
-            <img width="500" height="500" src="assets/images/slider/6.png" alt="" style="top: 64%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
+            <img width="500" height="500" src="{% static 'assets/images/slider/6.png' %}" alt="" style="top: 64%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
 
             <p
                 style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
@@ -54,8 +56,8 @@
                     مشاهده و خرید
                 </p>
             </a>
-        </div>
-        <!-- Slide 2 -->
+        </div> {% endcomment %}
+         {% comment %} <!-- Slide 2 -->
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #98b0d1; top: 50%; right: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
 
@@ -67,7 +69,7 @@
                 پیراهن مردانه
             </p>
 
-            <img width="400" height="545" src="assets/images/slider/15.png" alt="" style="top: 50%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
+            <img width="400" height="545" src="{% static 'assets/images/slider/15.png' %}" alt="" style="top: 50%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
 
             <p
                 style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
@@ -111,8 +113,9 @@
                     مشاهده و خرید
                 </p>
             </a>
-        </div>
+        </div> {% endcomment %}
         <!-- Slide 3 -->
+        {% for slider in Sliders %}
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #f1e63d; top: 50%; left: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
 
@@ -121,17 +124,17 @@
                 class="ls-l text-dark f-vazir-bold"
                 data-ls="offsetyin:150; durationin:700; delayin:200; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
             >
-                حراج انواع عطر و اُدکلن
+                {{slider.text1}}
             </p>
 
-            <img width="488" height="530" src="assets/images/slider/16.png" alt="" style="top: 55%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
+            <img width="488" height="530" src="{{slider.image.url}}" alt="{{slider.alt}}" style="top: 55%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
 
             <p
                 style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
                 class="ls-l ls-hide-phone text-dark"
                 data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0; delayin:500;"
             >
-                5% اعتبار بیشتر با خرید کارت هدیه دیجیتالی + 5% تخفیف
+                {{slider.text2}}
             </p>
 
             <p
@@ -139,12 +142,12 @@
                 class="ls-l ordenery-font text-dark font-600 ls-hide-phone"
                 data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
             >
-                شروع قیمت از 650 هزار تومان
+                {{slider.text3}}
             </p>
 
             <a
                 class="ls-l ls-hide-phone"
-                href="#"
+                href="{{slider.link}}"
                 target="_self"
                 data-ls="offsetyin:150; durationin:700; delayin:2100; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; hover:true; hoveropacity:1; hoverbgcolor:#1a1c1f; parallaxlevel:0;"
             >
@@ -165,10 +168,11 @@
                     "
                     class=""
                 >
-                    مشاهده و خرید
+                    {{slider.name_button}}
                 </p>
             </a>
         </div>
+        {% endfor %}
     </div>
 </div>
 <!--==================== Slider Section End ====================-->
@@ -184,7 +188,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-16.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-16.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -246,7 +250,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-11.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-11.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -308,7 +312,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-8.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-8.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -370,7 +374,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -432,7 +436,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-43.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-43.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -494,7 +498,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-57.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-57.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -556,7 +560,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-66.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-66.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -618,7 +622,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-74.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-74.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -715,7 +719,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-73.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-73.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -819,7 +823,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-75.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-75.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -917,7 +921,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-76.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-76.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1018,7 +1022,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-8.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-8.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1116,7 +1120,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1214,7 +1218,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1312,7 +1316,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-57.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-57.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1410,7 +1414,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1514,7 +1518,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-73.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-73.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1618,7 +1622,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-75.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-75.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1716,7 +1720,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-76.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-76.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1817,7 +1821,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-8.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-8.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -1915,7 +1919,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2013,7 +2017,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2111,7 +2115,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-57.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-57.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2209,7 +2213,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2313,7 +2317,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-73.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-73.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2417,7 +2421,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-75.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-75.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2515,7 +2519,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-76.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-76.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2616,7 +2620,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-8.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-8.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2714,7 +2718,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2812,7 +2816,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -2910,7 +2914,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-57.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-57.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -3008,7 +3012,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-23.png" alt="Product Image" /></a>
+                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -3121,7 +3125,7 @@
         <div class="row">
             <div class="col-lg-8 md-my-10 d-none d-sm-block">
                 <div class="banner-wrapper banner-nine hover-img-zoom h-100">
-                    <div class="banner-image overflow-hidden transation"><img src="assets/images/banner/16.png" alt="Banner Image" /></div>
+                    <div class="banner-image overflow-hidden transation"><img src="{% static 'assets/images/banner/16.png' %}" alt="Banner Image" /></div>
                     <div class="banner-content">
                         <h4 class="mb-2"><a href="#" class="text-secondary">محصولات پولو رف لارن</a></h4>
                         <ul class="categories-banner">
@@ -3136,7 +3140,7 @@
             </div>
             <div class="col-lg-4 md-my-10">
                 <div class="banner-wrapper banner-nine hover-img-zoom h-100">
-                    <div class="banner-image overflow-hidden transation"><img src="assets/images/banner/17.png" alt="Banner Image" /></div>
+                    <div class="banner-image overflow-hidden transation"><img src="{% static 'assets/images/banner/17.png' %}" alt="Banner Image" /></div>
                     <div class="banner-content">
                         <h4 class="mb-2"><a href="#" class="text-secondary">حراج شروع زمستان</a></h4>
                         <ul class="categories-banner">
@@ -3158,7 +3162,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-4 col-lg-4 md-mb-30 mx-auto">
-                <div class="categories-banner d-flex flex-column h-100 bg-secondary sm-bg-img-none" style="background: url(assets/images/banner/67.png) no-repeat right top / cover;">
+                <div class="categories-banner d-flex flex-column h-100 bg-secondary sm-bg-img-none" style="background: url({% static 'assets/images/banner/67.png' %}) no-repeat right top / cover;">
                     <div class="p-30">
                         <h4 class="mb-20"><a href="#" class="text-white">پوشاک مردانه</a></h4>
                         <div class="mb-20">
@@ -3209,7 +3213,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3319,7 +3323,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-83.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-83.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3423,7 +3427,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-74.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-74.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3528,7 +3532,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-84.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-84.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3635,7 +3639,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-43.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-43.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3745,7 +3749,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-48.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-48.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3857,7 +3861,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -3967,7 +3971,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-83.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-83.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4071,7 +4075,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-74.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-74.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4176,7 +4180,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-84.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-84.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4283,7 +4287,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-43.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-43.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4393,7 +4397,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-48.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-48.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4505,7 +4509,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4615,7 +4619,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-83.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-83.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4719,7 +4723,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-74.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-74.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4824,7 +4828,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-84.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-84.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -4931,7 +4935,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-43.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-43.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5041,7 +5045,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-48.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-48.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5153,7 +5157,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5263,7 +5267,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-83.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-83.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5367,7 +5371,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-74.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-74.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5472,7 +5476,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-84.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-84.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5579,7 +5583,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-43.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-43.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5689,7 +5693,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-48.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-48.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5801,7 +5805,7 @@
 </div>
 <!--==================== Formal Shirt Section End ====================-->
 
-<div class="full-row banner-913 py-5" style="background: url(assets/images/banner/110.png) no-repeat; background-size: cover;">
+<div class="full-row banner-913 py-5" style="background: url({% static 'assets/images/banner/110.png' %}) no-repeat; background-size: cover;">
     <div class="container">
         <div class="row offer-product">
             <div class="col-xl-6 col-lg-7 d-flex align-items-center">
@@ -5815,7 +5819,7 @@
             </div>
             <div class="col-xl-5 col-lg-5 offset-xl-1">
                 <div class="xs-mt-30">
-                    <img src="assets/images/banner/83.png" alt="" />
+                    <img src="{% static 'assets/images/banner/83.png' %}" alt="" />
                 </div>
             </div>
         </div>
@@ -5842,7 +5846,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-86.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-86.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5901,7 +5905,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-82.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-82.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -5962,7 +5966,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-87.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-87.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6023,7 +6027,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-88.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-88.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6084,7 +6088,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-89.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-89.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6145,7 +6149,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-75.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-75.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6204,7 +6208,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-78.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-78.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6265,7 +6269,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-11.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-11.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6324,7 +6328,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6387,7 +6391,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-86.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-86.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6446,7 +6450,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-82.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-82.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6507,7 +6511,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-87.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-87.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6568,7 +6572,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-88.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-88.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6629,7 +6633,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-89.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-89.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6690,7 +6694,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-75.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-75.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6749,7 +6753,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-78.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-78.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6810,7 +6814,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-11.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-11.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6869,7 +6873,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6932,7 +6936,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-86.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-86.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -6991,7 +6995,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-82.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-82.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7052,7 +7056,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-87.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-87.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7113,7 +7117,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-88.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-88.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7174,7 +7178,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-89.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-89.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7235,7 +7239,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-75.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-75.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7294,7 +7298,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-78.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-78.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7355,7 +7359,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-11.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-11.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7414,7 +7418,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-14.png" alt="Product Image" /></a>
+                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-14.png' %}" alt="Product Image" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">
@@ -7546,7 +7550,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-90.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-90.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -7610,7 +7614,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-91.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-91.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -7674,7 +7678,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-77.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-77.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -7738,7 +7742,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-66.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-66.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -7802,7 +7806,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-92.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-92.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -7866,7 +7870,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-83.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-83.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -7930,7 +7934,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/squire-8.png" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-8.png' %}" alt="Product Image" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>

@@ -1,0 +1,40 @@
+{% load static %}
+
+<footer class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="footer-widget mb-5">
+                    <div class="footer-logo mb-4">
+                        <a href="#"><img src="{% static 'assets/images/logo/14.png' %}" alt="Image not found!" /></a>
+                    </div>
+                    <div class="widget-ecommerce-contact">
+                        <span class="font-500 text-dark">{{SiteSetting.footer_text}}</span>
+                        <div class="text-dark font-large font-400 mt-2">{{SiteSetting.telephon}}</div>
+                        <span class="h6 mt-5 text-secondary">آدرس: </span>
+                        <div class="text-general">{{SiteSetting.address}}</div>
+                    </div>
+                </div>
+                <div class="footer-widget media-widget mb-5">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            {% for footer in FooterOne %}
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-widget category-widget mb-5">
+                    <h3 class="widget-title mb-4">{{footer.name}}</h3>
+                    <ul>
+                        {% for footertwo in footer.footertwo_set.all %}
+                        <li><a href="{{footertwo.link}}">{{footertwo.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</footer>

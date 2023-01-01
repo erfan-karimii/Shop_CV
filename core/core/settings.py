@@ -42,10 +42,11 @@ INSTALLED_APPS = [
     # Django App
     'account',
     'product',
+    'home',
 
     #-----------package--------
     'ckeditor',
-    # 'django_render_partial',
+    'django_render_partial',
     'colorfield',
 ]
 
