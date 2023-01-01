@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+        <!-- breadcrumb -->
+        <div class="full-row bg-light py-5">
+            <div class="container">
+                <div class="row text-secondary">
+                    <div class="col-sm-6">
+                        <h3 class="mb-2 text-secondary font-large">ثبت نام</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home ms-1"></i>خانه</a></li>
+                                <li class="breadcrumb-item"><a href="shop-grid-full.html">فروشگاه</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">ثبت نام</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+
+        <!--==================== Registration Form Start ====================-->
+        <div class="full-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="woocommerce">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-8 col-12 mx-auto">
+                                    <div class="registration-form">
+                                        <h3>ثبت نام</h3>
+                                        <form method="post" action="{% url 'account:send' %}">
+                                            {% csrf_token %}
+                                            <p>
+                                                <label for="reg_email">شماره همراه&nbsp;<span class="required">*</span></label>
+                                                <input type="number" class="form-control" name="phone_number" id="reg_email" />
+                                            </p>
+                                            <p>رمز عبور به شماره تلفن شما ارسال خواهد شد.</p>
+                                            <p>
+                                                <button type="submit" class="btn btn-primary rounded-0" name="register" value="Register">ثبت نام</button>
+                                            </p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Registration Form Start ====================-->
+
+        <!--==================== Newslatter Section Start ====================-->
+        <div class="full-row bg-secondary py-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex align-items-center h-100">
+                            <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="d-flex align-items-center h-100">
+                            <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <form action="#" class="subscribe-form position-relative md-mt-20">
+                            <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                            <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Newslatter Section End ====================-->
+{% endblock %}
+    

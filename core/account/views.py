@@ -1,6 +1,96 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect
+from .froms import PhoneNumber
+from kavenegar import *
+from django.contrib.auth import get_user_model
+import random
+from django.contrib.auth.hashers import make_password
+from django.contrib import messages
+from django.contrib.auth import login,logout
 # Create your views here.
 
-def test(request):
-    return render(request,'registration.html',{})
+MyUser = get_user_model()
+
+def registerView(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    return render(request,'account/register.html',{})
+
+
+def send_sms_test(request):
+    number = random.randint(1000, 9999)
+    if request.method == "POST":
+        form=PhoneNumber(request.POST)
+        if form.is_valid():
+
+            phone_number =form.cleaned_data['phone_number']
+            if MyUser.objects.filter(phone_number=phone_number):
+                MyUser.objects.filter(phone_number=phone_number).update(token=number)
+            else:
+                MyUser.objects.create(phone_number=phone_number,token=number)
+            print(number)
+            # api = KavenegarAPI('4D526E3432522F42744D47414B3845436D59734377572B71645A455565644575')
+            # params = { 'sender' : '10000080808880', 'receptor': f'{phone_number}', 'message' :f'{number}' }
+            # try:
+            #     api.sms_send( params)
+            # except:
+            #     messages.success(request,'درست وارد کنید')
+            #     return render(request,'account/register.html')
+
+            response = render(request,'account/verify.html')
+            
+            response.set_cookie('phone_number_cookie',phone_number,1000)
+            return response
+        else:
+            messages.success(request,'درست وارد کنید')
+            return render(request,'account/register.html')
+    else :
+        return render(request,'account/register.html')
+
+
+def VerifyChecked(request):
+    if request.method == "POST":
+        token = request.POST.get('token')
+        phone_c = request.COOKIES['phone_number_cookie']
+        #----------------------------------------
+        try :
+            user = MyUser.objects.get(phone_number= phone_c)
+        except:
+            messages.success(request,'شما اکانتی با این شماره ندارید')
+        if user.token == token :
+            MyUser.objects.filter(phone_number=phone_c).update(is_verified=True)
+            return render(request,'account/complateprofile.html')
+        else :
+            messages.success(request,'کدارسالی را درست وارد کنید')
+        return redirect('/')
+    return render(request,'account/complateprofile.html')
+
+
+def ComplateProfileView(request):
+    return render(request,'account/complateprofile.html',{})
+
+
+def ComplateProfile(request):
+    if request.method == "POST":
+        # username=request.POST.get('username')
+        password = request.POST.get('password')
+        phone_c = request.COOKIES['phone_number_cookie']
+        MyUser.objects.filter(phone_number=phone_c).update(
+            phone_number=phone_c,password=make_password(password)
+        )
+        messages.success(request,'پروفایل شما با موفقیت ساخته شد')
+        user = MyUser.objects.get(phone_number=phone_c)
+        if user.is_verified:
+            login(request, user)
+    return redirect('/')
+
+
+def respass(request):
+    return render(request,'account/eghdam.html')
+
+
+
+
+
+def LogOut(request):
+    logout(request)
+    return redirect('/')
