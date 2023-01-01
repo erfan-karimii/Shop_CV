@@ -23,7 +23,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-#Don
+# test
+
+# #Don
 
 
 class TagProduct(models.Model):
