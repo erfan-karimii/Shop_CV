@@ -23,7 +23,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
+#Don
 
 
 class TagProduct(models.Model):
