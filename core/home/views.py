@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne
+from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale
 from product.models import Product 
 # Create your views here.
 
@@ -10,7 +10,8 @@ def index_view(request):
         'tabligh_left':Tabligh.objects.get(diraction='left'),
         'tabligh_right2':Tabligh.objects.get(diraction='right2'),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
-        'latest_products' : Product.objects.all().order_by('-created')
+        'latest_products' : Product.objects.all().order_by('-created'),
+        'on_sale' : OnSale.objects.filter(is_show=True).last(),
     }
     return render(request,'index.html',context)
 

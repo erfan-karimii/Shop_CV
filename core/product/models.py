@@ -11,7 +11,7 @@ from django.http import HttpResponse
 def photo_path(filename):
     basefilename, file_extension = os.path.splitext(filename)
     # random_text = ''.join([choice(string.ascii_letters) for _ in range(5)])
-    MEDIA_ROOT = os.path.join(BASE_DIR,'thumnail')
+    MEDIA_ROOT = os.path.join(BASE_DIR,'thumbnail')
     if platform.system() == 'Windows':
         return f'{MEDIA_ROOT}\{basefilename}{file_extension}'
     else:
@@ -47,7 +47,7 @@ class Product(models.Model):
     info = RichTextField()
     # more_info = RichTextField(null=True)
     tag = models.ManyToManyField(TagProduct)
-    takhfif = models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(0)],verbose_name='درصد تخفیف',default=0)
+    discount = models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(0)],verbose_name='درصد تخفیف',default=0)
     orgin_color = ColorField(samples=COLOR_PALETTE)
     orgin_size = models.CharField(max_length=20)
     created  =models.DateTimeField(auto_now_add=True)
