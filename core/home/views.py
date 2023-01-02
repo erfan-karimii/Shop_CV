@@ -11,7 +11,12 @@ def index_view(request):
         'tabligh_right2':Tabligh.objects.get(diraction='right2'),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
         'latest_products' : Product.objects.all().order_by('-created'),
-        'on_sale' : OnSale.objects.filter(is_show=True).last(),
+        'pants' : Product.objects.filter(category__name = 'شلوار'),
+        'shirts' : Product.objects.filter(category__name = 'پیراهن'),
+        'man_clothes' : Product.objects.filter(category__name = 'لباس مردانه'),
+        'woman_clothes' : Product.objects.filter(category__name = 'لباس زنانه'),
+        'on_sale_section' : OnSale.objects.filter(is_show=True).last(),
+
     }
     return render(request,'index.html',context)
 

@@ -48,6 +48,7 @@ class Product(models.Model):
     # more_info = RichTextField(null=True)
     tag = models.ManyToManyField(TagProduct)
     discount = models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(0)],verbose_name='درصد تخفیف',default=0)
+    # on_price = models.BooleanField(default=False)
     orgin_color = ColorField(samples=COLOR_PALETTE)
     orgin_size = models.CharField(max_length=20)
     created  =models.DateTimeField(auto_now_add=True)
@@ -57,9 +58,9 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def main_discount_cal(self):
+    def main_discount_call(self):
         # if inti:
-        return int(self.price - (self.price * (self.takhfif/100)))
+        return int(self.price - (self.price * (self.discount/100)))
         # return self.price - (self.price * (self.takhfif/100))
     
     def save(self):

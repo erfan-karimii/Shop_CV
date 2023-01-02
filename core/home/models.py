@@ -73,6 +73,7 @@ class FooterTwo(models.Model):
 class OnSale(models.Model):
     title = models.CharField(max_length=150)
     text = models.TextField()
+    products = models.ManyToManyField("product.Product")
     image = models.ImageField()
     alt = models.CharField(max_length=50)
     date = models.DateField()
