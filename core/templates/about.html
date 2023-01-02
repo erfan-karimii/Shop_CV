@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="full-row bg-light overlay-dark py-5" style="background-image: url({% static 'assets/images/background/4.png' %}); background-position: center center; background-size: cover;">
+    <div class="container">
+        <div class="row text-center text-white">
+            <div class="col-12">
+                <h3 class="mb-2 text-primary">درباره ما</h3>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">درباره ما</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!--==================== About Owner Section Start ====================-->
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 order-lg-2">
+                <h3 class="text-dark mb-3 font-large">{{AboutUsGeneral.title1}}</h3>
+                <p>{{AboutUsGeneral.text1}}</p>
+                {% for about in AboutUsProperty %}
+                <div class="datalist-icon-left py-2 d-flex">
+                    <span class="d-table ms-3"><i class="flaticon-startup flat-medium text-primary"></i></span>
+                    <div class="pe-3">
+                        <h4 class="text-dark mb-3">{{about.title}}</h4>
+                        <p>{{about.text}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-lg-6 order-lg-1 wow fadeIn md-mt-30" data-wow-delay="200ms" data-wow-duration="1000ms">
+                <div class="mt-md-30 shadow mb-30 position-relative">
+                    <img src="{{AboutUsGeneral.video_bg_image.url}}">
+                    <a data-fancybox class="video-popup" href="{{AboutUsGeneral.video.url}}" title="video">
+                        <span class="bg-primary text-white"><img src="{% static 'assets/images/icon/video-play.png' %}"></span>
+                    </a>
+                    <!-- Use youtube or Aparat video link in href, first open the video and just copy the link from url and past here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-4">
+                <span class="ordenery-font text-primary h5 pb-1 d-table">کسب اطلاعات</span>
+                <h3 class="text-dark down-line mb-4">{{AboutUsGeneral.title2}}</h3>
+                <p>{{AboutUsGeneral.text2}}</p>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="{{AboutUsGeneral.image1.url}}" data-fancybox="images" data-caption="Medical research for eye treatment">
+                    <img src="{{AboutUsGeneral.image1.url}}" alt="{{AboutUsGeneral.alt1}}">
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <a href="{{AboutUsGeneral.image2.url}}" data-fancybox="images" data-caption="Research about TMC virus">
+                    <img src="{{AboutUsGeneral.image2.url}}" alt="{{AboutUsGeneral.alt2}}">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full-row pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="bg-light p-5">
+                    <span class="h6 text-center text-primary">آشنایی مختصر با</span>
+                    <h4 class="down-line mb-4">{{AboutUsGeneral.title3}}</h4>
+                    <p>{{AboutUsGeneral.text3}}</p>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="capability-avg ps-lg-5 md-mt-50">
+                    {% for progressbar in AboutUsProgressBar %}
+                    <div class="bar-progress fact-counter text-white position-relative mb-5">
+                        <span>{{progressbar.title}}</span>
+                        <div class="mt-2 progress bg-light count wow fadeIn" data-wow-duration="0ms">
+                            <div class="skill-percent"><span class="count-num" data-speed="3000" data-stop="{{progressbar.percentage}}">0</span>%</div>
+                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="{{progressbar.percentage}}" aria-valuemax="100"> </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--==================== About Owner Section End ====================-->
+
+<!--==================== Newslatter Section Start ====================-->
+<div class="full-row bg-secondary py-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <form action="#" class="subscribe-form position-relative md-mt-20">
+                    <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== Newslatter Section End ====================-->
+
+
+{% endblock body %}
