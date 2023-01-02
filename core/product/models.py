@@ -23,10 +23,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-# test
-
-# #Don
-
 
 class TagProduct(models.Model):
     name =models.CharField(max_length=100)
@@ -118,7 +114,7 @@ class GalleryImage(models.Model):
         img = Image.open(self.image.path)  # Open image using self 
         new_image = img.resize((1000, 1000))
         x = photo_path(str(self.image))   
-        new_image.save(x)  # saving image at the same path
+        new_image.save(x)  # saving image at the calculated path
 
 # class Comment(models.Model):
 #     product = models.ForeignKey(Product,on_delete=models.CASCADE)

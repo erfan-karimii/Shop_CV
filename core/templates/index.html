@@ -184,11 +184,12 @@
             <div class="col-12">
                 <div class="products product-style-2 owl-mx-5">
                     <div class="four-carousel owl-carousel e-hover-image-zoom e-hover-wrapper-absolute e-bg-light icon-hover-primary owl-item-mb-50 nav-arrow-middle-show dot-disable" dir="ltr">
+                        {% for product in latest_products  %}
                         <div class="item">
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-16.png' %}" alt="Product Image" /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -203,15 +204,15 @@
                                             <div class="badge1"><span>جدید</span></div>
                                         </div>
                                         <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
+                                            <span class="active"><a style="background-color: {{product.orgin_color}};"></a></span>
+                                            {% for color in product.color_set.all %}
+                                            <span><a style="background-color: {{color.color}};"></a></span>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                     <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">کاپشن کلاه دار مردانه JootiJeans</a></h3>
+                                        <div class="product-cats"><a href="#">{{product.category.name}}</a></div>
+                                        <h3 class="product-title"><a href="#">{{product.name}}</a></h3>
                                         <div class="product-price">
                                             <div class="price">
                                                 <ins>489000 تومان</ins>
@@ -246,440 +247,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-11.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">تیشرت آستین کوتاه مردانه شین دیزاین</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>38000 تومان</ins>
-                                                <del>58000 تومان</del>
-                                            </div>
-                                            <div class="on-sale"><span>40</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>15000 تومان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-8.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">کاپشن مردانه ایکات مدل بهاره مدل PKA</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>548000 تومان</ins>
-                                                <del>789500 تومان</del>
-                                            </div>
-                                            <div class="on-sale"><span>40</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-23.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">کت تک مردانه ایکات مدل JA</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>977000 تومان</ins>
-                                                <del>1520000 تومان</del>
-                                            </div>
-                                            <div class="on-sale"><span>40</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>98500 تومان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-43.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="on-sale"><span>17</span><span>% تخفیف</span></div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">پولوشرت آستین کوتاه مردانه باینت</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>685000 تومان</ins>
-                                            </div>
-                                            <div class="on-sale"><span>17</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-57.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">تاپ زنانه برنس مدل NAIKA</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>99000 تومان</ins>
-                                                <del>109000 تومان</del>
-                                            </div>
-                                            <div class="on-sale"><span>40</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>65000 تومان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-66.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">سویشرت مردانه طرح برکینگ کد ZS</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>119000 تومان</ins>
-                                                <del>205000 تومان</del>
-                                            </div>
-                                            <div class="on-sale"><span>40</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-74.png' %}" alt="Product Image" /></a>
-                                        <div class="wishlist-view">
-                                            <div class="quickview-button">
-                                                <a class="quickview-btn" href="#quick-view" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
-                                                    افزودن به علاقه مندی
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="badge1"><span>جدید</span></div>
-                                        </div>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">پیراهن مردانه سیکس زیرو ناین</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                <ins>420000 تومان</ins>
-                                                <del>450000 تومان</del>
-                                            </div>
-                                            <div class="on-sale"><span>40</span><span>% تخفیف</span></div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items"><span>142</span> <span>فروش</span></div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#">افزودن به علاقه مندی</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#">مقایسه</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
@@ -3123,32 +2691,22 @@
 <div class="full-row bg-white p-0">
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-8 md-my-10 d-none d-sm-block">
                 <div class="banner-wrapper banner-nine hover-img-zoom h-100">
-                    <div class="banner-image overflow-hidden transation"><img src="{% static 'assets/images/banner/16.png' %}" alt="Banner Image" /></div>
+                    <div class="banner-image overflow-hidden transation"><img src="{{tabligh_right.image.url}}" alt="Banner Image" /></div>
                     <div class="banner-content">
-                        <h4 class="mb-2"><a href="#" class="text-secondary">محصولات پولو رف لارن</a></h4>
-                        <ul class="categories-banner">
-                            <li><a href="#">تی شرت،</a></li>
-                            <li><a href="#">کفش،</a></li>
-                            <li><a href="#">پیراهن مردانه</a></li>
-                            <li><a href="#">ضمانت خرید لباس و کفش اورجینال و باکیفیت</a></li>
-                        </ul>
-                        <a href="#" class="btn-link text-secondary mt-2">مشاهده و خرید</a>
+                        <h4 class="mb-2"><a href="{{tabligh_right.link}}" class="text-secondary">{{tabligh_right.text}}</a></h4>
+                        <a href="{{tabligh_right.link}}" class="btn-link text-secondary mt-2">{{tabligh_right.text2}}</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 md-my-10">
                 <div class="banner-wrapper banner-nine hover-img-zoom h-100">
-                    <div class="banner-image overflow-hidden transation"><img src="{% static 'assets/images/banner/17.png' %}" alt="Banner Image" /></div>
+                    <div class="banner-image overflow-hidden transation"><img src="{{tabligh_left.image.url}}" alt="Banner Image" /></div>
                     <div class="banner-content">
-                        <h4 class="mb-2"><a href="#" class="text-secondary">حراج شروع زمستان</a></h4>
-                        <ul class="categories-banner">
-                            <li><a href="#">بافت و پُلیور،</a></li>
-                            <li><a href="#">ژاکت و هودی،</a></li>
-                            <li><a href="#">کاپشن، پالتو و بارانی</a></li>
-                        </ul>
-                        <a href="#" class="btn-link text-secondary mt-2">مشاهده و خرید</a>
+                        <h4 class="mb-2"><a href="{{tabligh_left.link}}" class="text-secondary">{{tabligh_left.text}}</a></h4>
+                        <a href="{{tabligh_left.link}}" class="btn-link text-secondary mt-2">{{tabligh_left.text2}}</a>
                     </div>
                 </div>
             </div>
@@ -3162,18 +2720,10 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-4 col-lg-4 md-mb-30 mx-auto">
-                <div class="categories-banner d-flex flex-column h-100 bg-secondary sm-bg-img-none" style="background: url({% static 'assets/images/banner/67.png' %}) no-repeat right top / cover;">
+                <div class="categories-banner d-flex flex-column h-100 bg-secondary sm-bg-img-none" style="background: url({{tabligh_right2.image.url}}) no-repeat right top / cover;">
                     <div class="p-30">
-                        <h4 class="mb-20"><a href="#" class="text-white">پوشاک مردانه</a></h4>
-                        <div class="mb-20">
-                            <ul>
-                                <li><a href="#">تی شرت های مردانه، </a></li>
-                                <li><a href="#">جدید و متنوع</a></li>
-                                <li><a href="#">اُورجینال</a></li>
-                                <li><a href="#">با برند کُلمبیا اصل</a></li>
-                            </ul>
-                        </div>
-                        <div class="px-2 py-1 bg-primary text-dark d-table"><span>تخفیف ویژه تا 35%</span></div>
+                        <h4 class="mb-20"><a href="#" class="text-white">{{tabligh_right2.text}}</a></h4>
+                        <div class="px-2 py-1 bg-primary text-dark d-table"><span>{{tabligh_right2.text2}}</span></div>
                     </div>
                 </div>
             </div>
@@ -5814,7 +5364,7 @@
                     <h2 class="text-white text-left mb-4 text-uppercase down-line-white f-vazir-bold h3">حراج تابستانی کفش های ورزشی مردانه تا 50% تخفیف</h2>
                     <p>جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</p>
                     <a href="#" class="btn-link-down-line text-white mt-20">مشاهده محصولات</a>
-                    <div class="time-count text-left type-4 mt-4 flex-between w-50" data-countdown="2021/12/31"></div>
+                    <div class="time-count text-left type-4 mt-4 flex-between w-50" data-countdown="2023/1/3"></div>
                 </div>
             </div>
             <div class="col-xl-5 col-lg-5 offset-xl-1">

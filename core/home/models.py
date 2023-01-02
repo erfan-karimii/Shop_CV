@@ -50,7 +50,9 @@ position = (
 
 class Tabligh(models.Model):
     image = models.ImageField()
+    alt = models.CharField(max_length=50)
     text = models.CharField(max_length=100,null=True,verbose_name='متن')
+    text2 = models.CharField(max_length=100,null=True,verbose_name='2متن')
     diraction = models.CharField(max_length=100,choices=position,verbose_name='مکان تبلیغ')
     link = models.CharField(max_length=400,null=True,verbose_name='لینک تبلیغ')
     def __str__(self):
@@ -67,3 +69,10 @@ class FooterTwo(models.Model):
     link = models.CharField(max_length=100,null=True,verbose_name='لینک صفحه')
     def __str__(self):
         return  str(self.parent.name) + " | " +  self.name 
+
+class OnSale(models.Model):
+    title = models.CharField(max_length=150)
+    text = models.TextField()
+    image = models.ImageField()
+    alt = models.CharField(max_length=50)
+    date = models.DateField()

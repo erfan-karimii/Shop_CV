@@ -63,11 +63,13 @@
                                 {% for navbar in NavOne %}
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="{{navbar.link}}">{{navbar.name}}</a>
+                                    {% if navbar.navtwo_set.all %}
                                     <ul class="dropdown-menu">
                                         {% for navbartwo in navbar.navtwo_set.all %}
                                         <li><a class="dropdown-item" href="{{navbartwo.link}}">{{navbartwo.name}}</a></li>
                                         {% endfor %}
                                     </ul>
+                                    {% endif %}
                                 </li>
                                 {% endfor %}
                             </ul>
