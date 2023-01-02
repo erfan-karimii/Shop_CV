@@ -76,3 +76,7 @@ class OnSale(models.Model):
     image = models.ImageField()
     alt = models.CharField(max_length=50)
     date = models.DateField()
+    is_show = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
