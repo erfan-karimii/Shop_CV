@@ -10,7 +10,7 @@ def index_view(request):
         'tabligh_left':Tabligh.objects.get(diraction='left'),
         'tabligh_right2':Tabligh.objects.get(diraction='right2'),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
-        'latest_products' : Product.objects.all().order_by('-created'),
+        'latest_products' : Product.objects.filter(is_active=True).order_by('-created'),
         'pants' : Product.objects.filter(category__name = 'شلوار'),
         'shirts' : Product.objects.filter(category__name = 'پیراهن'),
         'man_clothes' : Product.objects.filter(category__name = 'لباس مردانه'),
