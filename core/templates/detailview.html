@@ -1,0 +1,750 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+        <!-- breadcrumb -->
+        <div class="full-row bg-light py-5">
+            <div class="container">
+                <div class="row text-secondary">
+                    <div class="col-sm-6">
+                        <h3 class="mb-2 text-secondary font-large">{{post.name}}</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home ms-1"></i>خانه</a></li>
+                                <li class="breadcrumb-item"><a href="shop-grid-full.html">فروشگاه</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">جزئیات محصول نسخه 1</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb -->
+
+        <div class="full-row">
+            <div class="container">
+                <div class="row single-product-wrapper">
+                    <div class="col-12 col-md-6 col-lg-5">
+                        <div class="product-images">
+                            <div class="images-inner">
+                                <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 1; transition: opacity 0.25s ease-in-out 0s;">
+                                    <figure class="woocommerce-product-gallery__wrapper">
+                                        <div class="bg-light">
+                                            <img id="single-image-zoom" src="{{post.image.url}}" alt="{{post.alt}}" data-zoom-image="{{post.image.url}}" />
+                                        </div>
+
+                                        <div id="gallery_09" class="product-slide-thumb">
+                                            <div class="owl-carousel four-carousel dot-disable nav-arrow-middle owl-mx-5" dir="ltr">
+                                                <div class="item">
+                                                    <a class="active" href="#" data-image="{{post.image.url}}" data-zoom-image="{% static 'assets/images/products/squire-269.png' %}">
+                                                        <img src="{% static 'assets/images/products/squire-269.png' %}" alt="Thumb Image" />
+                                                    </a>
+                                                </div>
+                                                <div class="item">
+                                                    <a href="#" data-image="{% static 'assets/images/products/squire-270.png' %}" data-zoom-image="{% static 'assets/images/products/squire-270.png' %}">
+                                                        <img src="{% static 'assets/images/products/squire-270.png' %}" alt="Thumb Image" />
+                                                    </a>
+                                                </div>
+                                                <div class="item">
+                                                    <a href="#" data-image="{% static 'assets/images/products/squire-271.png' %}" data-zoom-image="{% static 'assets/images/products/squire-271.png' %}">
+                                                        <img src="{% static 'assets/images/products/squire-271.png' %}" alt="Thumb Image" />
+                                                    </a>
+                                                </div>
+                                                <div class="item">
+                                                    <a href="#" data-image="{% static 'assets/images/products/squire-272.png' %}" data-zoom-image="{% static 'assets/images/products/squire-272.png' %}">
+                                                        <img src="{% static 'assets/images/products/squire-272.png' %}" alt="Thumb Image" />
+                                                    </a>
+                                                </div>
+                                                <div class="item">
+                                                    <a href="#" data-image="{% static 'assets/images/products/squire-269.png' %}" data-zoom-image="assets/images/products/squire-269.png">
+                                                        <img src="assets/images/products/squire-269.png" alt="Thumb Image" />
+                                                    </a>
+                                                </div>
+                                                <div class="item">
+                                                    <a href="#" data-image="{% static 'assets/images/products/squire-270.png' %}" data-zoom-image="{% static 'assets/images/products/squire-270.png' %}">
+                                                        <img src="{% static 'assets/images/products/squire-270.png' %}" alt="Thumb Image" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-7">
+                        <div class="summary entry-summary">
+                            <div class="summary-inner">
+                                <div class="product-navigation-share">
+                                    <div class="product-share bigbazar-arrow">
+                                        <div class="bigbazar-social">
+                                            <a href="#" class="social-facebook"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" class="social-twitter"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" class="social-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="#" class="social-telegram"><i class="fab fa-google-plus-g"></i></a>
+                                            <a href="#" class="social-pinterest"><i class="fab fa-pinterest-p"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry-breadcrumbs">
+                                    <nav class="breadcrumb-divider-slash" aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="{% url 'home:home' %}">خانه</a></li>
+                                            <li class="breadcrumb-item"><a href="{% url 'product:listview' %}">فروشگاه</a></li>
+                                            <li class="breadcrumb-item"><a href="#">{{post.category}}</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <h1 class="product_title entry-title">{{post.name}}</h1>
+                                <div class="woocommerce-product-rating">
+                                    <div class="fancy-star-rating">
+                                        <div class="rating-wrap" dir="ltr"> <span class="fancy-rating good">5 ★</span>
+                                        </div>
+                                        <div class="rating-counts-wrap">
+                                            <a href="#reviews" class="bigbazar-rating-review-link" rel="nofollow"> <span class="rating-counts"> (2) </span> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <bdi>{{post.price}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                    </span>
+                                    
+                                </p>
+                                {% if post.discount %}
+                                <div class="product-price-discount"><span class="on-sale"><span>{{post.discount}}</span>% تخفیف</span>
+                                </div>
+                                {% endif %}
+                                <div class="product-price-summary exclamation-mark open">
+                                    <i class="fas fa-exclamation"></i>
+                                    <div class="price-summary">
+                                        <div class="price-summary-content">
+                                            <ul class="price-summary-list">
+                                                <li class="regular-price"> <label>حداکثر قیمت تک فروشی<br> <span>(با احتساب مالیات)</span> </label>
+                                                    <span style="text-decoration:line-through">
+                                                        <span class="woocommerce-Price-amount amount"><bdi>287500<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                                    </span>
+                                                    </span>
+                                                </li>
+                                                <li class="selling-price"> <label>قیمت فروش</label> <span><span class="woocommerce-Price-amount amount"><bdi>245000<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                                    </span>
+                                                    </span>
+                                                </li>
+                                                <li class="discount"> <label>تخفیف</label> <span>19%</span></li>
+                                                <li class="total-discount"> <label>جمع کل</label> <span> <span class="woocommerce-Price-amount amount"><bdi>245000<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                                    </span>
+                                                    </span>
+                                                </li>
+                                                <li class="overall-discount"> مبلغ پس انداز <span class="amount-discount"><span class="woocommerce-Price-amount amount"><bdi>24500<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                                    </span>
+                                                    </span> <span class="percentage-discount">(19%)</span> روی این محصول</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="stock-availability in-stock">موجود در انبار فروشنده</div>
+                                <div class="product-offers">
+                                    <ul class="product-offers-list">
+                                        <li class="product-offer-item"><span class="h6">قیمت شگفت انگیز</span> 19% تخفیف اضافی دریافت کنید (قیمت با احتساب تخفیف)
+                                            <div class="product-term-wrap"><span class="product-term-text bigbazar-ajax-block">T & C </span></div>
+                                        </li>
+                                        <li class="product-offer-item"><span class="h6">پیشنهاد فروشنده</span> 10% تخفیف بر روی VISA Cards
+                                            <div class="product-term-wrap"><span class="product-term-text bigbazar-ajax-block">T & C </span></div>
+                                        </li>
+                                        <li class="product-offer-item"><span class="h6">بدون هزینه EMI 49 دلار در ماه.</span> EMI استاندارد نیز موجود است
+                                            <div class="product-term-wrap"><span class="product-term-text bigbazar-ajax-block">مشاهده پلان ها </span></div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product-brands">
+                                    <a class="brand-image" href="#"> <img src="{% static 'assets/images/partner/1.png' %}" class="attachment-full size-full" alt="" width="120" height="120"> </a>
+                                </div>
+                                <div class="product-services">
+                                    <span class="f-vazir-bold">خدمات:</span>
+                                    <ul class="product-services-list">
+                                        <li class="product-service-item"> 30 روز ضمانت بازگشت کالا</li>
+                                        <li class="product-service-item"> امکان پرداخت در محل</li>
+                                        <li class="product-service-item"> امکان تحویل اکسپرس</li>
+                                    </ul>
+                                </div>
+                                <div class="woocommerce-product-details__short-description"> <span class="f-vazir-bold">ویژگی ها:</span>
+                                    <div class="short-description">
+                                        <ul>
+                                            <li>نوع کاربری : ورزشی، روزمره، فشن</li>
+                                            <li>قابل استفاده برای : آقایان، بانوان، پسران، دختران</li>
+                                            <li>فرم صفحه : گرد</li>
+                                            <li>جنس شیشه : معدنی</li>
+                                            <li>نوع قفل بند : سگکی ساده</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <form class="variations_form cart kapee-swatches-wrap" action="#" method="post" enctype="multipart/form-data">
+                                    <table class="variations">
+                                        <tr>
+                                            <td class="label f-vazir-bold"><label>رنگ</label></td>
+                                            <td class="value with-swatches">
+                                                <div class="bigbazar-swatches">
+                                                    <span class="swatch swatch-color swatch-circle swatch-selected" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="آبی">
+                                                        <span class="bigbazar-tooltip" style="background-color:#33a1de" title="">آبی</span>
+                                                    </span>
+                                                    <span class="swatch swatch-color term-grey swatch-circle" title="طوسی" data-term="grey">
+                                                        <span class="bigbazar-tooltip" style="background-color:#787878"
+                                                         title="">طوسی</span>
+                                                    </span>
+                                                    <span class="swatch swatch-color term-maroon swatch-circle" title="صورتی" data-term="maroon">
+                                                        <span class="bigbazar-tooltip" style="background-color:#800000" 
+                                                         title="">صورتی</span>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label f-vazir-bold"><label>سایز</label></td>
+                                            <td class="value with-swatches">
+                                                <div class="bigbazar-swatches">
+                                                    <span class="swatch swatch-label  swatch-circle swatch-selected" title="L"><span>L</span></span>
+                                                    <span class="swatch swatch-label term-m swatch-circle" title="M"><span>M</span></span>
+                                                    <span class="swatch swatch-label term-s swatch-circle" title="S"><span>S</span></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="label"></td>
+                                            <td><a class="reset_variations" href="#">تنظیمات پیش فرض</a></td>
+                                        </tr>
+                                    </table>
+                                    <div class="single_variation_wrap">
+                                        <div class="quantity">
+                                            <input type="number" min="1" max="9" step="1" value="1">
+                                        </div>
+                                        <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-enabled">
+                                            <button type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button">افزودن به سبد</button>
+                                            <div class="bigbazar-quick-buy">
+                                                <button class="bigbazar_quick_buy_button bigbazar_quick_buy_variable bigbazar_quick_buy_58" value="Buy Now">همین حالا خرید کن!</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="yith-wcwl-add-to-wishlist wishlist-fragment">
+                                    <div class="wishlist-button">
+                                        <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
+                                    </div>
+                                    <div class="compare-button">
+                                        <a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="مقایسه کالا" aria-label="Compare">مقایسه کالا</a>
+                                    </div>
+                                    <div class="size-guide-button">
+                                        <a href="#">نمودار قیمت</a>
+                                    </div>
+                                </div>
+                                <div class="product_meta"> <span class="sku_wrapper">امتیاز: <span class="sku">18 امتیاز</span></span> <span class="posted_in">دسته بندی: <a href="#" rel="tag">ساعت هوشمند</a></span> <span class="tagged_as">برچسب: <a href="#" rel="tag">ساعت مردانه</a>, <a href="#" rel="tag">ساعت عقربه ای</a></span></div>
+                                <div class="bigbazar-wc-message"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--==================== Product Description Section Start ====================-->
+        <div class="full-row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-head border-bottom">
+                            <div class="woocommerce-tabs wc-tabs-wrapper ps-0">
+                                <ul class="nav nav-pills wc-tabs" id="pills-tab-one" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-description-one-tab" data-bs-toggle="pill" href="#pills-description-one" role="tab" aria-controls="pills-description-one" aria-selected="true">معرفی</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-information-one-tab" data-bs-toggle="pill" href="#pills-information-one" role="tab" aria-controls="pills-information-one" aria-selected="true">مشخصات</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-reviews-one-tab" data-bs-toggle="pill" href="#pills-reviews-one" role="tab" aria-controls="pills-reviews-one" aria-selected="true">دیدگاه ها(3)</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="woocommerce-tabs wc-tabs-wrapper ps-0 mt-0">
+                            <div class="tab-content" id="pills-tabContent-one">
+                                <div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-description-one" role="tabpanel" aria-labelledby="pills-description-one-tab">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <h2 class="my-3">عملکرد باتری</h2>
+                                            <p>کرنوگراف، آلارم، نور پس زمینه و تاریخ شمار چهار قابلیت اصلی ساعت پیائوما مدل «SS-CRV» از ساعت‌های دیجیتال‌ مهیج و مقرون‌به‌صرفه‌ای است که برند پیائوما در قالب ساعت مچی ارائه کرده است.ساعت پیائوما مدل E20 S-SPORT دارای یک کرنوگراف یا زمان‌سنج است که قابلیتی اسپرت دارد و جذاب به نظر می‌رسد. بند، بدنه و شیشه‌ ساعت از جنس پلاستیک مرغوبی است که در کل، به ویژه در خصوص بند و قاب، مزایایی نظیر سبکی و دوام بالا را به همراه دارد. مقاومت در برابر آب هم از دیگر مشخصات کیفی و مهم ساعت محسوب می‌شود که به موجب آن از نفوذ آب به بدنه در تقریبا تمام موقعیت‌های روزمره جلوگیری می‌شود. این ساعت دیجیتال با توجه به صفحه‌ی دیجیتال، قابلیت‌هایی را در اختیار شما قرار می‌دهد که در نوع خود و در مدل‌های مشابه در این بازه‌ی قیمتی، کاملا باارزش به نظر می‌رسد.ظاهر سری E20 دقیقا همان چیزی است که از یک ساعت اسپرت انتظار دارید؛</p>
+                                            <h2>بند ساعت</h2>
+                                            <p>بند، بدنه و شیشه‌ ساعت از جنس پلاستیک مرغوبی است که در کل، به ویژه در خصوص بند و قاب، مزایایی نظیر سبکی و دوام بالا را به همراه دارد. مقاومت در برابر آب هم از دیگر مشخصات کیفی و مهم ساعت محسوب می‌شود که به موجب آن از نفوذ آب به بدنه در تقریبا تمام موقعیت‌های روزمره جلوگیری می‌شود. این ساعت دیجیتال با توجه به صفحه‌ی دیجیتال، قابلیت‌هایی را در اختیار شما قرار می‌دهد که در نوع خود و در مدل‌های مشابه در این بازه‌ی قیمتی، کاملا باارزش به نظر می‌رسد.ظاهر سری E20 دقیقا همان چیزی است که از یک ساعت اسپرت انتظار دارید؛</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <h2 class="my-3">نحوه پرداخت و ارسال:</h2>
+                                            <div class="detailmodule_text">
+                                                <ul class="detail-desc-decorate-content">
+                                                    <li>1. با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</li>
+                                                    <li>2. زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
+                                                    <li>3. با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</li>
+                                                    <li>4. زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="detailmodule_text mt-30">
+                                                <h2 class="my-3">سوالات متداول:</h2>
+                                                <div class="bb-accordion ac-single-show accordion-plus-left">
+                                                    <div class="ac-card">
+                                                        <a class="ac-toggle d-block py-2 text-secondary font-medium active" href="javascript:void(0);">طراحی وب سایت و اپلیکیشن موبایل</a>
+                                                        <div class="ac-collapse show" style="display: block">
+                                                            <p>کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ac-card">
+                                                        <a class="ac-toggle d-block py-2 text-secondary font-medium" href="javascript:void(0);">موشن گرافیک و انیمیشن</a>
+                                                        <div class="ac-collapse">
+                                                            <p>کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ac-card">
+                                                        <a class="ac-toggle d-block py-2 text-secondary font-medium" href="javascript:void(0);">تجربه کاربر و استراتژی برند</a>
+                                                        <div class="ac-collapse">
+                                                            <p>کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-information-one" role="tabpanel" aria-labelledby="pills-information-one-tab">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <h2 class="my-3">مشخصات</h2>
+                                            <table class="woocommerce-product-attributes shop_attributes">
+                                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_color">
+                                                    <th class="woocommerce-product-attributes-item__label">وزن :</th>
+                                                    <td class="woocommerce-product-attributes-item__value">
+                                                        <p>۳۸.۸ گرم</p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                                    <th class="woocommerce-product-attributes-item__label">ابعاد قاب :</th>
+                                                    <td class="woocommerce-product-attributes-item__value">
+                                                        <p>۴۵x۳۸x۱۰.۷ میلی‌متر</p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                                    <th class="woocommerce-product-attributes-item__label">ظرفیت باتری :</th>
+                                                    <td class="woocommerce-product-attributes-item__value">
+                                                        <p>نامشخص میلی آمپر ساعت</p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                                    <th class="woocommerce-product-attributes-item__label">مدل :</th>
+                                                    <td class="woocommerce-product-attributes-item__value">
+                                                        <p>MF841HN/A</p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                                    <th class="woocommerce-product-attributes-item__label">سیستم عامل :</th>
+                                                    <td class="woocommerce-product-attributes-item__value">
+                                                        <p>WatchOS</p>
+                                                    </td>
+                                                </tr>
+                                                <tr class="woocommerce-product-attributes-item woocommerce-product-attributes-item--attribute_pa_size">
+                                                    <th class="woocommerce-product-attributes-item__label">سایر مشخصات سخت افزاری :</th>
+                                                    <td class="woocommerce-product-attributes-item__value">
+                                                        <p>پردازنده دو هسته ای</p>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-reviews-one" role="tabpanel" aria-labelledby="pills-reviews-one-tab">
+                                    <div class="row">
+                                        <div class="col-8">
+                                            <div id="comments">
+                                                <h2 class="woocommerce-Reviews-title my-3">(3) دیدگاه ها</h2>
+                                                <ol class="commentlist">
+                                                    <li>
+                                                        <div class="comment_container">
+                                                            <img src="assets/images/avatar.png" class="avatar" alt="Image not found!">
+                                                            <div class="comment-text">
+                                                                <div class="star-rating" role="img" aria-label="Rated 5 out of 5">
+                                                                    <i class="flaticon-star-1"></i>
+                                                                    <i class="flaticon-star-1"></i>
+                                                                    <i class="flaticon-star-1"></i>
+                                                                    <i class="flaticon-star-1"></i>
+                                                                    <i class="flaticon-star-1"></i>
+                                                                </div>
+                                                                <p class="meta">
+                                                                    <strong class="woocommerce-review__author">ادمین </strong>
+                                                                    <span class="woocommerce-review__dash">–</span>
+                                                                    <span class="woocommerce-review__published-date">26 شهریور، 1399</span>
+                                                                </p>
+                                                                <div class="description">
+                                                                    <p>متاسفانه باید حتما گوشی آیفون داشته باشی تا بتونی ازش استفاده کنی تازه بعد اون اگه با سیم کارت ایران رجیستر کنی همه قابلیت‌های غیر فعالن واسه اون هم سیم کارت بین المللی میخاد یعنی راحت 15تومن اضافی باید بیفتی تا بتونی ازش استفاده کنی</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                            <div id="review_form_wrapper">
+                                                <div id="review_form">
+                                                    <div id="respond" class="comment-respond">
+                                                        <h5 id="reply-title" class="comment-reply-title my-20">ثبت دیدگاه</h5>
+                                                        <form action="#" method="post" id="commentform" class="comment-form">
+                                                            <div class="row g-3">
+                                                                <div class="col-6">
+                                                                    <label for="comment">نام و نام خانوادگی<span class="required">*</span></label>
+                                                                    <input type="text" class="form-control">
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <label for="comment">پست الکترونیکی<span class="required">*</span></label>
+                                                                    <input type="email" class="form-control">
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="comment-form-comment">
+                                                                        <label for="comment">متن نظر<span class="required">*</span></label>
+                                                                        <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-12">
+                                                                    <div class="form-submit">
+                                                                        <button name="submit" type="submit" id="submit" class="btn btn-primary">ثبت دیدگاه</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden" id="_wp_unfiltered_html_comment_disabled" name="_wp_unfiltered_html_comment" value="0bbb6c8c11">
+                                                        </form>
+                                                    </div>
+                                                    <!-- #respond -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Product Description Section End ====================-->
+
+        <!--==================== Related Products Section Start ====================-->
+        <div class="full-row pt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-head border-bottom d-flex justify-content-between align-items-end mb-2">
+                            <div class="d-flex section-head-side-title">
+                                <h4 class="font-600 text-dark mb-0">کالاهای مشابه</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+						<div class="products product-style-1 owl-mx-5">
+							<div class="five-carousel owl-carousel nav-top-right e-title-hover-primary e-image-bg-light e-hover-image-zoom e-info-center" dir="ltr">
+								<div class="item">
+									<div class="product type-product">
+										<div class="product-wrapper">
+											<div class="product-image">
+												<a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/height-12.png" alt="Product Image"></a>
+												<div class="product-variations">
+													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
+													<span><a href="#" style="background-color: #31749e;"></a></span>
+													<span><a href="#" style="background-color: #672a4f;"></a></span>
+												</div>
+												<div class="on-sale">- 20%</div>
+												<div class="hover-area">
+																<div class="cart-button">
+																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+																</div>
+																<div class="wishlist-button">
+																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+																</div>
+																<div class="compare-button">
+																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+																</div>
+															</div>
+											</div>
+											<div class="product-info">
+												<h3 class="product-title"><a href="#">شومیز زنانه اسمارا</a></h3>
+												<div class="product-price">
+													<div class="price">
+														<ins>17.00 تومان</ins>
+														<del>32.28 تومان</del>
+													</div>
+												</div>
+												<div class="shipping-feed-back">
+													<div class="star-rating">
+														<div class="rating-wrap">
+															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="product type-product">
+										<div class="product-wrapper">
+											<div class="product-image">
+												<a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/height-13.png" alt="Product Image"></a>
+												<div class="product-variations">
+													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
+													<span><a href="#" style="background-color: #31749e;"></a></span>
+													<span><a href="#" style="background-color: #672a4f;"></a></span>
+												</div>
+												<div class="hover-area">
+																<div class="cart-button">
+																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+																</div>
+																<div class="wishlist-button">
+																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+																</div>
+																<div class="compare-button">
+																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+																</div>
+															</div>
+											</div>
+											<div class="product-info">
+												<h3 class="product-title"><a href="#">تی شرت زنانه مدل بی تی اس</a></h3>
+												<div class="product-price">
+													<div class="price">
+														<ins>25.62.00 تومان</ins>
+													</div>
+												</div>
+												<div class="shipping-cost"><span>+هزینه ارسال: </span> <span>5.00 تومان</span> </div>
+												<div class="shipping-feed-back">
+													<div class="star-rating">
+														<div class="rating-wrap">
+															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="product type-product">
+										<div class="product-wrapper">
+											<div class="product-image">
+												<a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/height-14.png" alt="Product Image"></a>
+												<div class="product-variations">
+													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
+													<span><a href="#" style="background-color: #31749e;"></a></span>
+													<span><a href="#" style="background-color: #672a4f;"></a></span>
+												</div>
+												<div class="product-labels">
+													<div class="badge1"><span>جدید</span></div>
+												</div>
+												<div class="hover-area">
+																<div class="cart-button">
+																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+																</div>
+																<div class="wishlist-button">
+																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+																</div>
+																<div class="compare-button">
+																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+																</div>
+															</div>
+											</div>
+											<div class="product-info">
+												<h3 class="product-title"><a href="#">شلوارک مردانه آریان نخ باف </a></h3>
+												<div class="product-price">
+													<div class="price">
+														<ins>34.88 تومان</ins>
+													</div>
+												</div>
+												<div class="shipping-cost"><span>+هزینه ارسال: </span> <span>5.00 تومان</span> </div>
+												<div class="shipping-feed-back">
+													<div class="star-rating">
+														<div class="rating-wrap">
+															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="product type-product">
+										<div class="product-wrapper">
+											<div class="product-image">
+												<a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/height-15.png" alt="Product Image"></a>
+												<div class="product-variations">
+													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
+													<span><a href="#" style="background-color: #31749e;"></a></span>
+													<span><a href="#" style="background-color: #672a4f;"></a></span>
+												</div>
+												<div class="product-labels">
+													<div class="badge1"><span>جدید</span></div>
+												</div>
+												<div class="hover-area">
+																<div class="cart-button">
+																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+																</div>
+																<div class="wishlist-button">
+																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+																</div>
+																<div class="compare-button">
+																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+																</div>
+															</div>
+											</div>
+											<div class="product-info">
+												<h3 class="product-title"><a href="#">پیراهن زنانه مدل عیدی BL</a></h3>
+												<div class="product-price">
+													<div class="price">
+														<ins>32.88 تومان</ins>
+													</div>
+												</div>
+												<div class="shipping-cost"><span>+هزینه ارسال: </span> <span>5.00 تومان</span> </div>
+												<div class="shipping-feed-back">
+													<div class="star-rating">
+														<div class="rating-wrap">
+															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="product type-product">
+										<div class="product-wrapper">
+											<div class="product-image">
+												<a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/height-11.png" alt="Product Image"></a>
+												<div class="product-variations">
+													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
+													<span><a href="#" style="background-color: #31749e;"></a></span>
+													<span><a href="#" style="background-color: #672a4f;"></a></span>
+												</div>
+												<div class="product-labels">
+													<div class="badge1"><span>جدید</span></div>
+												</div>
+												<div class="hover-area">
+																<div class="cart-button">
+																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+																</div>
+																<div class="wishlist-button">
+																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+																</div>
+																<div class="compare-button">
+																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+																</div>
+															</div>
+											</div>
+											<div class="product-info">
+												<h3 class="product-title"><a href="#">شومیز زنانه برهان تن پوش </a></h3>
+												<div class="product-price">
+													<div class="price">
+														<ins>106.88 تومان</ins>
+													</div>
+												</div>
+												<div class="shipping-cost"><span>+هزینه ارسال: </span> <span>5.00 تومان</span> </div>
+												<div class="shipping-feed-back">
+													<div class="star-rating">
+														<div class="rating-wrap">
+															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="item">
+									<div class="product type-product">
+										<div class="product-wrapper">
+											<div class="product-image">
+												<a href="#" class="woocommerce-LoopProduct-link"><img src="assets/images/products/height-8.png" alt="Product Image"></a>
+												<div class="product-variations">
+													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
+													<span><a href="#" style="background-color: #31749e;"></a></span>
+													<span><a href="#" style="background-color: #672a4f;"></a></span>
+												</div>
+												<div class="product-labels">
+													<div class="badge1"><span>جدید</span></div>
+												</div>
+												<div class="on-sale">- 20%</div>
+												<div class="hover-area">
+																<div class="cart-button">
+																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+																</div>
+																<div class="wishlist-button">
+																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+																</div>
+																<div class="compare-button">
+																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+																</div>
+															</div>
+											</div>
+											<div class="product-info">
+												<h3 class="product-title"><a href="#">کت تک مردانه بادی اسپینر</a></h3>
+												<div class="product-price">
+													<div class="price">
+														<ins>38.00 تومان</ins>
+														<del>40.00 تومان</del>
+													</div>
+												</div>
+												<div class="shipping-cost"><span>+هزینه ارسال: </span> <span>5.00 تومان</span> </div>
+												<div class="shipping-feed-back">
+													<div class="star-rating">
+														<div class="rating-wrap">
+															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Related Products Section End ====================-->
+
+        <!--==================== Newslatter Section Start ====================-->
+        <div class="full-row bg-secondary py-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="d-flex align-items-center h-100">
+                            <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="d-flex align-items-center h-100">
+                            <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12">
+                        <form action="#" class="subscribe-form position-relative md-mt-20">
+                            <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                            <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--==================== Newslatter Section End ====================-->
+{% endblock %}
