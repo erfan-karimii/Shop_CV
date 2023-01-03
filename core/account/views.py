@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .froms import PhoneNumber
+from .forms import PhoneNumber
 from kavenegar import *
 from django.contrib.auth import get_user_model
 import random
