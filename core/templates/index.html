@@ -3158,13 +3158,14 @@
             </div>
             <div class="col-lg-4 col-md-6">
                 <div class="d-flex align-items-center h-100">
-                    <span class="text-white font-500 font-sixteen">... اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
                 </div>
             </div>
             <div class="col-lg-5 col-md-12">
-                <form action="#" class="subscribe-form position-relative md-mt-20">
-                    <input class="form-control rounded-pill mb-0" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address" />
-                    <button class="btn btn-primary rounded-right-pill text-dark" type="submit">ثبت نام</button>
+                <form action="{% url 'contactus:save-newsletter-email' %}" class="subscribe-form position-relative md-mt-20" method="post">
+                    {% csrf_token %}
+                    <input class="form-control rounded-pill mb-0 bg-white" name='email' type="email" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
                 </form>
             </div>
         </div>

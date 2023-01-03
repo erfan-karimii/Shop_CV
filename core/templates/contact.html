@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="full-row bg-light py-5">
+    <div class="container">
+        <div class="row text-secondary">
+            <div class="col-sm-6">
+                <h3 class="mb-2 text-secondary">تماس با ما</h3>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home ms-1"></i>خانه</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">تماس با ما</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!--==================== Map Section Start ====================-->
+<div class="full-row p-0">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="map" style="height: 500px; width: 100%; overflow: hidden;"></div>
+        </div>
+    </div>
+</div>
+<!--==================== Map Section End ====================-->
+
+<!--==================== Contact Section Start ====================-->
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-7">
+                <h3 class="down-line mb-5 font-large">ارسال درخواست</h3>
+                <div class="form-simple mb-5">
+                    <form id="contact-form" action="{% url 'contactus:save-contact-us' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label>نام و نام خانوادگی:</label>
+                                    <input type="text" class="form-control bg-gray" name="full_name" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label>پست الکترونیکی:</label>
+                                    <input type="email" class="form-control bg-gray" name="email" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label>عنوان پیام:</label>
+                                    <input type="text" class="form-control bg-gray" name="subject" required="">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label>متن درخواست:</label>
+                                    <textarea class="form-control bg-gray" name="message" rows="8" required=""></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button class="btn btn-primary" name="submit" type="submit">ارسال پیام</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5">
+                <h3 class="down-line mb-5 font-large">راه های ارتباطی با ما</h3>
+                <p>منتظر همکاری گرم و صمیمانه با شما هستیم.</p>
+                <div class="d-flex mb-3">
+                    <ul>
+                        <li class="mb-3">
+                            <strong>آدرس شرکت :</strong><br>{{SiteSetting.address}}
+                        </li>
+                        <li class="mb-3">
+                            <strong>شماره تماس :</strong><br>{{SiteSetting.telephon}}
+                        </li>
+                        <li class="mb-3">
+                            <strong>پست الکترونیکی :</strong><br> {{SiteSetting.email}}
+                        </li>
+                    </ul>
+                </div>
+                <h4 class="mb-2">اطلاعات بیشتر</h4>
+                <p>برای بدست اوردن اطلاعات بیشتر درباره ما , به صفحه درباره ما مراجعه کنید:<br> <a href="{% url 'aboutus:about-us' %}">درباره ما</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== Contact Section End ====================-->
+
+<!--==================== Newslatter Section Start ====================-->
+<div class="full-row bg-secondary py-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <form action="{% url 'contactus:save-newsletter-email' %}" class="subscribe-form position-relative md-mt-20" method="post">
+                    {% csrf_token %}
+                    <input class="form-control rounded-pill mb-0 bg-white" name='email' type="email" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== Newslatter Section End ====================-->
+
+{% endblock body %}
+
+{% block js %}
+<!-- use for map style -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPZ-Erd-14Vf2AoPW2Pzlxssf6-2R3PPs"></script>
+<script src="{% static 'assets/js/map.scripts.js' %}"></script>
+<script>
+    (function($) {
+        var _latitude = 36.596165;
+        var _longitude = -97.062988;
+        init(_latitude, _longitude);
+    })(jQuery);
+</script>
+{% endblock js %}
+
+
+
