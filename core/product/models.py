@@ -68,7 +68,7 @@ class Product(models.Model):
         img = Image.open(self.image.path)  # Open image using self 
         new_image = img.resize((1000, 1000))
         x = photo_path(str(self.image))   
-        new_image.save(x)  # saving image at the same path
+        new_image.save(x)  # saving image at the thumnail path
 
 class Size(models.Model):
     product = models.ForeignKey(Product,on_delete=models.PROTECT)

@@ -4,3 +4,4 @@ django-ckeditor==6.5.1
 django-colorfield==0.7.2
 PyJWT==2.6.0
 kavenegar
+django_render_partial

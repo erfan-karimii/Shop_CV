@@ -34,3 +34,6 @@ def footer_view(request):
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
     }
     return render(request,'footer.html',context)
+
+def wishlist_view(request):
+    return render(request,'wishlist.html',{})

@@ -1,5 +1,6 @@
 from django.db import models
 
+# Create your models here.
 
 
 class SiteSetting(models.Model):
@@ -14,9 +15,6 @@ class SiteSetting(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=False,verbose_name='تنظیمات فعال؟')
-
-    # def __str__(self):
-    #     return self.email
 
 class NavOne(models.Model):
     name = models.CharField(max_length=100,verbose_name='نام نوبار')
@@ -81,3 +79,4 @@ class OnSale(models.Model):
 
     def __str__(self):
         return self.title
+
