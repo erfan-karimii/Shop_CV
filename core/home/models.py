@@ -80,3 +80,6 @@ class OnSale(models.Model):
     def __str__(self):
         return self.title
 
+class WishList(models.Model):
+    product = models.ManyToManyField('product.Product',)
+    account = models.OneToOneField('account.Profile',on_delete=models.CASCADE)
