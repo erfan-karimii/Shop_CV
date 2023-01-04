@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!-- breadcrumb -->
+<div class="full-row bg-light overlay-dark py-5" style="background-image: url({% static 'assets/images/background/4.png' %}); background-position: center center; background-size: cover;">
+    <div class="container">
+        <div class="row text-center text-white">
+            <div class="col-12">
+                <h3 class="mb-2 text-primary">مقایسه محصول</h3>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">مقایسه محصول</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--==================== Newslatter Section Start ====================-->
+<div class="full-row bg-secondary py-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <form action="{% url 'contactus:save-newsletter-email' %}" class="subscribe-form position-relative md-mt-20" method="post">
+                    {% csrf_token %}
+                    <input class="form-control rounded-pill mb-0 bg-white" name='email' type="email" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== Newslatter Section End ====================-->
+
+{% endblock body %}

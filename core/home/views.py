@@ -80,3 +80,5 @@ def wishlist_delete_item(request,id):
     messages.success(request,'محصول از علاقه مندی های شما حذف شد')
     return redirect('home:wishlist')
 
+def compare_view(request):
+    return render(request,'compare.html',{})
