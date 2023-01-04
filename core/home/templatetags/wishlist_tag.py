@@ -1,38 +1,34 @@
 from django import template
 from product.models import Product
+# from django.core.exceptions import Do
 register = template.Library()
 
-@register.simple_tag
-def show_product_property(details,det,arg=None):
-    if arg == 'image':
-        product = Product.objects.get(id=details[det]['id'])
-        return product.image.url
-    else:
-        return details[det][arg]
 
 @register.simple_tag
-def show_price(details,det,count=None):
-    size = show_product_property(details,det,'size')
-    color = show_product_property(details,det,'color')
-    if count:
-        count = show_product_property(details,det,'count')
-    product = Product.objects.get(id=details[det]['id'])
+def show_price(id,size,color,discount=None):
+
+    product = Product.objects.get(id=id)
     price_color = 0
     try:
-        x = product.color_set.get(color=color)
-        price_color = x.Ekhtelaf
-    except:
-        pass
+
+        price_color = product.color_set.get(color=color).Ekhtelaf
+    except Exception as e:
+        print(e,e.__class__)
+
     price_size = 0
     try:
-        x = product.size_set.get(size=size)
-        price_size = x.Ekhtelaf
-    except:
+        price_size = product.size_set.get(size=size).Ekhtelaf
+    except Exception as e:
+        # print(e,e.__class__)
         pass
-    total_price = price_color + price_size + product.main_discount_call()
+    
 
-    if count ==None:
+    total_price = price_color + price_size + product.main_discount_call()
+    total_price_without_discount = price_color + price_size + product.price
+    
+    if discount:
         return total_price
-    else:
-        return total_price*count
+    else :
+        return total_price_without_discount
+
 

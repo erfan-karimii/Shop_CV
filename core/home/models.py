@@ -1,4 +1,5 @@
 from django.db import models
+from colorfield.fields import ColorField
 
 # Create your models here.
 
@@ -81,5 +82,7 @@ class OnSale(models.Model):
         return self.title
 
 class WishList(models.Model):
-    product = models.ManyToManyField('product.Product',)
-    account = models.OneToOneField('account.Profile',on_delete=models.CASCADE)
+    product = models.ForeignKey('product.Product',on_delete=models.CASCADE,null=True)
+    account = models.ForeignKey('account.Profile',on_delete=models.CASCADE)
+    color = ColorField(null=True)
+    size = models.CharField(max_length=20,verbose_name='سایز',null=True)
