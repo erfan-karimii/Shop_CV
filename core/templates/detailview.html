@@ -175,7 +175,11 @@
                                 <div class="woocommerce-product-details__short-description"> <span class="f-vazir-bold">ویژگی ها:</span>
                                     <div class="short-description">
                                         <ul>
-                                        {{post.info | safe}}
+                                            <li>نوع کاربری : ورزشی، روزمره، فشن</li>
+                                            <li>قابل استفاده برای : آقایان، بانوان، پسران، دختران</li>
+                                            <li>فرم صفحه : گرد</li>
+                                            <li>جنس شیشه : معدنی</li>
+                                            <li>نوع قفل بند : سگکی ساده</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -186,15 +190,16 @@
                                             <td class="value with-swatches">
                                                 <div class="bigbazar-swatches">
                                                     <span class="swatch swatch-color swatch-circle swatch-selected" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="آبی">
-                                                        <span class="bigbazar-tooltip" style="background-color:{{post.orgin_color}}" title=""></span>
+                                                        <span class="bigbazar-tooltip" style="background-color:#33a1de" title="">آبی</span>
                                                     </span>
-                                                    {% for color in post.color_set.all %}
-                                                    <span class="swatch swatch-color term-grey swatch-circle" title="{{color.color}}" data-term="grey">
-                                                        <span class="bigbazar-tooltip" style="background-color:{{color.color}}"
-                                                         title=""></span>
+                                                    <span class="swatch swatch-color term-grey swatch-circle" title="طوسی" data-term="grey">
+                                                        <span class="bigbazar-tooltip" style="background-color:#787878"
+                                                         title="">طوسی</span>
                                                     </span>
-                                                    {% endfor %}
-                                                    
+                                                    <span class="swatch swatch-color term-maroon swatch-circle" title="صورتی" data-term="maroon">
+                                                        <span class="bigbazar-tooltip" style="background-color:#800000" 
+                                                         title="">صورتی</span>
+                                                    </span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -202,10 +207,9 @@
                                             <td class="label f-vazir-bold"><label>سایز</label></td>
                                             <td class="value with-swatches">
                                                 <div class="bigbazar-swatches">
-                                                    <span class="swatch swatch-label  swatch-circle swatch-selected" title="{{post.orgin_size}}"><span>{{post.orgin_size}}</span></span>
-                                                    {% for size in post.size_set.all %}
-                                                    <span class="swatch swatch-label term-m swatch-circle" title="{{size}}"><span>{{size}}</span></span>
-                                                    {% endfor %}
+                                                    <span class="swatch swatch-label  swatch-circle swatch-selected" title="L"><span>L</span></span>
+                                                    <span class="swatch swatch-label term-m swatch-circle" title="M"><span>M</span></span>
+                                                    <span class="swatch swatch-label term-s swatch-circle" title="S"><span>S</span></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -237,7 +241,7 @@
                                         <a href="#">نمودار قیمت</a>
                                     </div>
                                 </div>
-                                <div class="product_meta"> <span class="sku_wrapper">امتیاز:static <span class="sku">18 امتیاز</span></span> <span class="posted_in">دسته بندی: <a href="#" rel="tag">{{post.category}}</a></span> <span class="tagged_as">برچسب: {% for x in tags %}<a href="#" rel="tag">{{x}}</a>, {% endfor %} </span></div>
+                                <div class="product_meta"> <span class="sku_wrapper">امتیاز: <span class="sku">18 امتیاز</span></span> <span class="posted_in">دسته بندی: <a href="#" rel="tag">ساعت هوشمند</a></span> <span class="tagged_as">برچسب: <a href="#" rel="tag">ساعت مردانه</a>, <a href="#" rel="tag">ساعت عقربه ای</a></span></div>
                                 <div class="bigbazar-wc-message"></div>
                             </div>
                         </div>
