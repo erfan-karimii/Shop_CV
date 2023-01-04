@@ -82,3 +82,28 @@ def wishlist_delete_item(request,id):
 
 def compare_view(request):
     return render(request,'compare.html',{})
+
+def compare_view_2(request,id):
+    product_1 = Product.objects.get(id=id)
+    context = {
+        'product_1' : product_1,
+        'id_1':id
+    }
+    return render(request,'compare.html',context)
+
+def compare_listview(request,cat,id_1):
+    posts = Product.objects.filter(category__name=cat,is_active=True,).order_by('-created')
+    context = {
+        'posts':posts,
+        'id_1':id_1
+        }
+    return render(request,'compare_listview.html',context)
+
+def compare_view_3(request,id_1,id_2):
+    product_1 = Product.objects.get(id=id_1)
+    product_2 = Product.objects.get(id=id_2)
+    context = {
+        'product_1' : product_1,
+        'product_2' : product_2,
+    }
+    return render(request,'compare.html',context)

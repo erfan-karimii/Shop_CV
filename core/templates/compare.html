@@ -19,8 +19,7 @@
         </div>
     </div>
 </div>
-<!-- breadcrumb -->
-<div class="full-row">
+{% comment %} <div class="full-row">
     <div class="container">
         <div class="row">
             <table class="table">
@@ -55,8 +54,164 @@
             </table>
         </div>
     </div>
-</div>
+</div> {% endcomment %}
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
 
+        </div>
+        <div class="row">
+            {% if product_1 %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="block-7">
+                    <div class="img" style="background-image: url(/thumbnail/{{product_1.image}});"></div>
+                    <div class="text-center p-4">
+                        <span class="excerpt d-block">{{product_1.category.name}}</span>
+                        <span class="price"><span class="number">{{product_1.main_discount_call}}</span>تومان</span>
+                        <ul class="pricing-text mb-5">
+                            <li>{{product_1.name}}</li>
+                            <li style="background-color: {{product_1.orgin_color}}">رنگ : {{product_1.orgin_color}}</li>
+                            <li>سایز : {{product_1.orgin_size}}</li>
+                            <li>وضعیت : {% if product_1.product_count %}موجود{% else %}ناموجود{% endif %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="block-7">
+                    <div class="text-center p-4">
+                        <a href="{% url 'product:listview' %}" class="btn btn-primary d-block px-2 py-3">برای اضافه کردن محصول کلیک کنید</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+
+            {% if product_2 %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="block-7">
+                    <div class="img" style="background-image: url(/thumbnail/{{product_2.image}});"></div>
+                    <div class="text-center p-4">
+                        <span class="excerpt d-block">{{product_2.category.name}}</span>
+                        <span class="price"><span class="number">{{product_2.main_discount_call}}</span>تومان</span>
+                        <ul class="pricing-text mb-5">
+                            <li>{{product_2.name}}</li>
+                            <li style="background-color: {{product_2.orgin_color}}">رنگ : {{product_2.orgin_color}}</li>
+                            <li>سایز : {{product_2.orgin_size}}</li>
+                            <li>وضعیت : {% if product_2.product_count %}موجود{% else %}ناموجود{% endif %}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            {% if product_1 %}
+            <div class="col-md-4 ftco-animate fadeInUp ftco-animated">
+                <div class="block-7">
+                    <div class="text-center p-4">
+                        <a href="{% url 'home:compare_listview' product_1.category.name id_1 %}" class="btn btn-primary d-block px-2 py-3">برای اضافه کردن محصول کلیک کنید</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+<style>
+    body{margin-top:20px;}
+    .block-7 {
+        border-radius: 4px;
+        margin-bottom: 30px;
+        padding: 0;
+        overflow: hidden;
+        background: #fff;
+        -webkit-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.05);
+        box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.05);
+        -moz-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        -webkit-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    @media (max-width: 991.98px) {
+        .block-7 {
+            margin-top: 30px;
+        }
+    }
+    .block-7 .img {
+        height: 250px;
+    }
+    .block-7 .heading-2 {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+    .block-7 .price {
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+    .block-7 .price sup {
+        font-size: 24px;
+        top: -1em;
+        color: #b3b3b3;
+    }
+    .block-7 .price .number {
+        font-size: 40px;
+        font-weight: 500;
+        color: #000000;
+    }
+    .block-7 .excerpt {
+        margin-bottom: 0px;
+        color: #00bd56;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .block-7 .label2 {
+        text-transform: uppercase;
+    }
+    .block-7 .pricing-text,
+    .block-7 .pricing-text li {
+        padding: 0;
+        margin: 0;
+    }
+    .block-7 .pricing-text li {
+        list-style: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: #000000;
+    }
+    .block-7 .pricing-text li:nth-child(odd) {
+        background: rgba(0, 0, 0, 0.05);
+    }
+    .block-7 .pricing-text li span.fa {
+        color: #207dff;
+    }
+    .block-7 .btn-primary {
+        color: #000;
+        text-transform: uppercase;
+        font-style: 16px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        width: 60%;
+        margin: 0 auto;
+    }
+    .block-7 .btn-primary:hover,
+    .block-7 .btn-primary:focus {
+        background: #00bd56 !important;
+        color: #fff;
+    }
+    .block-7:hover,
+    .block-7:focus {
+        -webkit-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11);
+        -moz-box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11);
+        box-shadow: 0px 24px 48px -13px rgba(0, 0, 0, 0.11);
+    }
+</style>
 <!--==================== Newslatter Section Start ====================-->
 <div class="full-row bg-secondary py-30">
     <div class="container">

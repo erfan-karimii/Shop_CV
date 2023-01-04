@@ -66,7 +66,7 @@ class Product(models.Model):
     def save(self):
         super().save()  # saving image first
         img = Image.open(self.image.path)  # Open image using self 
-        new_image = img.resize((1000, 1000))
+        new_image = img.resize((350, 280))
         x = photo_path(str(self.image))   
         new_image.save(x)  # saving image at the thumnail path
 

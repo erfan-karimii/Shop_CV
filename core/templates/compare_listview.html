@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="full-row py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-12">
+                <h3 class="mb-2 font-large">نمای تمام صفحه</h3>
+            </div>
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="{% url 'home:home' %}">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<div class="full-row pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                
+                <div class="products-header d-flex justify-content-between align-items-center py-10 px-20 bg-light md-mt-30">
+                    <div class="products-header-left d-flex align-items-center">
+                        <h6 class="woocommerce-products-header__title page-title">همه دسته بندی</h6>
+                    </div>
+                    <div class="products-header-right">
+                        
+                    </div>
+                </div>
+                <div class="showing-products pt-30 pb-50 border-2 border-bottom border-light">
+                    <div class="row row-cols-xl-5 row-cols-md-3 row-cols-sm-2 row-cols-1 product-style-3 e-hover-image-zoom e-image-bg-light g-4">
+                        {% for post in posts %}
+                        <div class="col">
+                            <div class="product type-product">
+                                <div class="product-wrapper">
+                                    <div class="product-image">
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{{post.image.url}}" alt="{{post.alt}}"></a>
+                                        <div class="product-variations">
+                                            <span class="active"><a href="#" style="background-color: {{post.orgin_color}};"></a></span>
+                                            {% for color in post.color_set.all %}
+                                            <span><a href="#" style="background-color: {{color.color}};"></a></span>
+                                            {% endfor %}
+                                        </div>
+                                        <div class="product-labels">
+                                        {% if post.discount %}
+                                            <div class="shape1-badge3"><span>حراجی</span></div>
+                                        {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <div class="product-cats"><a href="#">{{post.category.name}}</a></div>
+                                    <h3 class="product-title"><a href="#">{{post.name}}</a></h3>
+                                    {% if post.discount %}
+                                    <div class="product-price">
+                                        <div class="price">
+                                            <ins>{{post.main_discount_call}} تومان</ins>
+                                            <del>{{post.price}} تومان</del>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="product-price">
+                                        <div class="price">
+                                            <p>{{post.price}} تومان</p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>12000 تومان</span> </div>
+                                        <div class="shipping-feed-back">
+                                            <div class="star-rating">
+                                                <div class="rating-wrap">
+                                                    <a href="#"><i class="fas fa-star"></i><span> 4.85</span></a>
+                                                </div>
+                                                <div class="rating-counts-wrap">
+                                                    <a href="#">(132)</a>
+                                                </div>
+                                            </div>
+                                            <div class="sold-items">
+                                                <span>326</span> <span>فروش</span>
+                                            </div>
+                                        </div>
+                                        <div class="hover-area">
+                                            <div class="cart-button">
+                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
+                                            </div>
+                                            <div class="wishlist-button">
+                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
+                                            </div>
+                                                <div class="compare-button">
+                                                <a class="compare button" href="{% url 'home:compare_3' id_1 post.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="مقایسه" aria-label="Compare">مقایسه</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
