@@ -13,7 +13,8 @@ def show_price(id,size,color,discount=None):
 
         price_color = product.color_set.get(color=color).Ekhtelaf
     except Exception as e:
-        print(e,e.__class__)
+        # print(e,e.__class__)
+        pass
 
     price_size = 0
     try:

@@ -1,8 +1,11 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishList
 from product.models import Product 
+from account.models import Profile
 from django.contrib import messages
+
 
 # Create your views here.
 
@@ -38,6 +41,29 @@ def footer_view(request):
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
     }
     return render(request,'footer.html',context)
+
+def quick_view(request,id):
+    product = Product.objects.get(id=id)
+    context = {
+        'id' : product.id,
+        'category' : product.category.name,
+        'name' : product.name,
+        'price' : product.main_discount_call(),
+        'info' : product.info[:360],
+        'image' : product.image.url,
+    }
+    return  JsonResponse(context)
+
+@login_required(login_url='/')
+def add_to_wishlist(request,user,product_id,color,size):
+    product = Product.objects.get(id=product_id)
+    profile = Profile.objects.get(user__phone_number=user)
+    state = WishList.objects.get_or_create(product=product,account=profile,color=color,size=size)
+    if state[1]:
+        messages.success(request,'محصول به لیست علاقه مندی شما اضافه شد')
+    else:
+        messages.error(request,'محصول قبلا به لیست شما اضافه شده است')
+    return redirect('home:wishlist')
 
 @login_required(login_url='/')
 def wishlist_view(request):
