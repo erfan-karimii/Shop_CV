@@ -2,6 +2,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from .models import Product
+from django.db.models import Count
 # Create your views here.
 
 def index_view(request):
@@ -24,18 +25,12 @@ def listview(request):
 
 def detailview(request,id):
     post = get_object_or_404(Product,id=id)
-    # print(post.tag.all())
-    my_posts = []
-    for x in post.tag.all():
-        for m in x.product_set.all():
-            if m in my_posts:
-                continue
-            my_posts.append(m)
-    print(my_posts)
-
+    ids=post.tag.values_list('id',flat=True)
+    products = Product.objects.filter(tag__in=ids).exclude(id=id)
+    products = products.annotate(s_count =Count('tag')).order_by('-s_count','-updated')[:6]
         
     context = {
         'post':post,
-        'my_posts':my_posts
+        'my_posts':products,
     }
     return render(request,'detailview.html',context)
