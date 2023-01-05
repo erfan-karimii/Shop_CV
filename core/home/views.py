@@ -26,7 +26,9 @@ def index_view(request):
     return render(request,'index.html',context)
 
 def header_view(request):
-    wishlist_count = WishList.objects.filter(account__user=request.user).count()
+    wishlist_count = 0
+    if request.user.is_authenticated:
+        wishlist_count = WishList.objects.filter(account__user=request.user).count()
 
     context = {
         'NavOne':NavOne.objects.all(),
