@@ -24,8 +24,18 @@ def listview(request):
 
 def detailview(request,id):
     post = get_object_or_404(Product,id=id)
+    # print(post.tag.all())
+    my_posts = []
+    for x in post.tag.all():
+        for m in x.product_set.all():
+            if m in my_posts:
+                continue
+            my_posts.append(m)
+    print(my_posts)
 
+        
     context = {
-        'post':post
+        'post':post,
+        'my_posts':my_posts
     }
     return render(request,'detailview.html',context)
