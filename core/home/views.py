@@ -111,3 +111,4 @@ def compare_view_3(request,id_1,id_2):
         'product_2' : product_2,
     }
     return render(request,'compare.html',context)
+
