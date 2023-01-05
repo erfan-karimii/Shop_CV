@@ -195,7 +195,7 @@
                                                 <a class="quickview-btn" href="#quick-view" data-id="{{product.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
                                             </div>
                                             <div class="wishlist-button">
-                                                <a target="_blank" class="add_to_wishlist" href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
+                                            <a target="_blank" class="add_to_wishlist"   {% if request.user %}   href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"  {% endif %} data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
                                                     افزودن به علاقه مندی
                                                 </a>
                                             </div>
@@ -245,7 +245,7 @@
                                                 <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
                                             </div>
                                             <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}">افزودن به علاقه مندی</a>
+                                                <a class="add_to_wishlist" {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}>افزودن به علاقه مندی</a>
                                             </div>
                                             <div class="compare-button">
                                                 <a class="compare button" href="{% url 'home:compare_2' product.id %}">مقایسه</a>
@@ -314,7 +314,7 @@
                                                                 <div class="wishlist-button">
                                                                     <a
                                                                         class="add_to_wishlist"
-                                                                        href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"
+                                                                       {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"{% endif %}
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-placement="top"
                                                                         target="blank"
@@ -383,7 +383,7 @@
                                                                 <div class="wishlist-button">
                                                                     <a
                                                                         class="add_to_wishlist"
-                                                                        href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"
+                                                                       {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}
                                                                         target="_blank"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-placement="top"
@@ -432,7 +432,7 @@
                                                                 <div class="wishlist-button">
                                                                     <a
                                                                         class="add_to_wishlist"
-                                                                        href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"
+                                                                     {% if request.user %}   href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-placement="top"
                                                                         title=""
@@ -503,7 +503,7 @@
                                                                 <div class="wishlist-button">
                                                                     <a
                                                                         class="add_to_wishlist"
-                                                                        href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"
+                                                                       {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}
                                                                         target="_blank"
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-placement="top"
@@ -550,9 +550,10 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="wishlist-button">
+                                                                    
                                                                     <a
                                                                         class="add_to_wishlist"
-                                                                        href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"
+                                                                       {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}
                                                                         data-bs-toggle="tooltip"
                                                                         data-bs-placement="top"
                                                                         title=""
