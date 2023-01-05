@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.http import JsonResponse , Http404
 from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishList
 from product.models import Product 
 from account.models import Profile
@@ -92,10 +92,14 @@ def compare_view_2(request,id):
     return render(request,'compare.html',context)
 
 def compare_listview(request,cat,id_1):
+    # check = Product.objects.get(id=id_1).category
+    # if cat != check:
+    #     raise Http404
     posts = Product.objects.filter(category__name=cat,is_active=True,).order_by('-created')
     context = {
         'posts':posts,
-        'id_1':id_1
+        'id_1':id_1,
+        'cat':cat,
         }
     return render(request,'compare_listview.html',context)
 

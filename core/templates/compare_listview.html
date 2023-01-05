@@ -31,7 +31,7 @@
                 
                 <div class="products-header d-flex justify-content-between align-items-center py-10 px-20 bg-light md-mt-30">
                     <div class="products-header-left d-flex align-items-center">
-                        <h6 class="woocommerce-products-header__title page-title">همه دسته بندی</h6>
+                        <h6 class="woocommerce-products-header__title page-title"> دسته بندی {{cat}}</h6>
                     </div>
                     <div class="products-header-right">
                         
@@ -44,7 +44,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{{post.image.url}}" alt="{{post.alt}}"></a>
+                                        <a href="{% url 'home:compare_3' id_1 post.id %}" class="woocommerce-LoopProduct-link"><img src="{{post.image.url}}" alt="{{post.alt}}"></a>
                                         <div class="product-variations">
                                             <span class="active"><a href="#" style="background-color: {{post.orgin_color}};"></a></span>
                                             {% for color in post.color_set.all %}
@@ -93,7 +93,7 @@
                                                 <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
                                             </div>
                                             <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
+                                                <a class="add_to_wishlist" href="{% url 'home:wishlist-add' user=request.user product_id=post.id color=post.orgin_color size=post.orgin_size %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
                                             </div>
                                                 <div class="compare-button">
                                                 <a class="compare button" href="{% url 'home:compare_3' id_1 post.id %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="مقایسه" aria-label="Compare">مقایسه</a>
@@ -104,7 +104,7 @@
                             </div>
                         </div>
                         {% endfor %}
-                    </div>
+                   </div>
                 </div>
             </div>
         </div>
@@ -112,3 +112,4 @@
 </div>
 
 {% endblock body %}
+ 

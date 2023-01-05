@@ -1,5 +1,5 @@
 from django import template
-from product.models import Product
+from product.models import Product , Size , Color
 # from django.core.exceptions import Do
 register = template.Library()
 
@@ -12,15 +12,13 @@ def show_price(id,size,color,discount=None):
     try:
 
         price_color = product.color_set.get(color=color).Ekhtelaf
-    except Exception as e:
-        # print(e,e.__class__)
+    except Color.DoesNotExist:
         pass
 
     price_size = 0
     try:
         price_size = product.size_set.get(size=size).Ekhtelaf
-    except Exception as e:
-        # print(e,e.__class__)
+    except Size.DoesNotExist:
         pass
     
 
