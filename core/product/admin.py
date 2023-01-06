@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product , Category , TagProduct , Color , Size , GalleryImage
+from .models import Product , Category , TagProduct , Color , Size , GalleryImage,Comment
 # Register your models here.
 
 class Color2(admin.TabularInline):
@@ -21,5 +21,5 @@ class CustomProduct(admin.ModelAdmin):
 admin.site.register(Product,CustomProduct)
 admin.site.register(Category)
 admin.site.register(TagProduct)
-
+admin.site.register(Comment)
 

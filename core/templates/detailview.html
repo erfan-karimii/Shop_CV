@@ -16,7 +16,7 @@
                             <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
                                 <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home ms-1"></i>خانه</a></li>
                                 <li class="breadcrumb-item"><a href="shop-grid-full.html">فروشگاه</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">جزئیات محصول نسخه 1</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
                             </ol>
                         </nav>
                     </div>
@@ -40,35 +40,17 @@
                                         <div id="gallery_09" class="product-slide-thumb">
                                             <div class="owl-carousel four-carousel dot-disable nav-arrow-middle owl-mx-5" dir="ltr">
                                                 <div class="item">
-                                                    <a class="active" href="#" data-image="{{post.image.url}}" data-zoom-image="{% static 'assets/images/products/squire-269.png' %}">
-                                                        <img src="{% static 'assets/images/products/squire-269.png' %}" alt="Thumb Image" />
+                                                    <a class="active" href="#" data-image="{{post.image.url}}" data-zoom-image="{{post.image.url}}">
+                                                        <img src="{{post.image.url}}" alt="Thumb Image" />
                                                     </a>
                                                 </div>
+                                                {% for pic in post.galleryimage_set.all %}
                                                 <div class="item">
-                                                    <a href="#" data-image="{% static 'assets/images/products/squire-270.png' %}" data-zoom-image="{% static 'assets/images/products/squire-270.png' %}">
-                                                        <img src="{% static 'assets/images/products/squire-270.png' %}" alt="Thumb Image" />
+                                                    <a class="active" href="#" data-image="{{pic.image.url}}" data-zoom-image="{{pic.image.url}}">
+                                                        <img src="{{pic.image.url}}" alt="Thumb Image" />
                                                     </a>
                                                 </div>
-                                                <div class="item">
-                                                    <a href="#" data-image="{% static 'assets/images/products/squire-271.png' %}" data-zoom-image="{% static 'assets/images/products/squire-271.png' %}">
-                                                        <img src="{% static 'assets/images/products/squire-271.png' %}" alt="Thumb Image" />
-                                                    </a>
-                                                </div>
-                                                <div class="item">
-                                                    <a href="#" data-image="{% static 'assets/images/products/squire-272.png' %}" data-zoom-image="{% static 'assets/images/products/squire-272.png' %}">
-                                                        <img src="{% static 'assets/images/products/squire-272.png' %}" alt="Thumb Image" />
-                                                    </a>
-                                                </div>
-                                                <div class="item">
-                                                    <a href="#" data-image="{% static 'assets/images/products/squire-269.png' %}" data-zoom-image="assets/images/products/squire-269.png">
-                                                        <img src="assets/images/products/squire-269.png" alt="Thumb Image" />
-                                                    </a>
-                                                </div>
-                                                <div class="item">
-                                                    <a href="#" data-image="{% static 'assets/images/products/squire-270.png' %}" data-zoom-image="{% static 'assets/images/products/squire-270.png' %}">
-                                                        <img src="{% static 'assets/images/products/squire-270.png' %}" alt="Thumb Image" />
-                                                    </a>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </figure>
@@ -172,17 +154,7 @@
                                         <li class="product-service-item"> امکان تحویل اکسپرس</li>
                                     </ul>
                                 </div>
-                                <div class="woocommerce-product-details__short-description"> <span class="f-vazir-bold">ویژگی ها:</span>
-                                    <div class="short-description">
-                                        <ul>
-                                            <li>نوع کاربری : ورزشی، روزمره، فشن</li>
-                                            <li>قابل استفاده برای : آقایان، بانوان، پسران، دختران</li>
-                                            <li>فرم صفحه : گرد</li>
-                                            <li>جنس شیشه : معدنی</li>
-                                            <li>نوع قفل بند : سگکی ساده</li>
-                                        </ul>
-                                    </div>
-                                </div>
+                               
                                 <form class="variations_form cart kapee-swatches-wrap" action="#" method="post" enctype="multipart/form-data">
                                     <table class="variations">
                                         <tr>
@@ -282,6 +254,7 @@
                                             <div id="comments">
                                                 <h2 class="woocommerce-Reviews-title my-3">(3) دیدگاه ها</h2>
                                                 <ol class="commentlist">
+                                                    {% for com in comment %}
                                                     <li>
                                                         <div class="comment_container">
                                                             <img src="{% static 'assets/images/avatar.png' %}" class="avatar" alt="Image not found!">
@@ -294,36 +267,39 @@
                                                                     <i class="flaticon-star-1"></i>
                                                                 </div>
                                                                 <p class="meta">
-                                                                    <strong class="woocommerce-review__author">ادمین </strong>
+                                                                    <strong class="woocommerce-review__author">{{com.username}} </strong>
                                                                     <span class="woocommerce-review__dash">–</span>
-                                                                    <span class="woocommerce-review__published-date">26 شهریور، 1399</span>
+                                                                    <span class="woocommerce-review__published-date">{{com.created}}</span>
                                                                 </p>
                                                                 <div class="description">
-                                                                    <p>متاسفانه باید حتما گوشی آیفون داشته باشی تا بتونی ازش استفاده کنی تازه بعد اون اگه با سیم کارت ایران رجیستر کنی همه قابلیت‌های غیر فعالن واسه اون هم سیم کارت بین المللی میخاد یعنی راحت 15تومن اضافی باید بیفتی تا بتونی ازش استفاده کنی</p>
+                                                                    <p>{{com.body}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </li>
+                                                    {% endfor %}
                                                 </ol>
                                             </div>
                                             <div id="review_form_wrapper">
                                                 <div id="review_form">
                                                     <div id="respond" class="comment-respond">
                                                         <h5 id="reply-title" class="comment-reply-title my-20">ثبت دیدگاه</h5>
-                                                        <form action="#" method="post" id="commentform" class="comment-form">
+                                                        <form action="" method="post" id="commentform" class="comment-form">
+                                                            <input type="hidden" name='product' value='{{post.id}}'>
+                                                            {% csrf_token %}
                                                             <div class="row g-3">
                                                                 <div class="col-6">
                                                                     <label for="comment">نام و نام خانوادگی<span class="required">*</span></label>
-                                                                    <input type="text" class="form-control">
+                                                                    {{comment_form.username}}
                                                                 </div>
                                                                 <div class="col-6">
                                                                     <label for="comment">پست الکترونیکی<span class="required">*</span></label>
-                                                                    <input type="email" class="form-control">
+                                                                    {{comment_form.email}}
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <div class="comment-form-comment">
                                                                         <label for="comment">متن نظر<span class="required">*</span></label>
-                                                                        <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
+                                                                        {{comment_form.body}}
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-12">

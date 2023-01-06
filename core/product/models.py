@@ -111,24 +111,22 @@ class GalleryImage(models.Model):
         return str(self.image)
     
     def save(self):
-        # super().save()  
+        super().save()  
         img = Image.open(self.image.path)  # Open image using self 
         new_image = img.resize((1000, 1000))
         x = photo_path(str(self.image))   
         new_image.save(x)  # saving image at the calculated path
 
-# class Comment(models.Model):
-#     product = models.ForeignKey(Product,on_delete=models.CASCADE)
-#     parent = models.ForeignKey('self',null=True,blank=True,default=None,on_delete=models.SET_NULL)
-#     username = models.CharField(max_length=100,null=True)
-#     title = models.CharField(max_length=100)
-#     body = models.TextField()
-#     like = models.PositiveIntegerField(validators=[MaxValueValidator(1000)],default=0,null=True)
-#     created = models.DateTimeField(auto_now=True)
-#     is_show = models.BooleanField(default=False)
+class Comment(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)
+    username = models.CharField(max_length=100,null=True)
+    email = models.EmailField(max_length=254,null=True)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now=True)
+    is_show = models.BooleanField(default=False)
     
-#     def __str__(self):
-#         return self.username
+    def __str__(self):
+        return self.username
     
-#     class Meta :
-#         ordering = ['created']
+    class Meta :
+        ordering = ['created']
