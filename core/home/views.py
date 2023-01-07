@@ -68,6 +68,14 @@ def add_to_wishlist(request,user,product_id,color,size):
     return redirect('home:wishlist')
 
 @login_required(login_url='/')
+def add_to_wishlist_ajax(request,user,product_id,color,size):
+    product = Product.objects.get(id=product_id)
+    profile = Profile.objects.get(user__phone_number=user)
+    state = WishList.objects.get_or_create(product=product,account=profile,color="#"+color,size=size)
+    return JsonResponse({"state":state[1]})
+
+
+@login_required(login_url='/')
 def wishlist_view(request):
     wishlist = WishList.objects.filter(account__user=request.user)
     context = {

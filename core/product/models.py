@@ -118,10 +118,14 @@ class GalleryImage(models.Model):
         new_image.save(x)  # saving image at the calculated path
 
 class Comment(models.Model):
+    star_choice = (
+        (1,1),(2,2),(3,3),(4,4),(5,5)
+    )
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     username = models.CharField(max_length=100,null=True)
     email = models.EmailField(max_length=254,null=True)
     body = models.TextField()
+    point = models.IntegerField(default=1,choices=star_choice)
     created = models.DateTimeField(auto_now=True)
     is_show = models.BooleanField(default=False)
     

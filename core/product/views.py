@@ -2,12 +2,11 @@ from django.core.paginator import Paginator
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from .models import Product,GalleryImage,Comment
-from django.db.models import Count
+from django.db.models import Count ,Avg
 from .forms import CommentForm
-# Create your views here.
+from django.contrib import messages
 
-def index_view(request):
-    return HttpResponse('<h1>product</h1>')
+# Create your views here.
 
 
 
@@ -26,21 +25,20 @@ def listview(request):
 
 def detailview(request,id):
     post = get_object_or_404(Product,id=id)
-    print(post.id)
     comments = Comment.objects.filter(is_show=True,product_id=id)
-
+    average_star = comments.aggregate(Avg('point'))
     if request.method == "POST":
-        print("sd")
         comment_form = CommentForm(request.POST)
-        print(comment_form.errors)
         if comment_form.is_valid():
-            print("as")
             comment_form.save()
+            messages.success(request,'پیام شما با موفقیت ثبت شد . با تایید ادمین نمایش داده میشود')
+        else:
+            messages.error(request,'متاسفانه مشکلی پیش امده است , لطفا دوباره امتحان کنید.')
+            print(comment_form.errors)
     else:
         comment_form = CommentForm()
     ids=post.tag.values_list('id',flat=True)
     products = Product.objects.filter(tag__in=ids).exclude(id=id)
-    products = products.annotate(s_count =Count('tag')).order_by('-s_count','-updated')[:6]
     
     context = {
         'post':post,

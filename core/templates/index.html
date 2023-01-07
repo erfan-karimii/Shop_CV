@@ -1,120 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load product_tags %}
 
 {% block body %}
 
 <!--==================== Slider Section End ====================-->
 <div class="bg-light">
     <div id="slider" style="width: 1200px; margin: 0 auto; margin-bottom: 0px;">
-        {% comment %} <!-- Slide 1 -->
-        <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
-            <div style="width: 100%; height: 100%; background: #e8ecf0; top: 50%; left: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
-
-            <p
-                style="font-weight: 500; width: 450px; font-size: 40px; line-height: 60px; top: 35%; right: 32px; white-space: normal;"
-                class="ls-l text-secondary f-vazir-bold"
-                data-ls="offsetyin:150; durationin:700; delayin:200; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
-            >
-                حراج انواع بافت و پُلیور زمستانی مردانه
-            </p>
-
-            <div style="top: 50%; right: 75%; width: 430px; height: 430px;" class="ls-l bg-primary rounded-circle" data-ls="offsetxin:500; delayin:300; parallax:false; parallaxlevel:1;"></div>
-
-            <img width="500" height="500" src="{% static 'assets/images/slider/6.png' %}" alt="" style="top: 64%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
-
-            <p
-                style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
-                class="ls-l ls-hide-phone text-dark"
-                data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0; delayin:500;"
-            >
-                35 هزار تومان تخفیف برای خرید بالای 200 هزار تومان
-            </p>
-
-            <a
-                class="ls-l ls-hide-phone"
-                href="#"
-                target="_self"
-                data-ls="offsetyin:150; durationin:700; delayin:2100; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; hover:true; hoveropacity:1; hoverbgcolor:#fff; parallaxlevel:0;"
-            >
-                <p
-                    style="
-                        cursor: pointer;
-                        padding-top: 8px;
-                        padding-bottom: 8px;
-                        font-size: 14px;
-                        font-weight: 600;
-                        top: 70%;
-                        right: 32px;
-                        background: #f1e63d;
-                        color: #000;
-                        padding-right: 25px;
-                        padding-left: 25px;
-                        line-height: 28px;
-                    "
-                    class=""
-                >
-                    مشاهده و خرید
-                </p>
-            </a>
-        </div> {% endcomment %}
-         {% comment %} <!-- Slide 2 -->
-        <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
-            <div style="width: 100%; height: 100%; background: #98b0d1; top: 50%; right: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
-
-            <p
-                style="font-weight: 500; width: 450px; font-size: 50px; line-height: 60px; top: 42%; right: 32px; white-space: normal;"
-                class="ls-l text-white f-vazir-bold"
-                data-ls="offsetyin:150; durationin:700; delayin:200; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
-            >
-                پیراهن مردانه
-            </p>
-
-            <img width="400" height="545" src="{% static 'assets/images/slider/15.png' %}" alt="" style="top: 50%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
-
-            <p
-                style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
-                class="ls-l ls-hide-phone text-white"
-                data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0; delayin:500;"
-            >
-                با عضویت در خبرنامه از تخفیف اولین خرید بهره مند شوید
-            </p>
-
-            <p
-                style="font-size: 15px; line-height: 20px; top: 30%; right: 32px;"
-                class="ls-l ordenery-font text-white font-600 ls-hide-phone"
-                data-ls="offsetyin:150; durationin:700; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; parallaxlevel:0;"
-            >
-                نیوکالکشن پیراهن مردانه
-            </p>
-
-            <a
-                class="ls-l ls-hide-phone"
-                href="#"
-                target="_self"
-                data-ls="offsetyin:150; durationin:700; delayin:2100; easingin:easeOutQuint; rotatexin:20; scalexin:1.4; offsetyout:600; durationout:400; hover:true; hoveropacity:1; hoverbgcolor:#fff; parallaxlevel:0;"
-            >
-                <p
-                    style="
-                        cursor: pointer;
-                        padding-top: 8px;
-                        padding-bottom: 8px;
-                        font-size: 14px;
-                        font-weight: 600;
-                        top: 70%;
-                        right: 32px;
-                        background: #f1e63d;
-                        color: #000;
-                        padding-right: 25px;
-                        padding-left: 25px;
-                        line-height: 28px;
-                    "
-                    class=""
-                >
-                    مشاهده و خرید
-                </p>
-            </a>
-        </div> {% endcomment %}
-        <!-- Slide 3 -->
         {% for slider in Sliders %}
         <div class="ls-slide" data-ls="duration:12000; transition2d:4; kenburnsscale:1.2;">
             <div style="width: 100%; height: 100%; background: #f1e63d; top: 50%; left: 50%;" class="ls-l" data-ls="showinfo:1; easingin:easeOutExpo; scalexin:1.5; scaleyin:1.5; position:fixed;"></div>
@@ -189,7 +81,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                        <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
                                         <div class="wishlist-view">
                                             <div class="quickview-button">
                                                 <a class="quickview-btn" href="#quick-view" data-id="{{product.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -232,10 +124,10 @@
                                         <div class="shipping-feed-back">
                                             <div class="star-rating">
                                                 <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.6</span></a>
+                                                    <a href="#"><i class="fas fa-star"></i><span> {{product.id|average_star}}</span></a>
                                                 </div>
                                                 <div class="rating-counts-wrap">
-                                                    <a href="#">(563)</a>
+                                                    <a href="#">({{product.comment_set.count}})</a>
                                                 </div>
                                             </div>
                                             <div class="sold-items"><span>142</span> <span>فروش</span></div>
@@ -296,7 +188,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="#" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                                            <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a
@@ -725,7 +617,7 @@
                                     <div class="product type-product">
                                         <div class="product-wrapper">
                                             <div class="product-image">
-                                                <a href="#" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                                <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
                                                 <div class="wishlist-view">
                                                     <div class="quickview-button">
                                                         <a
@@ -1591,8 +1483,8 @@
 {% endblock body %}
 
 {% block js %}
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script>
+$(document).ready(function(){
     $('.quickview-btn').click(function(){
         id = $(this).data('id')
         $.ajax({
@@ -1612,5 +1504,6 @@
             }                                
         }) 
     })
+});
 </script>
 {% endblock js %}

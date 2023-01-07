@@ -1,319 +1,287 @@
 {% extends 'base.html' %}
-
 {% load static %}
+{% load product_tags %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/category/minimal.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/star-rating.css' %}">
+{% endblock css %}
 {% block body %}
 
-        <!-- breadcrumb -->
-        <div class="full-row bg-light py-5">
-            <div class="container">
-                <div class="row text-secondary">
-                    <div class="col-sm-6">
-                        <h3 class="mb-2 text-secondary font-large">{{post.name}}</h3>
+<!-- breadcrumb -->
+<div class="full-row bg-light py-5">
+    <div class="container">
+        <div class="row text-secondary">
+            <div class="col-sm-6">
+                <h3 class="mb-2 text-secondary font-large">{{post.name}}</h3>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home ms-1"></i>خانه</a></li>
+                        <li class="breadcrumb-item"><a href="shop-grid-full.html">فروشگاه</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<div class="full-row">
+    <div class="container">
+        <div class="row single-product-wrapper">
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="product-images">
+                    <div class="images-inner">
+                        <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 1; transition: opacity 0.25s ease-in-out 0s;">
+                            <figure class="woocommerce-product-gallery__wrapper">
+                                <div class="bg-light">
+                                    <img id="single-image-zoom" src="{{post.image.url}}" alt="{{post.alt}}" data-zoom-image="{{post.image.url}}" />
+                                </div>
+
+                                <div id="gallery_09" class="product-slide-thumb">
+                                    <div class="owl-carousel four-carousel dot-disable nav-arrow-middle owl-mx-5" dir="ltr">
+                                        <div class="item">
+                                            <a class="active" href="#" data-image="{{post.image.url}}" data-zoom-image="{{post.image.url}}">
+                                                <img src="{{post.image.url}}" alt="Thumb Image" />
+                                            </a>
+                                        </div>
+                                        {% for pic in post.galleryimage_set.all %}
+                                        <div class="item">
+                                            <a class="active" href="#" data-image="{{pic.image.url}}" data-zoom-image="{{pic.image.url}}">
+                                                <img src="{{pic.image.url}}" alt="Thumb Image" />
+                                            </a>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
                     </div>
-                    <div class="col-sm-6">
-                        <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
-                            <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
-                                <li class="breadcrumb-item"><a href="index.html"><i class="fas fa-home ms-1"></i>خانه</a></li>
-                                <li class="breadcrumb-item"><a href="shop-grid-full.html">فروشگاه</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
-                            </ol>
-                        </nav>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-7">
+                <div class="summary entry-summary">
+                    <div class="summary-inner">
+                        <div class="entry-breadcrumbs">
+                            <nav class="breadcrumb-divider-slash" aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'home:home' %}">خانه</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'product:listview' %}">فروشگاه</a></li>
+                                    <li class="breadcrumb-item"><a href="#">{{post.category.name}}</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <h1 class="product_title entry-title">{{post.name}}</h1>
+                        <div class="woocommerce-product-rating">
+                            <div class="fancy-star-rating">
+                                <div class="rating-wrap" dir="ltr"> <span class="fancy-rating good">{{post.id|average_star}} ★</span>
+                                </div>
+                                <div class="rating-counts-wrap">
+                                    <a href="#reviews" class="bigbazar-rating-review-link" rel="nofollow"> <span class="rating-counts"> ({{comment.count}}) </span> </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="price">
+                            <span class="woocommerce-Price-amount amount">
+                                <bdi>{{post.price}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                            </span>
+                            
+                        </p>
+                        {% if post.discount %}
+                        <div class="product-price-discount"><span class="on-sale"><span>{{post.discount}}</span>% تخفیف</span>
+                        </div>
+                        {% endif %}
+                        {% if post.product_count %}
+                        <div class="stock-availability in-stock">موجود در انبار فروشنده</div>
+                        {% else %}
+                        <div class="stock-availability out-stock">ناموجود</div>
+                        {% endif %}
+
+                        <div class="product-services">
+                            <span class="f-vazir-bold">خدمات:</span>
+                            <ul class="product-services-list">
+                                <li class="product-service-item"> 30 روز ضمانت بازگشت کالا</li>
+                                <li class="product-service-item"> امکان پرداخت در محل</li>
+                                <li class="product-service-item"> امکان تحویل اکسپرس</li>
+                            </ul>
+                        </div>
+                        
+                        <form class="variations_form cart kapee-swatches-wrap" id="product-id" action="#" method="post" enctype="multipart/form-data">
+                            <table class="variations">
+                                <tr>
+                                    <td class="label f-vazir-bold"><label>رنگ</label></td>
+                                    <td class="value with-swatches">
+                                        <div class="bigbazar-swatches">
+                                            <span class="swatch swatch-color swatch-circle swatch-selected" data-bs-toggle="tooltip" data-bs-placement="top" >
+                                                <span class="bigbazar-tooltip color-bd" style="background-color:{{post.orgin_color}}" title="{{post.orgin_color}}"></span>
+                                            </span>
+                                            {% for color in post.color_set.all %}
+                                            <span class="swatch swatch-color term-{{color.id}} swatch-circle"  data-term="{{color.id}}">
+                                                <span class="bigbazar-tooltip color-bd" style="background-color:{{color.color}}" title="{{color.color}}"></span>
+                                            </span>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label f-vazir-bold"><label>سایز</label></td>
+                                    <td class="value with-swatches">
+                                        <div class="bigbazar-swatches">
+                                            <span class="swatch swatch-label size-bd swatch-circle swatch-selected"><span title='{{post.orgin_size}}'>{{post.orgin_size}}</span></span>
+                                            {% for size in post.size_set.all %}
+                                            <span class="swatch swatch-label size-bd swatch-circle"><span title='{{size.size}}'>{{size.size}}</span></span>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="single_variation_wrap">
+                                <div class="quantity">
+                                    <input type="number" min="1" max="{{post.product_count}}" step="1" value="1">
+                                </div>
+                                <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-enabled">
+                                    <button type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button">افزودن به سبد</button>
+                                    <div class="bigbazar-quick-buy">
+                                        <button class="bigbazar_quick_buy_button bigbazar_quick_buy_variable bigbazar_quick_buy_58" value="Buy Now">همین حالا خرید کن!</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="yith-wcwl-add-to-wishlist wishlist-fragment">
+                            <div class="wishlist-button">
+                                <a class="add_to_wishlist" id="wish-list" href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
+                            </div>
+                            <div class="compare-button">
+                                <a class="compare button" href="{% url 'home:compare_2' post.id %}" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="مقایسه کالا" aria-label="Compare">مقایسه کالا</a>
+                            </div>
+                            <div class="size-guide-button">
+                                <a href="#">نمودار قیمت</a>
+                            </div>
+                        </div>
+                        <div class="product_meta"><span class="posted_in">دسته بندی: <a href="#" rel="tag">{{post.category.name}}</a></span> 
+                        <span class="tagged_as">برچسب: 
+                            {% for tag in post.tag.all %}
+                            <a href="#" rel="tag">{{tag.name}}</a>,
+                            {% endfor %}
+                        </span>
+                        </div>
+                        <div class="bigbazar-wc-message"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- breadcrumb -->
+    </div>
+</div>
 
-        <div class="full-row">
-            <div class="container">
-                <div class="row single-product-wrapper">
-                    <div class="col-12 col-md-6 col-lg-5">
-                        <div class="product-images">
-                            <div class="images-inner">
-                                <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 1; transition: opacity 0.25s ease-in-out 0s;">
-                                    <figure class="woocommerce-product-gallery__wrapper">
-                                        <div class="bg-light">
-                                            <img id="single-image-zoom" src="{{post.image.url}}" alt="{{post.alt}}" data-zoom-image="{{post.image.url}}" />
-                                        </div>
-
-                                        <div id="gallery_09" class="product-slide-thumb">
-                                            <div class="owl-carousel four-carousel dot-disable nav-arrow-middle owl-mx-5" dir="ltr">
-                                                <div class="item">
-                                                    <a class="active" href="#" data-image="{{post.image.url}}" data-zoom-image="{{post.image.url}}">
-                                                        <img src="{{post.image.url}}" alt="Thumb Image" />
-                                                    </a>
-                                                </div>
-                                                {% for pic in post.galleryimage_set.all %}
-                                                <div class="item">
-                                                    <a class="active" href="#" data-image="{{pic.image.url}}" data-zoom-image="{{pic.image.url}}">
-                                                        <img src="{{pic.image.url}}" alt="Thumb Image" />
-                                                    </a>
-                                                </div>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                    </figure>
-                                </div>
+<!--==================== Product Description Section Start ====================-->
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-head border-bottom">
+                    <div class="woocommerce-tabs wc-tabs-wrapper ps-0">
+                        <ul class="nav nav-pills wc-tabs" id="pills-tab-one" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="pills-description-one-tab" data-bs-toggle="pill" href="#pills-description-one" role="tab" aria-controls="pills-description-one" aria-selected="true">معرفی</a>
+                            </li>
+                            
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="pills-reviews-one-tab" data-bs-toggle="pill" href="#pills-reviews-one" role="tab" aria-controls="pills-reviews-one" aria-selected="true">دیدگاه ها</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="woocommerce-tabs wc-tabs-wrapper ps-0 mt-0">
+                    <div class="tab-content" id="pills-tabContent-one">
+                        <div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-description-one" role="tabpanel" aria-labelledby="pills-description-one-tab">
+                            <div class="row">
+                                {{post.info | safe}}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-7">
-                        <div class="summary entry-summary">
-                            <div class="summary-inner">
-                                <div class="product-navigation-share">
-                                    <div class="product-share bigbazar-arrow">
-                                        <div class="bigbazar-social">
-                                            <a href="#" class="social-facebook"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#" class="social-twitter"><i class="fab fa-twitter"></i></a>
-                                            <a href="#" class="social-linkedin"><i class="fab fa-linkedin-in"></i></a>
-                                            <a href="#" class="social-telegram"><i class="fab fa-google-plus-g"></i></a>
-                                            <a href="#" class="social-pinterest"><i class="fab fa-pinterest-p"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="entry-breadcrumbs">
-                                    <nav class="breadcrumb-divider-slash" aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="{% url 'home:home' %}">خانه</a></li>
-                                            <li class="breadcrumb-item"><a href="{% url 'product:listview' %}">فروشگاه</a></li>
-                                            <li class="breadcrumb-item"><a href="#">{{post.category}}</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
+
+                        <div class="tab-pane fade" id="pills-reviews-one" role="tabpanel" aria-labelledby="pills-reviews-one-tab">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div id="comments">
+                                        <h2 class="woocommerce-Reviews-title my-3">{{comment.count}} دیدگاه</h2>
+                                        <ol class="commentlist">
+                                            {% for com in comment %}
+                                            <li>
+                                                <div class="comment_container">
+                                                    <img src="{% static 'assets/images/avatar.png' %}" class="avatar" alt="Default Image">
+                                                    <div class="comment-text">
+                                                        <div class="star-rating" role="img" aria-label="Rated 5 out of 5">
+                                                            {% for star in com.point|_range %}
+                                                            <i class="flaticon-star"></i>
+                                                            {% endfor %}
+                                                        </div>
+                                                        <p class="meta">
+                                                            <strong class="woocommerce-review__author">{{com.username}} </strong>
+                                                            <span class="woocommerce-review__dash">–</span>
+                                                            <span class="woocommerce-review__published-date">{{com.created}}</span>
+                                                        </p>
+                                                        <div class="description">
+                                                            <p>{{com.body}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
                                         </ol>
-                                    </nav>
-                                </div>
-                                <h1 class="product_title entry-title">{{post.name}}</h1>
-                                <div class="woocommerce-product-rating">
-                                    <div class="fancy-star-rating">
-                                        <div class="rating-wrap" dir="ltr"> <span class="fancy-rating good">5 ★</span>
-                                        </div>
-                                        <div class="rating-counts-wrap">
-                                            <a href="#reviews" class="bigbazar-rating-review-link" rel="nofollow"> <span class="rating-counts"> (2) </span> </a>
-                                        </div>
                                     </div>
-                                </div>
-                                <p class="price">
-                                    <span class="woocommerce-Price-amount amount">
-                                        <bdi>{{post.price}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
-                                    </span>
-                                    
-                                </p>
-                                {% if post.discount %}
-                                <div class="product-price-discount"><span class="on-sale"><span>{{post.discount}}</span>% تخفیف</span>
-                                </div>
-                                {% endif %}
-                                <div class="product-price-summary exclamation-mark open">
-                                    <i class="fas fa-exclamation"></i>
-                                    <div class="price-summary">
-                                        <div class="price-summary-content">
-                                            <ul class="price-summary-list">
-                                                <li class="regular-price"> <label>حداکثر قیمت تک فروشی<br> <span>(با احتساب مالیات)</span> </label>
-                                                    <span style="text-decoration:line-through">
-                                                        <span class="woocommerce-Price-amount amount"><bdi>287500<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
-                                                    </span>
-                                                    </span>
-                                                </li>
-                                                <li class="selling-price"> <label>قیمت فروش</label> <span><span class="woocommerce-Price-amount amount"><bdi>245000<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
-                                                    </span>
-                                                    </span>
-                                                </li>
-                                                <li class="discount"> <label>تخفیف</label> <span>19%</span></li>
-                                                <li class="total-discount"> <label>جمع کل</label> <span> <span class="woocommerce-Price-amount amount"><bdi>245000<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
-                                                    </span>
-                                                    </span>
-                                                </li>
-                                                <li class="overall-discount"> مبلغ پس انداز <span class="amount-discount"><span class="woocommerce-Price-amount amount"><bdi>24500<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
-                                                    </span>
-                                                    </span> <span class="percentage-discount">(19%)</span> روی این محصول</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="stock-availability in-stock">موجود در انبار فروشنده</div>
-                                <div class="product-offers">
-                                    <ul class="product-offers-list">
-                                        <li class="product-offer-item"><span class="h6">قیمت شگفت انگیز</span> 19% تخفیف اضافی دریافت کنید (قیمت با احتساب تخفیف)
-                                            <div class="product-term-wrap"><span class="product-term-text bigbazar-ajax-block">T & C </span></div>
-                                        </li>
-                                        <li class="product-offer-item"><span class="h6">پیشنهاد فروشنده</span> 10% تخفیف بر روی VISA Cards
-                                            <div class="product-term-wrap"><span class="product-term-text bigbazar-ajax-block">T & C </span></div>
-                                        </li>
-                                        <li class="product-offer-item"><span class="h6">بدون هزینه EMI 49 دلار در ماه.</span> EMI استاندارد نیز موجود است
-                                            <div class="product-term-wrap"><span class="product-term-text bigbazar-ajax-block">مشاهده پلان ها </span></div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product-brands">
-                                    <a class="brand-image" href="#"> <img src="{% static 'assets/images/partner/1.png' %}" class="attachment-full size-full" alt="" width="120" height="120"> </a>
-                                </div>
-                                <div class="product-services">
-                                    <span class="f-vazir-bold">خدمات:</span>
-                                    <ul class="product-services-list">
-                                        <li class="product-service-item"> 30 روز ضمانت بازگشت کالا</li>
-                                        <li class="product-service-item"> امکان پرداخت در محل</li>
-                                        <li class="product-service-item"> امکان تحویل اکسپرس</li>
-                                    </ul>
-                                </div>
-                               
-                                <form class="variations_form cart kapee-swatches-wrap" action="#" method="post" enctype="multipart/form-data">
-                                    <table class="variations">
-                                        <tr>
-                                            <td class="label f-vazir-bold"><label>رنگ</label></td>
-                                            <td class="value with-swatches">
-                                                <div class="bigbazar-swatches">
-                                                    <span class="swatch swatch-color swatch-circle swatch-selected" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="آبی">
-                                                        <span class="bigbazar-tooltip" style="background-color:#33a1de" title="">آبی</span>
-                                                    </span>
-                                                    <span class="swatch swatch-color term-grey swatch-circle" title="طوسی" data-term="grey">
-                                                        <span class="bigbazar-tooltip" style="background-color:#787878"
-                                                            title="">طوسی</span>
-                                                    </span>
-                                                    <span class="swatch swatch-color term-maroon swatch-circle" title="صورتی" data-term="maroon">
-                                                        <span class="bigbazar-tooltip" style="background-color:#800000" 
-                                                            title="">صورتی</span>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label f-vazir-bold"><label>سایز</label></td>
-                                            <td class="value with-swatches">
-                                                <div class="bigbazar-swatches">
-                                                    <span class="swatch swatch-label  swatch-circle swatch-selected" title="L"><span>L</span></span>
-                                                    <span class="swatch swatch-label term-m swatch-circle" title="M"><span>M</span></span>
-                                                    <span class="swatch swatch-label term-s swatch-circle" title="S"><span>S</span></span>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="label"></td>
-                                            <td><a class="reset_variations" href="#">تنظیمات پیش فرض</a></td>
-                                        </tr>
-                                    </table>
-                                    <div class="single_variation_wrap">
-                                        <div class="quantity">
-                                            <input type="number" min="1" max="9" step="1" value="1">
-                                        </div>
-                                        <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-enabled">
-                                            <button type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button">افزودن به سبد</button>
-                                            <div class="bigbazar-quick-buy">
-                                                <button class="bigbazar_quick_buy_button bigbazar_quick_buy_variable bigbazar_quick_buy_58" value="Buy Now">همین حالا خرید کن!</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="yith-wcwl-add-to-wishlist wishlist-fragment">
-                                    <div class="wishlist-button">
-                                        <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
-                                    </div>
-                                    <div class="compare-button">
-                                        <a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="مقایسه کالا" aria-label="Compare">مقایسه کالا</a>
-                                    </div>
-                                    <div class="size-guide-button">
-                                        <a href="#">نمودار قیمت</a>
-                                    </div>
-                                </div>
-                                <div class="product_meta"> <span class="sku_wrapper">امتیاز: <span class="sku">18 امتیاز</span></span> <span class="posted_in">دسته بندی: <a href="#" rel="tag">ساعت هوشمند</a></span> <span class="tagged_as">برچسب: <a href="#" rel="tag">ساعت مردانه</a>, <a href="#" rel="tag">ساعت عقربه ای</a></span></div>
-                                <div class="bigbazar-wc-message"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--==================== Product Description Section Start ====================-->
-        <div class="full-row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-head border-bottom">
-                            <div class="woocommerce-tabs wc-tabs-wrapper ps-0">
-                                <ul class="nav nav-pills wc-tabs" id="pills-tab-one" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="pills-description-one-tab" data-bs-toggle="pill" href="#pills-description-one" role="tab" aria-controls="pills-description-one" aria-selected="true">معرفی</a>
-                                    </li>
-                                    
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-reviews-one-tab" data-bs-toggle="pill" href="#pills-reviews-one" role="tab" aria-controls="pills-reviews-one" aria-selected="true">دیدگاه ها(3)</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="woocommerce-tabs wc-tabs-wrapper ps-0 mt-0">
-                            <div class="tab-content" id="pills-tabContent-one">
-                                <div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-description-one" role="tabpanel" aria-labelledby="pills-description-one-tab">
-                                    <div class="row">
-                                        {{post.info | safe}}
-                                    </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="pills-reviews-one" role="tabpanel" aria-labelledby="pills-reviews-one-tab">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div id="comments">
-                                                <h2 class="woocommerce-Reviews-title my-3">(3) دیدگاه ها</h2>
-                                                <ol class="commentlist">
-                                                    {% for com in comment %}
-                                                    <li>
-                                                        <div class="comment_container">
-                                                            <img src="{% static 'assets/images/avatar.png' %}" class="avatar" alt="Image not found!">
-                                                            <div class="comment-text">
-                                                                <div class="star-rating" role="img" aria-label="Rated 5 out of 5">
-                                                                    <i class="flaticon-star-1"></i>
-                                                                    <i class="flaticon-star-1"></i>
-                                                                    <i class="flaticon-star-1"></i>
-                                                                    <i class="flaticon-star-1"></i>
-                                                                    <i class="flaticon-star-1"></i>
-                                                                </div>
-                                                                <p class="meta">
-                                                                    <strong class="woocommerce-review__author">{{com.username}} </strong>
-                                                                    <span class="woocommerce-review__dash">–</span>
-                                                                    <span class="woocommerce-review__published-date">{{com.created}}</span>
-                                                                </p>
-                                                                <div class="description">
-                                                                    <p>{{com.body}}</p>
+                                    <div id="review_form_wrapper">
+                                        <div id="review_form">
+                                            <div id="respond" class="comment-respond">
+                                                <h5 id="reply-title" class="comment-reply-title my-20">ثبت دیدگاه</h5>
+                                                <form action="" method="post" id="commentform" class="comment-form">
+                                                    <input type="hidden" name='product' value='{{post.id}}'>
+                                                    {% csrf_token %}
+                                                    <div class="row g-3">
+                                                        <div class="col-6">
+                                                            <label for="comment">نام و نام خانوادگی<span class="required">*</span></label>
+                                                            {{comment_form.username}}
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="comment">پست الکترونیکی<span class="required">*</span></label>
+                                                            {{comment_form.email}}
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="comment-form-comment">
+                                                                <label for="comment">متن نظر<span class="required">*</span></label>
+                                                                {{comment_form.body}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="comment-form-comment">
+                                                                <div class="rate">
+                                                                    <input type="radio" id="star5" name="point" value=5 />
+                                                                    <label for="star5" title="عالی">5 stars</label>
+                                                                    <input type="radio" id="star4" name="point" value=4 />
+                                                                    <label for="star4" title="خوب">4 stars</label>
+                                                                    <input type="radio" id="star3" name="point" value=3 />
+                                                                    <label for="star3" title="متوسط">3 stars</label>
+                                                                    <input type="radio" id="star2" name="point" value=2 />
+                                                                    <label for="star2" title="بد">2 stars</label>
+                                                                    <input type="radio" id="star1" name="point" value=1 checked="checked" />
+                                                                    <label for="star1" title="خیلی بد">1 star</label>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </li>
-                                                    {% endfor %}
-                                                </ol>
-                                            </div>
-                                            <div id="review_form_wrapper">
-                                                <div id="review_form">
-                                                    <div id="respond" class="comment-respond">
-                                                        <h5 id="reply-title" class="comment-reply-title my-20">ثبت دیدگاه</h5>
-                                                        <form action="" method="post" id="commentform" class="comment-form">
-                                                            <input type="hidden" name='product' value='{{post.id}}'>
-                                                            {% csrf_token %}
-                                                            <div class="row g-3">
-                                                                <div class="col-6">
-                                                                    <label for="comment">نام و نام خانوادگی<span class="required">*</span></label>
-                                                                    {{comment_form.username}}
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <label for="comment">پست الکترونیکی<span class="required">*</span></label>
-                                                                    {{comment_form.email}}
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="comment-form-comment">
-                                                                        <label for="comment">متن نظر<span class="required">*</span></label>
-                                                                        {{comment_form.body}}
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="form-submit">
-                                                                        <button name="submit" type="submit" id="submit" class="btn btn-primary">ثبت دیدگاه</button>
-                                                                    </div>
-                                                                </div>
+
+                                                        <div class="col-12">
+                                                            <div class="form-submit">
+                                                                <button name="submit" type="submit" id="submit" class="btn btn-primary">ثبت دیدگاه</button>
                                                             </div>
-                                                            <input type="hidden" id="_wp_unfiltered_html_comment_disabled" name="_wp_unfiltered_html_comment" value="0bbb6c8c11">
-                                                        </form>
+                                                        </div>
                                                     </div>
-                                                    <!-- #respond -->
-                                                </div>
+                                                    {% comment %} <input type="hidden" id="_wp_unfiltered_html_comment_disabled" name="_wp_unfiltered_html_comment" value="0bbb6c8c11"> {% endcomment %}
+                                                </form>
                                             </div>
+                                            <!-- #respond -->
                                         </div>
                                     </div>
                                 </div>
@@ -323,103 +291,151 @@
                 </div>
             </div>
         </div>
-        <!--==================== Product Description Section End ====================-->
+    </div>
+</div>
+<!--==================== Product Description Section End ====================-->
 
-        <!--==================== Related Products Section Start ====================-->
-        <div class="full-row pt-0">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-head border-bottom d-flex justify-content-between align-items-end mb-2">
-                            <div class="d-flex section-head-side-title">
-                                <h4 class="font-600 text-dark mb-0">کالاهای مشابه</h4>
+<!--==================== Related Products Section Start ====================-->
+<div class="full-row pt-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-head border-bottom d-flex justify-content-between align-items-end mb-2">
+                    <div class="d-flex section-head-side-title">
+                        <h4 class="font-600 text-dark mb-0">کالاهای مشابه</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="products product-style-1 owl-mx-5">
+                    <div class="five-carousel owl-carousel nav-top-right e-title-hover-primary e-image-bg-light e-hover-image-zoom e-info-center" dir="ltr">
+                        {% for po in my_posts %}
+                        <div class="item">
+                            <div class="product type-product">
+                                <div class="product-wrapper">
+                                    <div class="product-image">
+                                        <a href="{% url 'product:detailview' id=po.id %}" class="woocommerce-LoopProduct-link"><img src="{{po.image.url}}" alt="Product Image"></a>
+                                        <div class="product-variations">
+                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
+                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
+                                            <span><a href="#" style="background-color: #31749e;"></a></span>
+                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
+                                        </div>
+                                        {% if po.discount %}
+                                        <div class="on-sale">- {{po.discount}}%</div>
+                                        {% endif %}
+                                        <div class="hover-area">
+                                            <div class="cart-button">
+                                                <a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
+                                            </div>
+                                            <div class="wishlist-button">
+                                                <a class="add_to_wishlist"  href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
+                                            </div>
+                                            <div class="compare-button">
+                                                <a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="product-title"><a href="{% url 'product:detailview' id=po.id %}">{{po.name}}</a></h3>
+                                        <div class="product-price">
+                                            <div class="price">
+                                                {% if po.discount %}
+                                                <ins>{{po.main_discount_call}} تومان</ins>
+                                                <del>{{po.price}} تومان</del>
+                                                {% else %}
+                                                <ins>{{po.price}} تومان</ins>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="shipping-feed-back">
+                                            <div class="star-rating">
+                                                <div class="rating-wrap">
+                                                    <a href="#"><i class="fas fa-star"></i><span> {{po.id|average_star}} ({{po.comment_set.count}})</span></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-						<div class="products product-style-1 owl-mx-5">
-							<div class="five-carousel owl-carousel nav-top-right e-title-hover-primary e-image-bg-light e-hover-image-zoom e-info-center" dir="ltr">
-								{% for po in my_posts %}
-                                <div class="item">
-									<div class="product type-product">
-										<div class="product-wrapper">
-											<div class="product-image">
-												<a href="{% url 'product:detailview' id=po.id %}" class="woocommerce-LoopProduct-link"><img src="{{po.image.url}}" alt="Product Image"></a>
-												<div class="product-variations">
-													<span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-													<span><a href="#" style="background-color: #f1cc4e;"></a></span>
-													<span><a href="#" style="background-color: #31749e;"></a></span>
-													<span><a href="#" style="background-color: #672a4f;"></a></span>
-												</div>
-												{% if po.discount %}
-                                                <div class="on-sale">- {{po.discount}}%</div>
-												{% endif %}
-                                                <div class="hover-area">
-																<div class="cart-button">
-																	<a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
-																</div>
-																<div class="wishlist-button">
-																	<a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
-																</div>
-																<div class="compare-button">
-																	<a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
-																</div>
-															</div>
-											</div>
-											<div class="product-info">
-												<h3 class="product-title"><a href="{% url 'product:detailview' id=po.id %}">{{po.name}}</a></h3>
-												<div class="product-price">
-													<div class="price">
-														{% if po.discount %}
-                                                        <ins>{{po.main_discount_call}} تومان</ins>
-                                                        <del>{{po.price}} تومان</del>
-														{% else %}
-                                                        <ins>{{po.price}} تومان</ins>
-                                                        {% endif %}
-													</div>
-												</div>
-												<div class="shipping-feed-back">
-													<div class="star-rating">
-														<div class="rating-wrap">
-															<a href="#"><i class="fas fa-star"></i><span> 4.7 (35)</span></a>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-                                {% endfor %}
-
-							</div>
-						</div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        <!--==================== Related Products Section End ====================-->
-        <!--==================== Newslatter Section Start ====================-->
-        <div class="full-row bg-secondary py-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex align-items-center h-100">
-                            <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="d-flex align-items-center h-100">
-                            <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-12">
-                        <form action="#" class="subscribe-form position-relative md-mt-20">
-                            <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
-                            <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
-                        </form>
-                    </div>
+    </div>
+</div>
+<!--==================== Related Products Section End ====================-->
+<!--==================== Newslatter Section Start ====================-->
+<div class="full-row bg-secondary py-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
                 </div>
             </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="d-flex align-items-center h-100">
+                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12">
+                <form action="#" class="subscribe-form position-relative md-mt-20">
+                    <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
+                </form>
+            </div>
         </div>
-        <!--==================== Newslatter Section End ====================-->
+    </div>
+</div>
+<!--==================== Newslatter Section End ====================-->
 {% endblock %}
+{% block js %}
+<script src="{% static 'assets/js/jquery.elevatezoom.js' %}"></script>
+<script>
+$(document).ready(function(){
+    $('.color-bd').click(function(){
+        $('#product-id').find('.swatch-selected').eq(0).removeClass('swatch-selected')
+        $(this).parent().addClass('swatch-selected')
+    })
+    $('.size-bd').click(function (){
+        $('#product-id').find('.swatch-selected').eq(1).removeClass('swatch-selected')
+        $(this).addClass('swatch-selected')
+    })
+});
+
+$(document).ready(function(){
+    $('#wish-list').click(function(){
+        color = $('#product-id').find('.swatch-selected').eq(0).children().attr('title').substring(1);
+        size = $('#product-id').find('.swatch-selected').eq(1).children().attr('title')
+        $.ajax({
+            type : 'GET',
+            url : `/wishlist-add-ajax/{{request.user}}/{{post.id}}/${color}/${size}/`,
+            data : {needed:true},
+            dataType : 'json',
+            success : function (data) {
+                if (data.state) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'محصول به لیست علاقه مندی شما اضافه شد',
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'محصول قبلا به لیست شما اضافه شده است',
+                    })
+                }
+            },  
+            error: function(data){
+                alert('error')
+            }                                
+        })
+    })
+});
+
+</script>
+
+
+{% endblock js %}
