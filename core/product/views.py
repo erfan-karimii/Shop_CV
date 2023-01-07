@@ -11,10 +11,9 @@ from django.contrib import messages
 
 
 def listview(request):
+    number = 2
     if request.GET.get('show-number'):
         number = request.GET.get('show-number')
-    else : 
-        number = 2
     posts = Product.objects.filter(is_active=True).order_by('-created')
     paginator = Paginator(posts,number)
     page_number = request.GET.get('page')
@@ -30,7 +29,6 @@ def listview(request):
 def detailview(request,id):
     post = get_object_or_404(Product,id=id)
     comments = Comment.objects.filter(is_show=True,product_id=id)
-    average_star = comments.aggregate(Avg('point'))
     if request.method == "POST":
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -43,6 +41,7 @@ def detailview(request,id):
         comment_form = CommentForm()
     ids=post.tag.values_list('id',flat=True)
     products = Product.objects.filter(tag__in=ids).exclude(id=id)
+    products = products.annotate(s_count=Count('tag')).order_by('-s_count','-created')[:6]
     
     context = {
         'post':post,
