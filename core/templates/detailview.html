@@ -88,14 +88,34 @@
                         </div>
                         <p class="price">
                             <span class="woocommerce-Price-amount amount">
-                                <bdi>{{post.price}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                <bdi>{{post.main_discount_call}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
                             </span>
-                            
                         </p>
                         {% if post.discount %}
                         <div class="product-price-discount"><span class="on-sale"><span>{{post.discount}}</span>% تخفیف</span>
                         </div>
+                        <div class="product-price-summary exclamation-mark open">
+                            <i class="fas fa-exclamation"></i>
+                            <div class="price-summary">
+                                <div class="price-summary-content">
+                                    <ul class="price-summary-list">
+                                        <li class="selling-price"> <label>قیمت فروش</label> <span><span class="woocommerce-Price-amount amount"><bdi>{{post.price}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                            </span>
+                                            </span>
+                                        </li>
+                                        <li class="discount"> <label>تخفیف</label> <span>{{post.discount}}%</span></li>
+                                        <li class="total-discount"> 
+                                            <label>قیمت نهایی</label> 
+                                            <span> 
+                                                <span class="woocommerce-Price-amount amount"><bdi>{{post.main_discount_call}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi></span>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         {% endif %}
+                        
                         {% if post.product_count %}
                         <div class="stock-availability in-stock">موجود در انبار فروشنده</div>
                         {% else %}

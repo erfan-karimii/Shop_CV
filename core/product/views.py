@@ -11,15 +11,19 @@ from django.contrib import messages
 
 
 def listview(request):
+    if request.GET.get('show-number'):
+        number = request.GET.get('show-number')
+    else : 
+        number = 2
     posts = Product.objects.filter(is_active=True).order_by('-created')
-    paginator = Paginator(posts,2)
+    paginator = Paginator(posts,number)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
     context = {
         'posts':posts,
         'count' : Product.objects.filter(is_active=True).count(),
-        # 'listobj' : posts.object_list.count()
-        }
+        'number' : number,
+    }
     return render(request,'listview.html',context)
 
 

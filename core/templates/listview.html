@@ -37,16 +37,14 @@
                     <div class="products-header-right">
                         <div class="product-show">
                             <span class="h6 font-700 text-secondary mb-0">نمایش:</span>
-                            <select class="show-number">
-                                <option value="1">6</option>
-                                <option value="2">9</option>
-                                <option value="3" selected="selected">12</option>
-                                <option value="4">24</option>
-                                <option value="5">36</option>
-                                <option value="6">48</option>
-                            </select>
+                            <form id='pagination-number'>
+                                <select name='show-number' id='sort-select' class="show-number">
+                                    <option value=2 >2</option>
+                                    <option value=3 >3</option>
+                                </select>
+                            <form>
+                        <form class="woocommerce-ordering" id='sort-form' method="get">
                         </div>
-                        <form class="woocommerce-ordering" method="get" action>
                             <select name="orderby" class="orderby" aria-label="Shop order">
                                 <option value="1" selected="selected">مرتب سازی پیش فرض</option>
                                 {% comment %} <option value="2">مرتب سازی براساس محبوب ترین</option> {% endcomment %}
@@ -55,8 +53,6 @@
                                 <option value="5">مرتب سازی براساس ارزانترین</option>
                                 {% comment %} <option value="6">مرتب سازی براساس قیمت: بالا به پایین</option> {% endcomment %}
                             </select>
-                            <input type="hidden" name="paged" value="1">
-                            <input type="hidden" name="shop-page-layout" value="left-sidebar">
                         </form>
                         
                     </div>
@@ -187,3 +183,14 @@
 </div>
 <!--==================== Service Info Section End ====================-->
 {% endblock body %}
+
+{% block js %}
+<script>
+    $(document).ready(function(){
+        $('#sort-select option[value="{{number}}"]').attr("selected", "selected");
+        $('#sort-select').on('change',function(){
+            $('#pagination-number').submit()
+        })
+    });
+</script>
+{% endblock js %}
