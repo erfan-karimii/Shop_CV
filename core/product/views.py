@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
-from .models import Product,GalleryImage,Comment
-from django.db.models import Count ,Avg
+from .models import Product,Comment
+from django.db.models import Count
 from .forms import CommentForm
 from django.contrib import messages
 
@@ -51,3 +51,18 @@ def detailview(request,id):
     }
     return render(request,'detailview.html',context)
 
+def SearchView(request):
+
+    search = request.GET.get('search')
+    category = request.GET.get('category')
+    print(category)
+    if category == 'all':
+        products=Product.objects.filter(name__icontains=search)
+    else:
+        products=Product.objects.filter(name__icontains=search,category=category)
+    
+
+    context = {
+        'posts':products
+    }
+    return render(request,'listview.html',context)

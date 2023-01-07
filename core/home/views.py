@@ -2,7 +2,7 @@ from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse , Http404
 from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishList
-from product.models import Product 
+from product.models import Product ,Category
 from account.models import Profile
 from django.contrib import messages
 
@@ -34,6 +34,7 @@ def header_view(request):
         'NavOne':NavOne.objects.all(),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
         'wishlist_count' : wishlist_count,
+        'categories':Category.objects.all()
     }
     return render(request,'header.html',context)
 

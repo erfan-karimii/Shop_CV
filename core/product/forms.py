@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment
+from .models import Comment,Product
 
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,4 @@ class CommentForm(forms.ModelForm):
             'email' : forms.TextInput(attrs={'class':'form-control'}),
             'body':forms.Textarea(attrs={'class':'form-control'}),
         }
+

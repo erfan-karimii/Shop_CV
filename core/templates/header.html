@@ -8,17 +8,17 @@
                 </div>
                 <div class="col-lg-6 col-md-9">
                     <div class="product-search-one">
-                        <form class="form-inline search-pill-shape" action="#" method="post">
+                        <form class="form-inline search-pill-shape" action="{% url 'product:SearchView' %}" method="GET">
                             <input type="text" class="form-control search-field" name="search" placeholder="جستجوی کالا..." />
                             <div class="select-appearance-none">
-                                <select class="form-control">
-                                    <option selected>همه دسته بندی</option>
-                                    <option value="1">یک</option>
-                                    <option value="2">دو</option>
-                                    <option value="3">سه</option>
+                                <select name='category' class="form-control">
+                                    <option value='all' selected>همه دسته بندی</option>
+                                    {% for cat in categories %}
+                                    <option value="{{cat.id}}">{{cat.name}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
-                            <button type="submit" name="submit" class="search-submit"><i class="flaticon-search flat-mini text-dark"></i></button>
+                            <button type="submit" class="search-submit"><i class="flaticon-search flat-mini text-dark"></i></button>
                         </form>
                     </div>
                 </div>
