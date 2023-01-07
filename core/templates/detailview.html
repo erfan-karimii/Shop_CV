@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'assets/css/category/minimal.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/star-rating.css' %}">
 {% endblock css %}
+
 {% block body %}
 
 <!-- breadcrumb -->
@@ -309,56 +310,8 @@
             <div class="col-12">
                 <div class="products product-style-1 owl-mx-5">
                     <div class="five-carousel owl-carousel nav-top-right e-title-hover-primary e-image-bg-light e-hover-image-zoom e-info-center" dir="ltr">
-                        {% for po in my_posts %}
-                        <div class="item">
-                            <div class="product type-product">
-                                <div class="product-wrapper">
-                                    <div class="product-image">
-                                        <a href="{% url 'product:detailview' id=po.id %}" class="woocommerce-LoopProduct-link"><img src="{{po.image.url}}" alt="Product Image"></a>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                        {% if po.discount %}
-                                        <div class="on-sale">- {{po.discount}}%</div>
-                                        {% endif %}
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به سبد خرید" aria-label="Add to Cart">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist"  href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="افزودن به موردعلاقه" aria-label="Add to Wishlist">افزودن به مورد علاقه ها</a>
-                                            </div>
-                                            <div class="compare-button">
-                                                <a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="مقایسه محصول" aria-label="Compare">مقایسه محصول</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-info">
-                                        <h3 class="product-title"><a href="{% url 'product:detailview' id=po.id %}">{{po.name}}</a></h3>
-                                        <div class="product-price">
-                                            <div class="price">
-                                                {% if po.discount %}
-                                                <ins>{{po.main_discount_call}} تومان</ins>
-                                                <del>{{po.price}} تومان</del>
-                                                {% else %}
-                                                <ins>{{po.price}} تومان</ins>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> {{po.id|average_star}} ({{po.comment_set.count}})</span></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% for product in my_posts %}
+                            {% include 'layout/product.html' %}
                         {% endfor %}
                     </div>
                 </div>
@@ -367,6 +320,7 @@
     </div>
 </div>
 <!--==================== Related Products Section End ====================-->
+
 <!--==================== Newslatter Section Start ====================-->
 <div class="full-row bg-secondary py-30">
     <div class="container">
@@ -382,8 +336,9 @@
                 </div>
             </div>
             <div class="col-lg-5 col-md-12">
-                <form action="#" class="subscribe-form position-relative md-mt-20">
-                    <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
+                <form action="{% url 'contactus:save-newsletter-email' %}" class="subscribe-form position-relative md-mt-20" method="post">
+                    {% csrf_token %}
+                    <input class="form-control rounded-pill mb-0 bg-white" name='email' type="email" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
                     <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
                 </form>
             </div>
@@ -392,6 +347,7 @@
 </div>
 <!--==================== Newslatter Section End ====================-->
 {% endblock %}
+
 {% block js %}
 <script src="{% static 'assets/js/jquery.elevatezoom.js' %}"></script>
 <script>
