@@ -29,31 +29,7 @@
         <div class="row">
             <div class="col-12">
                 
-                <div class="products-header d-flex justify-content-between align-items-center py-10 px-20 bg-light md-mt-30">
-                    <div class="products-header-left d-flex align-items-center">
-                        <h6 class="woocommerce-products-header__title page-title">همه دسته بندی</h6>
-                        <div class="woocommerce-result-count"> ( نمایش {{posts.object_list.count}} محصول از {{count}} )</div>
-                    </div>
-                    <div class="products-header-right">
-                        <div class="product-show">
-                            <span class="h6 font-700 text-secondary mb-0">نمایش:</span>
-                        </div>
-                        <form id='pagination-number'>
-                            <select name='show-number' id='sort-select' class="show-number">
-                                <option value=2 >2</option>
-                                <option value=3 >3</option>
-                            </select> 
-                            <select id='order-select' name="orderby" class="orderby" aria-label="Shop order">
-                                <option value="">پیش فرض</option>
-                               
-                                <option value="price">ارزانترین</option>
-                                <option value="-price">گرانترین</option>
-                               
-                            </select>
-                        </form>
-                        
-                    </div>
-                </div>
+                
                 <div class="showing-products pt-30 pb-50 border-2 border-bottom border-light">
                     <div class="row row-cols-xl-5 row-cols-md-3 row-cols-sm-2 row-cols-1 product-style-3 e-hover-image-zoom e-image-bg-light g-4">
                         {% for product in posts %}
@@ -61,40 +37,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center pt-3">
-                    <div class="showing-result">تعداد محصول : {{count}}</div>
-                    <div class="pagination-style-one">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    {% if posts.has_previous %}
-                                    <a class="page-link" href="?page={{ posts.previous_page_number }}&show-number={{ number }}&orderby={{ op }}" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                    {% endif %}
-                                </li>
-                                
-                                {% if posts.has_previous %}
-                                <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}&show-number={{ number }}&orderby={{ op }}">{{ posts.previous_page_number }}</a></li>
-                                {% endif %}
 
-                                <li class="page-item active"><a class="page-link">{{posts.number}}</a></li>
-                                
-                                {% if posts.has_next %}
-                                <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}&show-number={{ number }}&orderby={{ op }}">{{ posts.next_page_number }}</a></li>
-                                {% endif %}
-
-                                {% if posts.has_next %}
-                                <li class="page-item">
-                                    <a class="page-link" href="?page={{ posts.next_page_number }}&show-number={{ number }}&orderby={{ op }}" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -180,19 +123,3 @@
 </div>
 <!--==================== Service Info Section End ====================-->
 {% endblock body %}
-
-{% block js %}
-<script>
-    $(document).ready(function(){
-        $('#sort-select option[value="{{number}}"]').attr("selected", "selected");
-        $('#sort-select').on('change',function(){
-            $('#pagination-number').submit()
-        })
-
-        $('#order-select option[value="{{op}}"]').attr("selected", "selected");
-        $('#order-select').on('change',function(){
-            $('#pagination-number').submit()
-        })
-    });
-</script>
-{% endblock js %}

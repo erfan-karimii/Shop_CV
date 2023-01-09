@@ -15,6 +15,10 @@ def listview(request):
     if request.GET.get('show-number'):
         number = request.GET.get('show-number')
     posts = Product.objects.filter(is_active=True).order_by('-created')
+    option_value = ''
+    if request.GET.get('orderby'):
+        option_value = request.GET.get('orderby')
+        posts = Product.objects.filter(is_active=True).order_by(option_value)
     paginator = Paginator(posts,number)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)
@@ -22,6 +26,7 @@ def listview(request):
         'posts':posts,
         'count' : Product.objects.filter(is_active=True).count(),
         'number' : number,
+        'op':option_value,
     }
     return render(request,'listview.html',context)
 
@@ -55,7 +60,6 @@ def SearchView(request):
 
     search = request.GET.get('search')
     category = request.GET.get('category')
-    print(category)
     if category == 'all':
         products=Product.objects.filter(name__icontains=search)
     else:
@@ -65,4 +69,4 @@ def SearchView(request):
     context = {
         'posts':products
     }
-    return render(request,'listview.html',context)
+    return render(request,'search_listview.html',context)
