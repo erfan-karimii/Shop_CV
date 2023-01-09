@@ -18,7 +18,7 @@ def registerView(request):
 
 
 def send_sms_test(request):
-    number = random.randint(1000, 9999)
+    number = random.randint(1000, 99999)
     if request.method == "POST":
         form=PhoneNumber(request.POST)
         if form.is_valid():
@@ -42,47 +42,48 @@ def send_sms_test(request):
             response.set_cookie('phone_number_cookie',phone_number,1000)
             return response
         else:
-            messages.success(request,'درست وارد کنید')
-            return render(request,'account/register.html')
+            messages.error(request,'شماره همراه خود را درست وارد کنید')
+            return redirect('account:registerView')
     else :
-        return render(request,'account/register.html')
+        return redirect('account:registerView')
 
 
 def VerifyChecked(request):
     if request.method == "POST":
         token = request.POST.get('token')
-        phone_c = request.COOKIES['phone_number_cookie']
-        #----------------------------------------
         try :
+            phone_c = request.COOKIES['phone_number_cookie']
             user = MyUser.objects.get(phone_number= phone_c)
-        except:
-            messages.success(request,'شما اکانتی با این شماره ندارید')
+        except KeyError:
+            messages.error(request,'زمان احراز هویت شما به پایان رسیده است ')
+            return redirect('account:registerView')
         if user.token == token :
             MyUser.objects.filter(phone_number=phone_c).update(is_verified=True)
-            return render(request,'account/complateprofile.html')
+            return redirect('account:complate')
         else :
-            messages.success(request,'کدارسالی را درست وارد کنید')
-        return redirect('/')
-    return render(request,'account/complateprofile.html')
-
-
-def ComplateProfileView(request):
-    return render(request,'account/complateprofile.html',{})
+            messages.error(request,'کدارسالی را درست وارد کنید')
+            return redirect('account:registerView')
+    return redirect('account:registerView')
 
 
 def ComplateProfile(request):
     if request.method == "POST":
-        # username=request.POST.get('username')
+        try:
+            phone_c = request.COOKIES['phone_number_cookie']
+        except KeyError:
+            messages.error(request,'زمان احراز هویت شما به پایان رسیده است ')
+            return redirect('account:registerView')
         password = request.POST.get('password')
-        phone_c = request.COOKIES['phone_number_cookie']
         MyUser.objects.filter(phone_number=phone_c).update(
-            phone_number=phone_c,password=make_password(password)
+            password=make_password(password)
         )
         messages.success(request,'پروفایل شما با موفقیت ساخته شد')
         user = MyUser.objects.get(phone_number=phone_c)
         if user.is_verified:
             login(request, user)
-    return redirect('/')
+            return redirect('/')
+    elif request.method == "GET":
+        return render(request,'account/complateprofile.html',{})
 
 
 def respass(request):
@@ -152,9 +153,10 @@ def Login(request):
             user = form.get_user()
             if user.is_verified:
                 login(request, user)
+                messages.success(request,'شما با موفقیت وارد اکانتتان شدید')
                 return redirect('/')
             else:
-                messages.success(request,"شما احراز هویت نشده ایید")
+                messages.error(request,"شما احراز هویت نشده ایید")
     form = AuthenticationForm()
     return render(request,'account/login.html',{'form':form})
 

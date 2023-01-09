@@ -18,7 +18,7 @@ def listview(request):
     option_value = ''
     if request.GET.get('orderby'):
         option_value = request.GET.get('orderby')
-        posts = Product.objects.filter(is_active=True).order_by(option_value)
+        posts=posts.order_by(option_value)
     paginator = Paginator(posts,number)
     page_number = request.GET.get('page')
     posts = paginator.get_page(page_number)

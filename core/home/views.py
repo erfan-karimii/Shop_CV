@@ -57,7 +57,7 @@ def quick_view(request,id):
     }
     return  JsonResponse(context)
 
-@login_required(login_url='/')
+@login_required(login_url='/account/login/')
 def add_to_wishlist(request,user,product_id,color,size):
     product = Product.objects.get(id=product_id)
     profile = Profile.objects.get(user__phone_number=user)
@@ -68,7 +68,7 @@ def add_to_wishlist(request,user,product_id,color,size):
         messages.error(request,'محصول قبلا به لیست شما اضافه شده است')
     return redirect('home:wishlist')
 
-@login_required(login_url='/')
+@login_required(login_url='/account/login/')
 def add_to_wishlist_ajax(request,user,product_id,color,size):
     product = Product.objects.get(id=product_id)
     profile = Profile.objects.get(user__phone_number=user)
@@ -76,7 +76,7 @@ def add_to_wishlist_ajax(request,user,product_id,color,size):
     return JsonResponse({"state":state[1]})
 
 
-@login_required(login_url='/')
+@login_required(login_url='/account/login/')
 def wishlist_view(request):
     wishlist = WishList.objects.filter(account__user=request.user)
     context = {
@@ -84,7 +84,7 @@ def wishlist_view(request):
     }
     return render(request,'wishlist.html',context)
 
-@login_required(login_url='/')
+@login_required(login_url='/account/login/')
 def wishlist_delete_item(request,id):
     wish_item = WishList.objects.get(id=id)
     wish_item.delete()

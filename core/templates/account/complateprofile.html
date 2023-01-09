@@ -33,7 +33,7 @@
                                 <div class="col-lg-6 col-md-8 col-12 mx-auto">
                                     <div class="registration-form">
                                         <h3>ثبت نام</h3>
-                                        <form method="post" action="{% url 'account:complate' %}">
+                                        <form method="post">
                                             {% csrf_token %}
                                             <p>
                                                 <label for="reg_email">پسوورد &nbsp;<span class="required">*</span></label>
@@ -53,29 +53,5 @@
         </div>
         <!--==================== Registration Form Start ====================-->
 
-        <!--==================== Newslatter Section Start ====================-->
-        <div class="full-row bg-secondary py-30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="d-flex align-items-center h-100">
-                            <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="d-flex align-items-center h-100">
-                            <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 col-md-12">
-                        <form action="#" class="subscribe-form position-relative md-mt-20">
-                            <input class="form-control rounded-pill mb-0 bg-white" type="text" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
-                            <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--==================== Newslatter Section End ====================-->
 {% endblock %}
     

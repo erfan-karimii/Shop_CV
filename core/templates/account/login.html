@@ -44,7 +44,10 @@
                                                 <button type="submit" class="btn btn-primary rounded-0" name="register" value="Register">وورود</button>
                                             </p>
                                             <p>
-                                                <a href="#" class="text-secondary">رمز عبور خود را فراموش کرده اید؟</a>
+                                                <a href="{% url 'account:resetpasswordsms' %}" class="text-secondary">رمز عبور خود را فراموش کرده اید؟</a>
+                                            </p>
+                                            <p>
+                                                <a href="{% url 'account:registerView' %}">ساخت حساب کاربری</a>
                                             </p>
                                         </form>
                                     </div>
