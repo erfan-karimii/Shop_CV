@@ -62,8 +62,8 @@ def VerifyChecked(request):
             return redirect('account:complate')
         else :
             messages.error(request,'کدارسالی را درست وارد کنید')
-            return redirect('account:registerView')
-    return redirect('account:registerView')
+            return redirect('account:verify')
+    return render(request,'account/verify.html')
 
 
 def ComplateProfile(request):
@@ -86,40 +86,50 @@ def ComplateProfile(request):
         return render(request,'account/complateprofile.html',{})
 
 
-def respass(request):
-    return render(request,'account/eghdam.html')
+# def respass(request):
+#     return render(request,'account/eghdam.html')
 
 
 def SendSmsReset(request):
     number = random.randint(1000, 9999)
     print(number)
     if request.method == "POST":
-        phone_number = request.POST.get('phone_number')
+        form = PhoneNumber(request.POST)
+        if form.is_valid():
+            phone_number = form.cleaned_data['phone_number']
+        else:
+            messages.error(request,"اطلاعات ورودی صحیح نمیباشد")
+            return redirect('account:send2')
+        print(phone_number)
         if MyUser.objects.filter(phone_number=phone_number):
             MyUser.objects.filter(phone_number=phone_number).update(token=number)
         else:
-            messages.success(request,'شما هیج اکانتی ندارید')
+            messages.error(request,'شما هیج اکانتی ندارید')
+            return redirect('account:send2')
     else:
-        return render(request,'account/verify2.html')
+        return render(request,'account/eghdam.html')
 
     # api = KavenegarAPI('4D526E3432522F42744D47414B3845436D59734377572B71645A455565644575')
     # params = {'sender' : '10000080808880', 'receptor': f'{phone}', 'message' :f'{number}' }
     # api.sms_send( params)
     response = render(request,'account/verify2.html')
-    x =phone_number
-    response.set_cookie('phone_number_cookie',x,1000)
+    response.set_cookie('phone_number_cookie',phone_number,1000)
     return response
 
 
-def ResetProfileView(request):
-    return render(request,'account/ResetPasswordView.html',{})
+# def ResetProfileView(request):
+#     return render(request,'account/ResetPasswordView.html',{})
 
 
 def ResetProfile(request):
     if request.method == "POST":
         # username=request.POST.get('username')
         password = request.POST.get('password')
-        phone_c = request.COOKIES['phone_number_cookie']
+        try :
+            phone_c = request.COOKIES['phone_number_cookie']
+        except:
+            messages.error(request,'زمان احراز هویت شما به پایان رسیده است')
+            return redirect('account:send2')
         MyUser.objects.filter(phone_number=phone_c).update(
             password=make_password(password)
         )
@@ -130,17 +140,18 @@ def ResetProfile(request):
 def VerifyChecked2(request):
     if request.method == "POST":
         token = request.POST.get('token')
-        phone_c = request.COOKIES['phone_number_cookie']
         try :
+            phone_c = request.COOKIES['phone_number_cookie']
             user = MyUser.objects.get(phone_number= phone_c)
         except:
-            messages.success(request,'شما اکانتی با این شماره ندارید')
+            messages.error(request,'شما اکانتی با این شماره ندارید')
+            return redirect('account:send2')
 
         if user.token == token :
             return render(request,'account/ResetPasswordView.html')
         else:
-            messages.success(request,'!!! کدارسالی را درست وارد کنید')
-        return redirect('account/ResetPasswordView.html')
+            messages.error(request,'!!! کدارسالی را درست وارد کنید')
+            return redirect('account:changepass')
     return render(request,'account/ResetPasswordView.html')
 
 

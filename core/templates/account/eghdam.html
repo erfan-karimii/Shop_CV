@@ -33,7 +33,7 @@
                                 <div class="col-lg-6 col-md-8 col-12 mx-auto">
                                     <div class="registration-form">
                                         <h3>برای بازیابی رمز عبور شماره همراه خود را وارد کنید</h3>
-                                        <form method="post" action="{% url 'account:send2' %}">
+                                        <form method="post" action="">
                                             {% csrf_token %}
                                             <p>
                                                 <label for="reg_email">شماره همراه&nbsp;<span class="required">*</span></label>
