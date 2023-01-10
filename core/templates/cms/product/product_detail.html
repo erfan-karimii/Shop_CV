@@ -1,0 +1,371 @@
+{% extends 'cms/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="page-wrapper">
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'cms:product_list' %}">لیست محصول</a></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">ویرایش محصول</h4>
+                        </div>
+                        <div class="card-body">  
+                            <form method='post' enctype="multipart/form-data" action="" class="row">
+                                {% csrf_token %}
+                                <div class="col-sm-12">
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">نام محصول</label>
+                                        <div class="col-sm-5">
+                                        {{form.name}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیح مختصر</label>
+                                        <div class="col-sm-5">
+                                        {{form.tozihat}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">عکس اصلی</label>
+                                        <div class="col-sm-5">
+                                        {{form.image}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیح عکس اصلی</label>
+                                        <div class="col-sm-5">
+                                        {{form.alt}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">عکس فرعی</label>
+                                        <div class="col-sm-5">
+                                        {{form.image_2}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیح عکس فرعی</label>
+                                        <div class="col-sm-5">
+                                        {{form.alt_2}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">قیمت پایه</label>
+                                        <div class="col-sm-5">
+                                        {{form.price_asli}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">تعداد محصول</label>
+                                        <div class="col-sm-5">
+                                        {{form.tedad_mahsol}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">دسته بندی</label>
+                                        <div class="col-sm-5">
+                                        {{form.category}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">زیر دسته بندی</label>
+                                        <div class="col-sm-5">
+                                        <select name="zir_category" required="required" id="id_zir_category">
+                                            <option value="">---------</option>
+                                            {% for zircat in product.category.zircategory_set.all %}
+                                            <option value="{{zircat.id}}" {% if product.zir_category.id == zircat.id %}selected{% endif %}>{{zircat.name}}</option>
+                                            {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیحات تکمیلی</label>
+                                        <div class="col-sm-11">
+                                        {{form.info}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیحات تکمیلی بیشتر</label>
+                                        <div class="col-sm-11">
+                                        {{form.more_info}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">تگ ها</label>
+                                        <div class="col-sm-5">
+                                        {{form.tag}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">میزان تخفیف</label>
+                                        <div class="col-sm-5">
+                                        {{form.takhfif}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">رنگ اصلی</label>
+                                        <div class="col-sm-5">
+                                            <input type="color" id="id_color_asli" class="colorfield_field jscolor" name="color_asli" value="{{product.color_asli}}">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">سایز اصلی</label>
+                                        <div class="col-sm-5">
+                                        {{form.size_asli}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">نمایش داده شود؟</label>
+                                        <div class="col-sm-5">
+                                        {{form.is_active}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-1"></div>
+                                        <div class='col-sm-1'>
+                                            <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
+                                        </div>
+                                        <div class='col-sm-1'>
+                                            <a href="{% url 'cms:delete_product' product.id %}" class='btn btn-danger'>حذف</a>                                                   
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">سایز های بیشتر</h4>
+                        </div>
+                        <div class="card-body">  
+                            <form  method='post' action="{% url 'cms:product_add_size' %}" class="row">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{product.id}}" >
+                                <div class="col-sm-12">
+                                    <div class="mb-3 row">
+                                        {% for size in product.size_set.all %}
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-1 col-form-label text-end">سایز</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="size" value="{{size.size}}" class="form-control" maxlength="20" required="" id="id_size">
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-end">اختلاف قیمت</label>
+                                            <div class="col-sm-4">
+                                                <input type="number" name="Ekhtelaf" value="{{size.Ekhtelaf}}" class="form-control" required="" id="id_Ekhtelaf">
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-end">حذف؟</label>
+                                            <div class="col-sm-1">
+                                                <input type="checkbox" name="is_delete" value="{{size.size}}"  id="id_Ekhtelaf">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="mb-3 row">
+                                            <div class="col-sm-2"></div>
+                                            <button class="col-sm-2 btn btn-info" id='add-size'>+اضافه کردن</button>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class='col-sm-2'>
+                                                <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>                   
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">رنگ های بیشتر</h4>
+                        </div>
+                        <div class="card-body">  
+                            <form  method='post' action="{% url 'cms:product_add_color' %}" class="row">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{product.id}}" >
+                                <div class="col-sm-11">
+                                    <div class="mb-3 row">
+                                        {% for color in product.color_set.all %}
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-1 col-form-label text-end">رنگ</label>
+                                            <div class="col-sm-3">
+                                                <input type="color" name="color" value="{{color.color}}" maxlength="20" required="" id="id_color">
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-end">اختلاف قیمت</label>
+                                            <div class="col-sm-3">
+                                                <input type="number" name="Ekhtelaf" value="{{color.Ekhtelaf}}" class="form-control" required="" id="id_Ekhtelaf">
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-end">حذف؟</label>
+                                            <div class="col-sm-1">
+                                                <input type="checkbox" name="is_delete" value="{{color.color}}"  id="id_Ekhtelaf">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="mb-3 row">
+                                            <div class="col-sm-2"></div>
+                                            <button class="col-sm-2 btn btn-info" id='add-color'>+اضافه کردن</button>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class='col-sm-2'>
+                                                <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>                   
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">عکس های بیشتر</h4>
+                        </div>
+                        <div class="card-body">  
+                            <form  method='post' id="img-form" enctype="multipart/form-data" action="{% url 'cms:product_add_image' %}" class="row">
+                                {% csrf_token %}
+                                <input type="hidden" name="product_id" value="{{product.id}}" >
+                                <div class="col-sm-11">
+                                    <div class="mb-3 row">
+                                        {% for image in product.galleryimage_set.all %}
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-1 col-form-label text-end">عکس</label>
+                                            <div class="col-sm-4">
+                                                <a href="{{image.image.url}}">{{image.image}}</a>
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-end">توضیحات عکس</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" name="alt" data-image="{{image.image}}" data-id="{{product.id}}" value="{{image.alt}}" class="form-control prev-alt">
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-end">حذف؟</label>
+                                            <div class="col-sm-1">
+                                                <input type="checkbox" name="is_delete" value="{{image.image}}">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="mb-3 row">
+                                            <div class="col-sm-2"></div>
+                                            <button class="col-sm-2 btn btn-info" id='add-image'>+اضافه کردن</button>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <div class='col-sm-2'>
+                                                <button type='submit' id="edit" onclick="dis_Prevalt()" class='btn btn-success'>ویرایش</button>                                                   
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
+                            </form>                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- container -->
+       <!--Start Footer-->
+       <!-- Footer Start -->
+       <footer class="footer text-center text-sm-start">
+           &copy; 
+           <script>
+               document.write(new Date().getFullYear())
+           </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
+                   class="mdi mdi-heart text-danger"></i> دیجی روت</span>
+       </footer>
+       <!-- end Footer -->                
+       <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#id_category').change(function(){
+        let val = $("#id_category option:selected").val();
+        $.ajax({
+            type : 'GET',
+            url : '{% url "cms:product_zircat_ajax" %}',
+            data : {'cat_id': val },
+            dataType : 'json',
+            success : function (data) {
+                $('#id_zir_category').empty()
+                $('#id_zir_category').append('<option value="">---------</option>')
+                for(let x in data.zircats){
+                    $('#id_zir_category').append(
+                        `<option value="${x}">${data.zircats[x]}</option>`
+                    )
+                }
+            },  
+            error: function(data){
+                alert('مشکلی پیش امده است لطفا بعدا دوباره امتحان کنید');
+            }                                
+        })
+    });
+    var size_id = 0
+    $('#add-size').click(function(e){
+        e.preventDefault()
+        $(this).parent().before(`<div class="mb-3 row"><label class="col-sm-1 col-form-label text-end">سایز</label><div class="col-sm-3">{{size_form.size}}</div><label class="col-sm-1 col-form-label text-end">اختلاف قیمت</label><div class="col-sm-3">{{size_form.Ekhtelaf}}</div><label class="col-sm-1 col-form-label text-end"></label><button class="col-sm-1 btn" id="s${size_id}" onclick=delete_Size(${size_id})>&times;</button></div>`)
+        size_id = size_id + 1;
+    });
+    var color_id = 0
+    $('#add-color').click(function(e){
+        e.preventDefault()
+        $(this).parent().before(`<div class="mb-3 row"><label class="col-sm-1 col-form-label text-end">رنگ</label><div class="col-sm-3"><input type="color" name="color" value="{{color.color}}" maxlength="20" required="" id="id_color"></div><label class="col-sm-1 col-form-label text-end">اختلاف قیمت</label><div class="col-sm-3">{{color_form.Ekhtelaf}}</div><label class="col-sm-1 col-form-label text-end"></label><button class="col-sm-1 btn" id="c${color_id}" onclick=delete_Color(${color_id})>&times;</button></div>`)
+        color_id = color_id + 1;
+    });
+    var image_id = 0
+    $('#add-image').click(function(e){
+        e.preventDefault()
+        $(this).parent().before(`<div class="mb-3 row"><label class="col-sm-1 col-form-label text-end">عکس</label><div class="col-sm-3">{{image_form.image}}</div><label class="col-sm-1 col-form-label text-end">توضیحات عکس</label><div class="col-sm-3"><input type="text" name="alt" value="{{image.alt}}" class="form-control" required="" ></div><label class="col-sm-1 col-form-label text-end"></label><button class="col-sm-1 btn" id="i${image_id}" onclick=delete_Image(${image_id})>&times;</button></div>`)
+        image_id = image_id + 1;
+    });
+    
+    $('.prev-alt').change(function(){
+        val = $(this).val()
+        img = $(this).data('image')
+        id = $(this).data('id')
+        $.ajax({
+            type : "GET",
+            url : "{% url 'cms:product_changealt_ajax' %}",
+            data : {'val':val , 'img':img , 'id':id },
+            dataType : 'json',
+            error: function(data){
+                alert('مشکلی پیش امده است لطفا بعدا دوباره امتحان کنید');
+            }                                
+        })        
+    })
+});
+
+function delete_Size(id){
+    $(`#s${id}`).parent().remove()
+};
+
+function delete_Color(id){
+    $(`#c${id}`).parent().remove()
+};
+
+function delete_Image(id){
+    $(`#i${id}`).parent().remove()
+};
+
+function dis_Prevalt(){
+    $('.prev-alt').prop("disabled",true)
+}
+
+</script>
+ 
+{% endblock body %}
+

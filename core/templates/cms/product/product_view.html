@@ -1,0 +1,210 @@
+{% extends 'cms/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="page-wrapper">
+    <!-- Page Content-->
+    <div class="page-content-tab">
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'cms:product_list' %}">لیست محصول</a></li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">ایجاد محصول</h4>
+                        </div>
+                        <div class="card-body">  
+                            <form method='post' enctype="multipart/form-data" action="" class="row">
+                                {% csrf_token %}
+                                <div class="col-sm-12">
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">نام محصول</label>
+                                        <div class="col-sm-5">
+                                        {{form.name}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیح مختصر</label>
+                                        <div class="col-sm-5">
+                                        {{form.tozihat}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">عکس اصلی</label>
+                                        <div class="col-sm-5">
+                                        {{form.image}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیح عکس اصلی</label>
+                                        <div class="col-sm-5">
+                                        {{form.alt}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">عکس فرعی</label>
+                                        <div class="col-sm-5">
+                                        {{form.image_2}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیح عکس فرعی</label>
+                                        <div class="col-sm-5">
+                                        {{form.alt_2}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">قیمت پایه</label>
+                                        <div class="col-sm-5">
+                                        {{form.price_asli}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">تعداد محصول</label>
+                                        <div class="col-sm-5">
+                                        {{form.tedad_mahsol}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">دسته بندی</label>
+                                        <div class="col-sm-5">
+                                        {{form.category}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">زیر دسته بندی</label>
+                                        <div class="col-sm-5">
+                                            <select name="zir_category" id="id_zir_category">
+                                                <option value="">---------</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیحات تکمیلی</label>
+                                        <div class="col-sm-11">
+                                        {{form.info}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">توضیحات تکمیلی بیشتر</label>
+                                        <div class="col-sm-11">
+                                        {{form.more_info}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">تگ ها</label>
+                                        <div class="col-sm-5">
+                                        {{form.tag}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">میزان تخفیف</label>
+                                        <div class="col-sm-5">
+                                        {{form.takhfif}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">رنگ اصلی</label>
+                                        <div class="col-sm-5">
+                                            <input type="color" id="id_color_asli" class="colorfield_field jscolor" name="color_asli" value="{{product.color_asli}}">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">سایز اصلی</label>
+                                        <div class="col-sm-5">
+                                        {{form.size_asli}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">نمایش داده شود؟</label>
+                                        <div class="col-sm-5">
+                                        {{form.is_active}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-1"></div>
+                                        <div class='col-sm-1'>
+                                            <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div><!--end row-->
+
+        </div><!-- container -->
+       <!--Start Footer-->
+       <!-- Footer Start -->
+       <footer class="footer text-center text-sm-start">
+           &copy; 
+           <script>
+               document.write(new Date().getFullYear())
+           </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
+                   class="mdi mdi-heart text-danger"></i> دیجی روت</span>
+       </footer>
+       <!-- end Footer -->                
+       <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#id_category').change(function(){
+        let val = $("#id_category option:selected").val();
+        $.ajax({
+            type : 'GET',
+            url : '{% url "cms:product_zircat_ajax" %}',
+            data : {'cat_id': val },
+            dataType : 'json',
+            success : function (data) {
+                $('#id_zir_category').empty()
+                $('#id_zir_category').append('<option value="">---------</option>')
+                for(let x in data.zircats){
+                    $('#id_zir_category').append(
+                        `<option value="${x}">${data.zircats[x]}</option>`
+                    )
+                }
+            },  
+            error: function(data){
+                alert('مشکلی پیش امده است لطفا بعدا دوباره امتحان کنید');
+            }                                
+        })
+        
+    });
+});
+</script> 
+{% endblock body %}
+
+
+
+
+<label class="col-sm-1 col-form-label text-end">نام محصول</label>
+<label class="col-sm-1 col-form-label text-end">توضیح مختصر</label>
+<label class="col-sm-1 col-form-label text-end">عکس اصلی</label>
+<label class="col-sm-1 col-form-label text-end">توضیح عکس اصلی</label>
+<label class="col-sm-1 col-form-label text-end">عکس فرعی</label>
+<label class="col-sm-1 col-form-label text-end">توضیح عکس فرعی</label>
+<label class="col-sm-1 col-form-label text-end">قیمت پایه</label>
+<label class="col-sm-1 col-form-label text-end">تعداد محصول</label>
+<label class="col-sm-1 col-form-label text-end">دسته بندی</label>
+<label class="col-sm-1 col-form-label text-end">زیر دسته بندی</label>

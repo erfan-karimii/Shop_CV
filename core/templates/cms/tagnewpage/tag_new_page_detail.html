@@ -1,0 +1,97 @@
+{% extends 'cms/base.html' %}
+{% load static %}
+
+
+
+
+ 
+{% block body %}
+
+
+    <div class="page-wrapper">
+
+        <!-- Page Content-->
+        <div class="page-content-tab">
+
+            <div class="container-fluid">
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="float-end">
+                                <ol class="breadcrumb">
+
+                                </ol>
+                            </div>
+                            <h4 class="page-title">صفحه مدیریت وبسایت</h4>
+                        </div>
+                        <!--end page-title-box-->
+                    </div>
+                    <!--end col-->
+                </div>
+                <!-- end page title end breadcrumb -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">ایجاد تگ های نوبار</h4>
+
+                            </div><!--end card-header-->
+                            
+                            
+                            
+                            
+                            
+                            
+
+                            <div class="card-body">  
+                                <div class="col-lg-8">
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">تگ نوبار</label>
+                                        <div class="col-sm-6">
+                                            <form method='post' action="" class="row">
+                                                    {% csrf_token %}
+                                                {% comment %} <input name='name' class="form-control" type="text" value=""  id="example-text-input"> {% endcomment %}
+                                            {{form.name}}
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
+                                            </div>
+                                        </form>                   
+                                            <div class='col-sm-2'>
+                                                <a href="{% url 'cms:Delete_NewTagPage' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
+                                            </div>
+                                        </div>
+                                    </div>    
+
+                            </div><!--end card-body-->
+
+
+
+
+                        </div><!--end card-->
+
+                </div><!--end row-->
+
+            </div><!-- container -->
+           <!--Start Footer-->
+           <!-- Footer Start -->
+           <footer class="footer text-center text-sm-start">
+               &copy; <script>
+                   document.write(new Date().getFullYear())
+               </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
+                       class="mdi mdi-heart text-danger"></i> دیجی روت</span>
+           </footer>
+           <!-- end Footer -->                
+           <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+
+{% endblock %}
+
+ 
+
+<!-- Mirrored from digi-root.ir/Unikit_RTL/forms-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Sep 2022 08:48:47 GMT -->
+</html>

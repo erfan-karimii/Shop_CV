@@ -1,0 +1,122 @@
+{% extends 'cms/base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+
+                            </ol>
+                        </div>
+                        <h4 class="page-title">صفحه مدیریت وبسایت</h4>
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">جزعیات کامنت</h4>
+                        </div><!--end card-header-->
+                        <div class="card-body">  
+                            <div class="mb-3 row">
+                                <form method='post' action="">
+                                    {% csrf_token %}
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">محصول</label>
+                                        <div class="col-sm-6">
+                                        {{form.product}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">در جواب به</label>
+                                        <div class="col-sm-6">
+                                        {{form.parent}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">اسم مستعار</label>
+                                        <div class="col-sm-6">
+                                        {{form.username}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">موضوع</label>
+                                        <div class="col-sm-6">
+                                        {{form.title}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">متن</label>
+                                        <div class="col-sm-6">
+                                        {{form.body}}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">لایک</label>
+                                        <div class="col-sm-6">
+                                        {{form.like}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">زمان ثبت کامنت</label>
+                                        <div class="col-sm-6">
+                                        {{x.created}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">نمایش داده شود</label>
+                                        <div class="col-sm-6">
+                                        {{form.is_show}}
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class='col-sm-1'>
+                                            <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
+                                        </div>
+                                        <div class='col-sm-1'>
+                                            <a href="{% url 'cms:delete_comment' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
+                                        </div>
+                                    </div>
+                                </form>                   
+                            </div>    
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+                </div>
+            </div><!--end row-->
+        </div><!-- container -->
+        <!--Start Footer-->
+        <!-- Footer Start -->
+        <footer class="footer text-center text-sm-start">
+            &copy; <script>
+                document.write(new Date().getFullYear())
+            </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
+                    class="mdi mdi-heart text-danger"></i> دیجی روت</span>
+        </footer>
+        <!-- end Footer -->                
+        <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script> -->
+<!-- end page-wrapper -->
+{% endblock %}
+{% block js %}
+<script>
+$("#id_product option:not(:selected)").attr('disabled', 'disabled')
+$("#id_parent option:not(:selected)").attr('disabled','disabled')
+</script>
+{% endblock js %}
