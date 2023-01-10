@@ -276,22 +276,20 @@
                                                                 {{comment_form.body}}
                                                             </div>
                                                         </div>
-                                                        <div class="col-12">
-                                                            <div class="comment-form-comment">
-                                                                <div class="rate">
-                                                                    <input type="radio" id="star5" name="point" value=5 />
-                                                                    <label for="star5" title="عالی">5 stars</label>
-                                                                    <input type="radio" id="star4" name="point" value=4 />
-                                                                    <label for="star4" title="خوب">4 stars</label>
-                                                                    <input type="radio" id="star3" name="point" value=3 />
-                                                                    <label for="star3" title="متوسط">3 stars</label>
-                                                                    <input type="radio" id="star2" name="point" value=2 />
-                                                                    <label for="star2" title="بد">2 stars</label>
-                                                                    <input type="radio" id="star1" name="point" value=1 checked="checked" />
-                                                                    <label for="star1" title="خیلی بد">1 star</label>
-                                                                </div>
+                                                        {% comment %} <div class="col-12">
+                                                            <div class="rate">
+                                                                <input type="radio" id="star5" name="point" value=5 />
+                                                                <label for="star5" title="عالی">5 stars</label>
+                                                                <input type="radio" id="star4" name="point" value=4 />
+                                                                <label for="star4" title="خوب">4 stars</label>
+                                                                <input type="radio" id="star3" name="point" value=3 />
+                                                                <label for="star3" title="متوسط">3 stars</label>
+                                                                <input type="radio" id="star2" name="point" value=2 />
+                                                                <label for="star2" title="بد">2 stars</label>
+                                                                <input type="radio" id="star1" name="point" value=1 checked="checked" />
+                                                                <label for="star1" title="خیلی بد">1 star</label>
                                                             </div>
-                                                        </div>
+                                                        </div> {% endcomment %}
 
                                                         <div class="col-12">
                                                             <div class="form-submit">
@@ -341,31 +339,8 @@
 </div>
 <!--==================== Related Products Section End ====================-->
 
-<!--==================== Newslatter Section Start ====================-->
-<div class="full-row bg-secondary py-30">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex align-items-center h-100">
-                    <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="d-flex align-items-center h-100">
-                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
-                </div>
-            </div>
-            <div class="col-lg-5 col-md-12">
-                <form action="{% url 'contactus:save-newsletter-email' %}" class="subscribe-form position-relative md-mt-20" method="post">
-                    {% csrf_token %}
-                    <input class="form-control rounded-pill mb-0 bg-white" name='email' type="email" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
-                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!--==================== Newslatter Section End ====================-->
+{% include 'layout/newsletter.html' %}
+
 {% endblock %}
 
 {% block js %}

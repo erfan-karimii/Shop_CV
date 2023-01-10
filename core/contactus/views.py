@@ -30,9 +30,8 @@ def validate_newsletter(request):
             form.save()
             messages.success(request, 'ایمیل شما با موفقیت ثبت شد.')
         else :
-            print(form.errors)
-            if 'Enter a valid email address' in str(form.errors):                
-                messages.error(request, 'ظاهرا مشکلی پیش امده است لطفا دوباره امتحان کنید.')
-            elif 'Email already exists' in str(form.errors):
+            if 'Email already exists' in str(form.errors):
                 messages.error(request, 'این ایمیل قبلا ثبت شده است')
+            elif 'Enter a valid email address' in str(form.errors):                
+                messages.error(request, 'ظاهرا مشکلی پیش امده است لطفا دوباره امتحان کنید.')
         return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))

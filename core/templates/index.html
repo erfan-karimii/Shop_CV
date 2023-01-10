@@ -842,31 +842,8 @@
 </div>
 <!--============== Modal End ==============-->
 
-<!--==================== Newslatter Section Start ====================-->
-<div class="full-row bg-secondary py-30">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="d-flex align-items-center h-100">
-                    <h4 class="text-primary mb-0">عضویت در خبرنامه</h4>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="d-flex align-items-center h-100">
-                    <span class="text-white">اولین نفری باشید که از جدیدترین محصولات ما مطلع می شوید!</span>
-                </div>
-            </div>
-            <div class="col-lg-5 col-md-12">
-                <form action="{% url 'contactus:save-newsletter-email' %}" class="subscribe-form position-relative md-mt-20" method="post">
-                    {% csrf_token %}
-                    <input class="form-control rounded-pill mb-0 bg-white" name='email' type="email" placeholder="ایمیل خود را وارد کنید..." aria-label="Address">
-                    <button class="btn btn-primary rounded-right-pill text-white" type="submit">ثبت نام</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!--==================== Newslatter Section End ====================-->
+{% include 'layout/newsletter.html' %}
+
 {% endblock body %}
 
 {% block js %}
