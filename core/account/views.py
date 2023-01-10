@@ -164,13 +164,16 @@ def Login(request):
             user = form.get_user()
             if user.is_verified:
                 login(request, user)
-                messages.success(request,'شما با موفقیت وارد اکانتتان شدید')
+                messages.success(request,'شما با موفقیت وارد حساب کاربری خود شدید')
                 return redirect('/')
             else:
                 messages.error(request,"شما احراز هویت نشده ایید")
+        else:
+            messages.error(request,'شماره همراه یا رمز عبور اشتباه است')
     form = AuthenticationForm()
     return render(request,'account/login.html',{'form':form})
 
 def LogOut(request):
     logout(request)
+    messages.success(request,"شما با موفقیت از حساب کاربری خود خارج شدید")
     return redirect('/')
