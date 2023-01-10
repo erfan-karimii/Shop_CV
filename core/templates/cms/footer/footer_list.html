@@ -15,8 +15,8 @@
                     <div class="page-title-box">
                         <div class="float-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{% url 'cms:footer_asli' %}">اضافه کردن فوتر اصلی جدید</a></li>
-                                <li class="breadcrumb-item"><a href="{% url 'cms:footer_zir' %}">اضافه کردن فوتر فرعی جدید</a></li>
+                                {% comment %} <li class="breadcrumb-item"><a href="{% url 'cms:footer_asli' %}">اضافه کردن فوتر اصلی جدید</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'cms:footer_zir' %}">اضافه کردن فوتر فرعی جدید</a></li> {% endcomment %}
                             </ol>
                         </div>
                         <h4 class="page-title">لیست فوتر ها</h4>
@@ -74,7 +74,7 @@
                                         {% for footer in footer_zir %}
                                         <tr>
                                             <td><a href='{% url "cms:footer_zir_detail" footer.id %}'>{{footer.name}}</a></td>
-                                            <td><a>{{footer.footer.name}}</a></td>
+                                            <td><a>{{footer.parent.name}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
