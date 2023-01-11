@@ -1,0 +1,83 @@
+{% extends 'cms/base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="page-wrapper">
+
+    <!-- Page Content-->
+    <div class="page-content-tab">
+
+        <div class="container-fluid">
+            <!-- Page-Title -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="page-title-box">
+                        <div class="float-end">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'cms:aboutus_property_list' %}">لیست جزییات درباره ما</a></li>
+                            </ol>
+                        </div>
+                        
+                    </div>
+                    <!--end page-title-box-->
+                </div>
+                <!--end col-->
+            </div>
+            <!-- end page title end breadcrumb -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">ویرایش جزییات درباره ما</h4>
+
+                        </div><!--end card-header-->
+                        <div class="card-body">  
+                            <form method='post' enctype="multipart/form-data" action="" class="row">
+                                {% csrf_token %}
+                                <div class="col-lg-12">
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">تیتر</label>
+                                        <div class="col-sm-4">
+                                            {{form.title}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">متن</label>
+                                        <div class="col-sm-10">
+                                            {{form.text}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class='cpl-sm-1'></div>
+                                        <div class='col-sm-1'>
+                                            <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
+                                        </div>
+                                        <div class='col-sm-1'>
+                                            <a href="{% url 'cms:aboutus_property_delete' aboutus_property.id %}" class='btn btn-danger'>حذف</a>                                                   
+                                        </div>
+                                    </div>
+                                </div>    
+                            </form>                   
+                        </div><!--end card-body-->
+                    </div><!--end card-->
+
+            </div><!--end row-->
+
+        </div><!-- container -->
+       <!--Start Footer-->
+       <!-- Footer Start -->
+       <footer class="footer text-center text-sm-start">
+           &copy; <script>
+               document.write(new Date().getFullYear())
+           </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
+                   class="mdi mdi-heart text-danger"></i> دیجی روت</span>
+       </footer>
+       <!-- end Footer -->                
+       <!--end footer-->
+    </div>
+    <!-- end page content -->
+</div>
+<!-- end page-wrapper -->
+
+{% endblock body %}

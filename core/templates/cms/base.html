@@ -100,25 +100,20 @@
                             <a class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarCrypto">
                                 <i class="ti ti-map menu-icon"></i>
-                                <span>تماس باما</span>
+                                <span>درباره ما</span>
                             </a>
                             <div class="collapse " id="sidebarCrypto">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:ourshop_list' %}">فروشگاه های ما</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:aboutusgeneral' pk=1 %}">تنظیمات کلی درباره ما</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:khabarname_list' %}">ایمیل های خبرنامه</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:aboutus_progress_bar_list' %}">نوار های پیشرفت</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                    {% comment %} <a class="nav-link" href="{% url 'cms:contactusdetail_edit' %}">ویرایش جزییات تماس باما</a> {% endcomment %}
+                                    <a class="nav-link" href="{% url 'cms:aboutus_property_list' %}">جزییات درباره ما</a>
                                     </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                    {% comment %} <a class="nav-link" href="{% url 'cms:contactus_list' %}">لیست پیام ها</a> {% endcomment %}
-                                    </li><!--end nav-item-->
-                                    
                                 </ul><!--end nav-->
-                                
                             </div><!--end sidebarMaps-->
                         </li><!--end nav-item-->
                         <li class="nav-item">
@@ -140,7 +135,7 @@
                             <a class="nav-link" href="#sidebarEmailTemplates" data-bs-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="sidebarEmailTemplates">
                                 <i class="ti ti-map menu-icon"></i>
-                                <span>درباره ما</span>
+                                <span>تماس با ما</span>
                             </a>
                             <div class="collapse " id="sidebarEmailTemplates">
                                 <ul class="nav flex-column">

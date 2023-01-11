@@ -44,5 +44,21 @@ urlpatterns = [
     path('tabligh/', views.TablighCreateView.as_view(),name='tabligh'),
     path('tabligh_list/', views.TablighListView.as_view(),name='tabligh_list'),
     path('delete/tabligh/<pk>',views.TablighDeleteView.as_view(),name='tabligh_delete'),
+    
+    #----------Start-----------aboutusgeneral---------------------
+    path('aboutusgeneral/<pk>',views.AboutUsGeneralView.as_view(),name='aboutusgeneral'),
+
+    #----------Start-----------AboutUsProgressBar---------------------
+    path('detail/aboutus_progress_bar/<pk>/',views.AboutUsProgressBarView.as_view(),name='aboutus_progress_bar_detail'),
+    path('aboutus_progress_bar/', views.AboutUsProgressBarCreateView.as_view(),name='aboutus_progress_bar'),
+    path('aboutus_progress_bar_list/', views.AboutUsProgressBarListView.as_view(),name='aboutus_progress_bar_list'),
+    path('delete/aboutus_progress_bar/<pk>',views.AboutUsProgressBarDeleteView.as_view(),name='aboutus_progress_bar_delete'),
+
+    #----------Start-----------AboutUsProperty---------------------
+    path('detail/aboutus_property/<pk>/',views.AboutUsPropertyView.as_view(),name='aboutus_property_detail'),
+    path('aboutus_property/', views.AboutUsPropertyCreateView.as_view(),name='aboutus_property'),
+    path('aboutus_property_list/', views.AboutUsPropertyListView.as_view(),name='aboutus_property_list'),
+    path('delete/aboutus_property/<pk>',views.AboutUsPropertyDeleteView.as_view(),name='aboutus_property_delete'),
+
 
 ]

@@ -177,7 +177,6 @@ class SliderListView(ListView):
     template_name = 'cms/slider/slider_list.html'
     context_object_name = 'slider_list'
 
-
 class SliderView(UpdateView):
     model = Slider
     template_name = 'cms/slider/slider_detail.html'
@@ -237,3 +236,81 @@ class TablighDeleteView(View):
         messages.success(self.request,'با موفقیت حذف شد')
         return redirect("cms:tabligh_list")
 #--------------Start----------Tabligh--------------
+
+#--------------Start----------aboutusgeneral--------------
+class AboutUsGeneralView(UpdateView):
+    model = AboutUsGeneral
+    template_name = 'cms/abous_us_general.html'
+    fields="__all__"
+    success_url = reverse_lazy("cms:aboutusgeneral", kwargs={'pk': 1})
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+#--------------End----------aboutusgeneral--------------
+
+#--------------Start----------AboutUsProgressBar--------------
+class AboutUsProgressBarListView(ListView):
+    model = AboutUsProgressBar
+    template_name = 'cms/about_us/aboutus_progress_bar_list.html'
+    context_object_name = 'aboutus_progress_bar_list'
+
+class AboutUsProgressBarView(UpdateView):
+    model = AboutUsProgressBar
+    template_name = 'cms/about_us/aboutus_progress_bar_detail.html'
+    context_object_name = 'aboutus_progress_bar'
+    fields="__all__"
+    success_url = reverse_lazy("cms:aboutus_progress_bar_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class AboutUsProgressBarCreateView(CreateView):
+    model = AboutUsProgressBar
+    fields = "__all__"
+    template_name = 'cms/about_us/add_aboutus_progress_bar.html'
+    success_url = reverse_lazy("cms:aboutus_progress_bar_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class AboutUsProgressBarDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        AboutUsProgressBar.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:aboutus_progress_bar_list")
+
+#--------------End----------AboutUsProgressBar--------------
+
+#--------------Start----------AboutUsProperty--------------
+class AboutUsPropertyListView(ListView):
+    model = AboutUsProperty
+    template_name = 'cms/about_us/aboutus_property_list.html'
+    context_object_name = 'aboutus_property_list'
+
+class AboutUsPropertyView(UpdateView):
+    model = AboutUsProperty
+    template_name = 'cms/about_us/aboutus_property_detail.html'
+    context_object_name = 'aboutus_property'
+    fields="__all__"
+    success_url = reverse_lazy("cms:aboutus_property_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class AboutUsPropertyCreateView(CreateView):
+    model = AboutUsProperty
+    fields = "__all__"
+    template_name = 'cms/about_us/add_aboutus_property.html'
+    success_url = reverse_lazy("cms:aboutus_property_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class AboutUsPropertyDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        AboutUsProperty.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:aboutus_property_list")
+#--------------End----------AboutUsProperty--------------
