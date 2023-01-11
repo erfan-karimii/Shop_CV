@@ -43,9 +43,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for tabligh_list in tabligh_lists %}
+                                        {% for tabligh in tabligh_list %}
                                         <tr>
-                                            <td><a href="{% url 'cms:detail_Tabligh' tabligh_list.id %}">{{tabligh_list.name_button}}</a></td>
+                                            <td><a href="{% url 'cms:tabligh_detail' tabligh.id %}">{{tabligh.text}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

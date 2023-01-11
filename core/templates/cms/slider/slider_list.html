@@ -20,7 +20,7 @@
                     <div class="page-title-box">
                         <div class="float-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item btn"><a href="{% url 'cms:slider_add_view' %}">اضافه کردن اسلایدر جدید</a></li>
+                                <li class="breadcrumb-item btn"><a href="{% url 'cms:slider' %}">اضافه کردن اسلایدر جدید</a></li>
                             </ol>
                         </div>
                         <h4 class="page-title">لیست اسلایدرها</h4>
@@ -45,7 +45,7 @@
                                     <tbody>
                                         {% for x in slider_list %}
                                         <tr>
-                                            <td><a href="{% url 'cms:detail_Slider' x.id %}">{{x.name_button}}</a></td>
+                                            <td><a href="{% url 'cms:slider_detail' x.id %}">{{x.name_button}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

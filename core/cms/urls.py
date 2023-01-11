@@ -24,4 +24,25 @@ urlpatterns = [
 
     #----------Start-----------FooterTwo---------------------
     path('detail/footer_two/<pk>/',views.FooterZirDetailView.as_view(),name='footer_zir_detail'),
+    path('footer_two/', views.FooterTwoCreateView.as_view(),name='footer_zir'),
+    path('delete/footertwo/<pk>',views.FooterTwoDeleteView.as_view(),name='footer_zir_delete'),
+    
+    #----------Start-----------Onsale---------------------
+    path('on_sale/<pk>',views.OnSaleView.as_view(),name='on_sale'),
+
+    #----------Start-----------sitesetting---------------------
+    path('sitesetting/<pk>',views.SiteSettingView.as_view(),name='sitesetting'),
+
+    #----------Start-----------Slider---------------------
+    path('detail/slider/<pk>/',views.SliderView.as_view(),name='slider_detail'),
+    path('slider/', views.SliderCreateView.as_view(),name='slider'),
+    path('slider_list/', views.SliderListView.as_view(),name='slider_list'),
+    path('delete/slider/<pk>',views.SliderDeleteView.as_view(),name='slider_delete'),
+
+    #----------Start-----------Tabligh---------------------
+    path('detail/tabligh/<pk>/',views.TablighView.as_view(),name='tabligh_detail'),
+    path('tabligh/', views.TablighCreateView.as_view(),name='tabligh'),
+    path('tabligh_list/', views.TablighListView.as_view(),name='tabligh_list'),
+    path('delete/tabligh/<pk>',views.TablighDeleteView.as_view(),name='tabligh_delete'),
+
 ]

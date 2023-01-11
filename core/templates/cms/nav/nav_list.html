@@ -15,9 +15,8 @@
                     <div class="page-title-box">
                         <div class="float-end">
                             <ol class="breadcrumb">
-                                {% comment %} <li class="breadcrumb-item"><a href="{% url 'cms:navone' %}">اضافه کردن نوبار صطح یک جدید</a></li> {% endcomment %}
-                                {% comment %} <li class="breadcrumb-item"><a href="{% url 'cms:navtwo' %}">اضافه کردن نوبار سطح دو جدید</a></li> {% endcomment %}
-
+                                <li class="breadcrumb-item"><a href="{% url 'cms:navone' %}">اضافه کردن نوبار صطح یک جدید</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'cms:navtwo' %}">اضافه کردن نوبار سطح دو جدید</a></li>
                             </ol>
                         </div>
                         <h4 class="page-title">لیست نوبار ها</h4>
@@ -78,9 +77,9 @@
                                     <tbody>
                                          {% for nav in navstwo %}
                                         <tr>
-                                            {% comment %} <td><a href='{% url "cms:detail_nav_two" nav.id %}'>{{nav.name}}</a></td> {% endcomment %}
-                                            <td><a >{{nav.link}}</a></td>
-                                            <td><a >{{nav.parent.name}}</a></td>
+                                            <td><a href="{% url 'cms:detail_navtwo' nav.id %}">{{nav.name}}</a></td>
+                                            <td><a>{{nav.link}}</a></td>
+                                            <td><a>{{nav.parent.name}}</a></td>
                                         </tr>
                                         {% endfor %} 
                                     </tbody>

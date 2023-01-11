@@ -33,18 +33,37 @@
                                     <div class="col-lg-6">
                                         
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">تبلیغات</label>
+                                            <label for="tbligh" class="col-sm-2 col-form-label text-end">متن</label>
                                             <div class="col-sm-6">
-                                                <input name='name_button' class="form-control" type="text" value="" id="example-text-input">
+                                                {{form.text}}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="tbligh" class="col-sm-2 col-form-label text-end">متن 2</label>
+                                            <div class="col-sm-6">
+                                                {{form.text2}}
                                             </div>
                                         </div>
                                         
                                         <div class="mb-3 row">
                                             <label for="tbligh" class="col-sm-2 col-form-label text-end">لینک</label>
                                             <div class="col-sm-6">
-                                                <input name='link' class="form-control" type="text" value="" id="tbligh">
+                                                {{form.link}}
                                             </div>
                                         </div>
+                                        <div class="mb-3 row">
+                                            <label for="tbligh" class="col-sm-2 col-form-label text-end">alt</label>
+                                            <div class="col-sm-6">
+                                                {{form.alt}}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="tbligh" class="col-sm-2 col-form-label text-end">مکان تبلیغ</label>
+                                            <div class="col-sm-6">
+                                                {{form.diraction}}
+                                            </div>
+                                        </div>
+
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">عکس</label>
                                             <div class="col-sm-6">

@@ -39,8 +39,9 @@
                                 {% csrf_token %}
                                 <div class="col-lg-12">
                                     <div class="mb-3 row">
+                                        <label class="col-sm-1 col-form-label text-end">سرگروه</label>
                                         <div class="col-sm-1">
-
+                                            {{form.parent}}
                                         </div>
                                         <label class="col-sm-1 col-form-label text-end">نام</label>
                                         <div class="col-sm-4">
@@ -50,44 +51,16 @@
                                         <div class="col-sm-4">
                                             <input name='link' value='{{footer_zir.link}}' class="form-control" type="text" value="" id="example-text-input">
                                         </div>
-
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-1 col-form-label text-end">سرگروه</label>
-                                        <div class="col-sm-3">
-                                            {{form.footer}}
-                                        </div>
-                                        <label class="col-sm-1 col-form-label text-end">نام صفحه</label>
-                                        <div class="col-sm-3">
-                                            <input name='url_title' {% if footer_zir.url_title %}value='{{footer_zir.url_title}}'{% endif %} class="form-control" type="text" value="" id="example-text-input">
-                                        </div>
-                                        <label class="col-sm-1 col-form-label text-end">توضیحات صفحه</label>
-                                        <div class="col-sm-3">
-                                            <input name='text' {% if footer_zir.text %}value='{{footer_zir.text}}'{% endif %} class="form-control" type="text" value="" id="example-text-input">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label  class="col-sm-2 col-form-label text-end">بدنه<br>(درصورت نیاز به صفحه جدید):</label>
-                                        <div class="col-sm-10">
-                                            {{ form.body }}
-                                            {{ form.media }}
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label  class="col-sm-2 col-form-label text-end">تگ ها</label>
-                                        <div class="col-sm-10">
-                                            {{ form.tag }}
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-4" ></div>
                                         <div class='col-sm-2'>
                                             <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
                                         </div>
                                         <div class='col-sm-2'>
-                                            <a href='{% url "cms:footer_zir_delete" footer_zir.id %}' class='btn btn-danger'>حذف</a>                                                   
+                                            <a href='{% url "cms:footer_zir_delete" footer_zir.id %}' class='btn btn-danger'>حذف</a>
                                         </div> 
                                     </div>
+
                                 </div>  
                             </form>                   
                         </div><!--end card-body-->

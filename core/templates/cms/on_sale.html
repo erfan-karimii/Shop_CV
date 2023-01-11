@@ -1,10 +1,10 @@
 {% extends 'cms/base.html' %}
 {% load static %}
+
 {% block body %}
     <div class="page-wrapper">
         <!-- Page Content-->
         <div class="page-content-tab">
-
             <div class="container-fluid">
                 <!-- Page-Title -->
                 <div class="row">
@@ -26,66 +26,52 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">ویرایش تنظیمات سایت</h4>
+                                <h4 class="card-title">ویرایش قسمت زیر اسلایدر</h4>
                             </div><!--end card-header-->
                             <div class="card-body">  
                                 <form method='post' action="" enctype="multipart/form-data" class="row">
                                     {% csrf_token %}
                                     <div class="col-lg-6">
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">لوگو</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">تیتر</label>
                                             <div class="col-sm-6">
-                                                {% comment %} <input name='text_simple' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.logo}}
+                                            {{form.title}}
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">توضیحات لوگو</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">متن</label>
                                             <div class="col-sm-6">
-                                                {% comment %} <input name='text_simple' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
+                                            {{form.text}}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">محصولات</label>
+                                            <div class="col-sm-6">
+                                            {{form.products}}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">عکس</label>
+                                            <div class="col-sm-6">
+                                            {{form.image}}
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">alt</label>
+                                            <div class="col-sm-6">
                                             {{form.alt}}
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">favicon</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">تاریخ</label>
                                             <div class="col-sm-6">
-                                            {{form.favicon}}
+                                            {{form.date}}
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">توضیحات ایکون</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">نمایش داده شود؟</label>
                                             <div class="col-sm-6">
-                                            {{form.alt2}}
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">متن فوتر</label>
-                                            <div class="col-sm-6">
-                                            {{form.footer_text}}
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">تلفن </label>
-                                            <div class="col-sm-6">
-                                            {{form.telephon}}
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">email</label>
-                                            <div class="col-sm-6">
-                                                {{form.email}}
-                                            </div>                                            
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">آدرس</label>
-                                            <div class="col-sm-6">
-                                                {{form.address}}
-                                            </div>
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">فعال است؟</label>
-                                            <div class="col-sm-6">
-                                                {{form.active}}
+                                            {{form.is_show}}
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
