@@ -60,5 +60,42 @@ urlpatterns = [
     path('aboutus_property_list/', views.AboutUsPropertyListView.as_view(),name='aboutus_property_list'),
     path('delete/aboutus_property/<pk>',views.AboutUsPropertyDeleteView.as_view(),name='aboutus_property_delete'),
 
+    #----------Start-----------Newsletter---------------------
+    path('detail/newsletter/<pk>/',views.NewsletterView.as_view(),name='newsletter_detail'),
+    path('newsletter/', views.NewsletterCreateView.as_view(),name='newsletter'),
+    path('newsletter_list/', views.NewsletterListView.as_view(),name='newsletter_list'),
+    path('delete/newsletter/<pk>',views.NewsletterDeleteView.as_view(),name='newsletter_delete'),
+
+    #----------Start-----------ContactUs---------------------
+    path('detail/contactus/<pk>/',views.ContactUsView.as_view(),name='contactus_detail'),
+    path('contactus_list/', views.ContactUsListView.as_view(),name='contactus_list'),
+    path('delete/contactus/<pk>',views.ContactUsDeleteView.as_view(),name='contactus_delete'),
+
+    #--------------- products -------------
+    path('list/product/',views.ProductList.as_view(),name='product_list'),
+    path('product/',views.ProductView.as_view(),name='product_view'),
+    path('detail/product/<id>/',views.ProductDetail.as_view(),name='product_detail'),
+    path('delete_product/<id>/',views.ProductDelete.as_view(),name='delete_product'),
+    path('product_add_size',views.ProductAddSize.as_view(),name='product_add_size'),
+    path('product_add_color',views.ProductAddColor.as_view(),name='product_add_color'),
+    path('product_add_image',views.ProductAddImage.as_view(),name='product_add_image'),
+    path('product_changealt_ajax',views.ProductCahngeAltAjax.as_view(),name='product_changealt_ajax'),
+    path('search_name/',views.search_name,name='search_name'),
+
+    #----------Start-----------Category---------------------
+    path('detail/category/<pk>/',views.CategoryView.as_view(),name='category_detail'),
+    path('category/', views.CategoryCreateView.as_view(),name='category'),
+    path('category_list/', views.CategoryListView.as_view(),name='category_list'),
+    path('delete/category/<pk>',views.CategoryDeleteView.as_view(),name='category_delete'),
+
+    #----------Start-----------TagProduct---------------------
+    path('detail/tag/<pk>/',views.TagProductView.as_view(),name='tag_detail'),
+    path('tag/', views.TagProductCreateView.as_view(),name='tag'),
+    path('tag_list/', views.TagProductListView.as_view(),name='tag_list'),
+    path('delete/tag/<pk>',views.TagProductDeleteView.as_view(),name='tag_delete'),
+        #----------Start-----------Comment---------------------
+    path('detail/comment/<pk>/',views.CommentView.as_view(),name='comment_detail'),
+    path('comment_list/', views.CommentListView.as_view(),name='comment_list'),
+    path('delete/comment/<pk>',views.CommentDeleteView.as_view(),name='comment_delete'),
 
 ]

@@ -8,21 +8,6 @@
     <div class="page-content-tab">
 
         <div class="container-fluid">
-            <!-- Page-Title -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="page-title-box">
-                        <div class="float-end">
-                            <ol class="breadcrumb">
-
-                            </ol>
-                        </div>
-                        <h4 class="page-title">صفحه مدیریت وبسایت</h4>
-                    </div>
-                    <!--end page-title-box-->
-                </div>
-                <!--end col-->
-            </div>
             <!-- end page title end breadcrumb -->
             <div class="row">
                 <div class="col-lg-12">
@@ -32,23 +17,23 @@
                         </div><!--end card-header-->
                         <div class="card-body">  
                             <div class="col-lg-8">
-                                <div class="mb-3 row">
-                                    <label for="example-text-input" class="col-sm-2 col-form-label text-end">تگ فوتر</label>
-                                    <div class="col-sm-6">
-                                        <form method='post' action="" class="row">
-                                                {% csrf_token %}
-                                            {% comment %} <input name='name' class="form-control" type="text" value=""  id="example-text-input"> {% endcomment %}
-                                        {{form.tag_name}}
+                                <form method='post' action="" class="row">
+                                    {% csrf_token %}
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-2 col-form-label text-end">تگ فوتر</label>
+                                        <div class="col-sm-6">
+                                        {{form.name}}
                                         </div>
+                                    </div>
+                                    <div class="mb-3 row">
                                         <div class='col-sm-2'>
                                             <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
                                         </div>
-                                        </form>                   
                                         <div class='col-sm-2'>
-                                            <a href="{% url 'cms:delete_tags' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
+                                            <a href="{% url 'cms:tag_delete' tag.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
                                         </div>
-                                    </div>
-                                </div>    
+                                    </div>    
+                                </form>                   
                             </div>
                         </div><!--end card-body-->
                     </div><!--end card-->

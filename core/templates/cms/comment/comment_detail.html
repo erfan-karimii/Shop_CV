@@ -8,27 +8,12 @@
     <div class="page-content-tab">
 
         <div class="container-fluid">
-            <!-- Page-Title -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="page-title-box">
-                        <div class="float-end">
-                            <ol class="breadcrumb">
-
-                            </ol>
-                        </div>
-                        <h4 class="page-title">صفحه مدیریت وبسایت</h4>
-                    </div>
-                    <!--end page-title-box-->
-                </div>
-                <!--end col-->
-            </div>
             <!-- end page title end breadcrumb -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">جزعیات کامنت</h4>
+                            <h4 class="card-title">جزییات کامنت</h4>
                         </div><!--end card-header-->
                         <div class="card-body">  
                             <div class="mb-3 row">
@@ -41,21 +26,15 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">در جواب به</label>
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">ایمیل</label>
                                         <div class="col-sm-6">
-                                        {{form.parent}}
+                                        {{form.email}}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="example-text-input" class="col-sm-1 col-form-label text-end">اسم مستعار</label>
                                         <div class="col-sm-6">
                                         {{form.username}}
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">موضوع</label>
-                                        <div class="col-sm-6">
-                                        {{form.title}}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -66,15 +45,15 @@
                                     </div>
                                     
                                     <div class="row mb-3">
-                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">لایک</label>
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">امتیاز(از5)</label>
                                         <div class="col-sm-6">
-                                        {{form.like}}
+                                        {{form.point}}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="example-text-input" class="col-sm-1 col-form-label text-end">زمان ثبت کامنت</label>
                                         <div class="col-sm-6">
-                                        {{x.created}}
+                                        {{comment.created}}
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -88,7 +67,7 @@
                                             <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
                                         </div>
                                         <div class='col-sm-1'>
-                                            <a href="{% url 'cms:delete_comment' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
+                                            <a href="{% url 'cms:comment_delete' comment.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
                                         </div>
                                     </div>
                                 </form>                   

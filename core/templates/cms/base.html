@@ -140,10 +140,8 @@
                             <div class="collapse " id="sidebarEmailTemplates">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:first_edit' %}">ویرایش بالای درباره ما</a> {% endcomment %}
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:three_list' %}">لیست قسمت توضیحات</a> {% endcomment %}
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:team_list' %}">لیست اعضا</a> {% endcomment %}
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:company_list' %}">لیست کمپانی ها</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:newsletter_list' %}">ایمیل های ثبت شده برای خبرنامه</a>
+                                        <a class="nav-link" href="{% url 'cms:contactus_list' %}">لیست تماس باما</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                                 
@@ -158,19 +156,16 @@
                             <div class="collapse " id="test3">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:product_list' %}">محصولات</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:product_list' %}">لیست محصولات</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:category_list' %}">دسته بندی ها</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:category_list' %}">دسته بندی ها</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:zircategory_list' %}">زیر دسته بندی ها</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:tag_list' %}">تگ های محصولات</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:tags_listview' %}">تگ های محصولات</a> {% endcomment %}
-                                    </li><!--end nav-item-->
-                                    <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:comment_listview' %}">کامنت های محصولات</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:comment_list' %}">کامنت های محصولات</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                                 

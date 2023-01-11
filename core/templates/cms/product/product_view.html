@@ -40,12 +40,6 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-1 col-form-label text-end">توضیح مختصر</label>
-                                        <div class="col-sm-5">
-                                        {{form.tozihat}}
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">عکس اصلی</label>
                                         <div class="col-sm-5">
                                         {{form.image}}
@@ -72,13 +66,13 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">قیمت پایه</label>
                                         <div class="col-sm-5">
-                                        {{form.price_asli}}
+                                        {{form.price}}
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">تعداد محصول</label>
                                         <div class="col-sm-5">
-                                        {{form.tedad_mahsol}}
+                                        {{form.product_count}}
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -88,23 +82,9 @@
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label class="col-sm-1 col-form-label text-end">زیر دسته بندی</label>
-                                        <div class="col-sm-5">
-                                            <select name="zir_category" id="id_zir_category">
-                                                <option value="">---------</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">توضیحات تکمیلی</label>
                                         <div class="col-sm-11">
                                         {{form.info}}
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-1 col-form-label text-end">توضیحات تکمیلی بیشتر</label>
-                                        <div class="col-sm-11">
-                                        {{form.more_info}}
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -116,19 +96,19 @@
                                     <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">میزان تخفیف</label>
                                         <div class="col-sm-5">
-                                        {{form.takhfif}}
+                                        {{form.discount}}
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">رنگ اصلی</label>
                                         <div class="col-sm-5">
-                                            <input type="color" id="id_color_asli" class="colorfield_field jscolor" name="color_asli" value="{{product.color_asli}}">
+                                            <input type="color" id="id_color_asli" class="colorfield_field jscolor" name="orgin_color">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-sm-1 col-form-label text-end">سایز اصلی</label>
                                         <div class="col-sm-5">
-                                        {{form.size_asli}}
+                                        {{form.orgin_size}}
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -166,45 +146,4 @@
     <!-- end page content -->
 </div>
 <!-- end page-wrapper -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('#id_category').change(function(){
-        let val = $("#id_category option:selected").val();
-        $.ajax({
-            type : 'GET',
-            url : '{% url "cms:product_zircat_ajax" %}',
-            data : {'cat_id': val },
-            dataType : 'json',
-            success : function (data) {
-                $('#id_zir_category').empty()
-                $('#id_zir_category').append('<option value="">---------</option>')
-                for(let x in data.zircats){
-                    $('#id_zir_category').append(
-                        `<option value="${x}">${data.zircats[x]}</option>`
-                    )
-                }
-            },  
-            error: function(data){
-                alert('مشکلی پیش امده است لطفا بعدا دوباره امتحان کنید');
-            }                                
-        })
-        
-    });
-});
-</script> 
 {% endblock body %}
-
-
-
-
-<label class="col-sm-1 col-form-label text-end">نام محصول</label>
-<label class="col-sm-1 col-form-label text-end">توضیح مختصر</label>
-<label class="col-sm-1 col-form-label text-end">عکس اصلی</label>
-<label class="col-sm-1 col-form-label text-end">توضیح عکس اصلی</label>
-<label class="col-sm-1 col-form-label text-end">عکس فرعی</label>
-<label class="col-sm-1 col-form-label text-end">توضیح عکس فرعی</label>
-<label class="col-sm-1 col-form-label text-end">قیمت پایه</label>
-<label class="col-sm-1 col-form-label text-end">تعداد محصول</label>
-<label class="col-sm-1 col-form-label text-end">دسته بندی</label>
-<label class="col-sm-1 col-form-label text-end">زیر دسته بندی</label>

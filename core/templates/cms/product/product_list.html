@@ -44,9 +44,9 @@
                                         {% for product in products %}
                                         <tr>
                                             <td><a href="{% url 'cms:product_detail' product.id %}">{{product.name}}</a></td>
-                                            <td>{{product.price_asli}}</td>
-                                            <td>{{product.takhfif}}</td>
-                                            <td>{{product.tedad_mahsol}}</td>
+                                            <td>{{product.price}}</td>
+                                            <td>{{product.discount}}</td>
+                                            <td>{{product.product_count}}</td>
                                             <td>{% if product.is_active%}بله {% else %}خیر{% endif %}</td>
                                         </tr>
                                         {% endfor %}

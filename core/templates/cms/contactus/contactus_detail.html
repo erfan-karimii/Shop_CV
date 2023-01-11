@@ -37,37 +37,35 @@
                                 {% csrf_token %}
                                 <div class="col-lg-11">
                                     <div class="mb-3 row">
-                                        <label class="col-sm-2 col-form-label text-end">نام</label>
+                                        <label class="col-sm-1 col-form-label text-end">نام</label>
                                         <div class="col-sm-6">
-                                            {{form.name}}
+                                            {{form.full_name}}
                                         </div>
-                                        <div class="col-sm-4"></div>
-                                        <label class="col-sm-2 col-form-label text-end">شماره</label>
-                                        <div class="col-sm-6">
-                                            {{form.phone}}
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-1 col-form-label text-end">ایمیل</label>
+                                            <div class="col-sm-6">
+                                                {{form.email}}
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4"></div>
-                                        <label class="col-sm-2 col-form-label text-end">ایمیل</label>
-                                        <div class="col-sm-6">
-                                            <input name='email' value='{{contactus.email}}' class='form-control' readonly>
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-1 col-form-label text-end">موضوع</label>
+                                            <div class="col-sm-6">
+                                                {{form.subject}}
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4"></div>
-                                        <label class="col-sm-2 col-form-label text-end">موضوع</label>
-                                        <div class="col-sm-6">
-                                            {{form.title}}
+                                        <div class="mb-3 row">
+                                            <label class="col-sm-1 col-form-label text-end">متن</label>
+                                            <div class="col-sm-6">
+                                                {{form.message}}
+                                            </div>
                                         </div>
-                                        <div class="col-sm-4"></div>
-                                        <label class="col-sm-2 col-form-label text-end">متن</label>
-                                        <div class="col-sm-6">
-                                            {{form.body}}
-                                        </div>
-                                        <div class="col-sm-4"></div>
-                                        
-                                        {% comment %} <div class='col-sm-2'>
-                                            <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
-                                        </div> {% endcomment %}
-                                        <div class='col-sm-2'>
-                                            <a href="{% url 'cms:contactus_delete' contactus.id %}" class='btn btn-danger'>حذف</a>                                                   
+                                        <div class="mb-3 row">
+                                            <div class='col-sm-2'>
+                                                <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <a href="{% url 'cms:contactus_delete' contactus.id %}" class='btn btn-danger'>حذف</a>                                                   
+                                            </div>
                                         </div>
                                     </div>
                                 </div>    

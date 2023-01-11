@@ -12,9 +12,9 @@ from django.contrib import messages
 def index_view(request):
     context = {
         'Sliders':Slider.objects.all(),
-        'tabligh_right':Tabligh.objects.get(diraction='right'),
-        'tabligh_left':Tabligh.objects.get(diraction='left'),
-        'tabligh_right2':Tabligh.objects.get(diraction='right2'),
+        'tabligh_right':Tabligh.objects.filter(diraction='right').last(),
+        'tabligh_left':Tabligh.objects.filter(diraction='left').last(),
+        'tabligh_right2':Tabligh.objects.filter(diraction='right2').last(),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
         'latest_products' : Product.objects.filter(is_active=True).order_by('-created'),
         'pants' : Product.objects.filter(category__name = 'شلوار'),

@@ -25,16 +25,16 @@
                                     <thead class="thead-light">
                                         <tr>
                                         <th>نام</th>
-                                        <th>موضوع</th>
+                                        <th>ایمیل</th>
                                         <th>وضعیت نمایش</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for x in comments %}
+                                        {% for comment in comment_list %}
                                         <tr>
-                                            <td><a href="{% url 'cms:detail_comment' x.id %}">{{x.username}}</a></td>
-                                            <td>{{x.title}}</td>
-                                            <td>{{x.is_show}}</td>
+                                            <td><a href="{% url 'cms:comment_detail' comment.id %}">{{comment.username}}</a></td>
+                                            <td>{{comment.email}}</td>
+                                            <td>{{comment.is_show}}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

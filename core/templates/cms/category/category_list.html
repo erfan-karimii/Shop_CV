@@ -25,7 +25,7 @@
                 <div class="col-7">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"><a href="{% url 'cms:category_asli' %}">اضافه کردن دسته بندی جدید</a></h4>
+                            <h4 class="card-title"><a href="{% url 'cms:category' %}">اضافه کردن دسته بندی جدید</a></h4>
                         </div><!--end card-header-->
                         <div class="card-body">
                             <div class="table-responsive">
@@ -33,14 +33,14 @@
                                     <thead class="thead-light">
                                         <tr>
                                         <th>نام</th>
-                                        <th>متن</th>
+                                        <th>عکس</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for category in categorys %}
+                                        {% for category in category_list %}
                                         <tr>
                                             <td><a href="{% url 'cms:category_detail' category.id %}">{{category.name}}</a></td>
-                                            <td><a>{{category.text|safe}}</a></td>
+                                            <td><a>{{category.image}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

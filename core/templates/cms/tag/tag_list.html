@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <h4 class="page-title">لیست تگ های فوتر</h4>
+                        <h4 class="page-title">لیست تگ های محصولات</h4>
                     </div>
                     <!--end page-title-box-->
                 </div>
@@ -21,7 +21,7 @@
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"><a href="{% url 'cms:tags_add' %}">اضافه کردن تگ محصول جدید</a></h4>
+                            <h4 class="card-title"><a href="{% url 'cms:tag' %}">اضافه کردن تگ محصول جدید</a></h4>
                         </div><!--end card-header-->
                         <div class="card-body">
                             <div class="table-responsive">
@@ -32,9 +32,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for x in tags %}
+                                        {% for tag in tag_list %}
                                         <tr>
-                                            <td><a href="{% url 'cms:detail_tags' x.id %}">{{x.tag_name}}</a></td>
+                                            <td><a href="{% url 'cms:tag_detail' tag.id %}">{{tag.name}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

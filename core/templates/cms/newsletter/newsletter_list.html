@@ -4,10 +4,8 @@
 {% block body %}
 
 <div class="page-wrapper">
-
     <!-- Page Content-->
     <div class="page-content-tab">
-
         <div class="container-fluid">
             <!-- Page-Title -->
             <div class="row">
@@ -15,7 +13,7 @@
                     <div class="page-title-box">
                         <div class="float-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{% url 'cms:khabarname_asli' %}">اضافه ایمیل جدید</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'cms:newsletter' %}">اضافه ایمیل جدید</a></li>
                             </ol>
                         </div>
                         <h4 class="page-title">لیست ایمیل ها</h4>
@@ -42,9 +40,9 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for khabarname in khabarnames %}
+                                        {% for newsletter in newsletter_list %}
                                         <tr>
-                                            <td><a href="{% url 'cms:khabarname_detail' khabarname.id %}">{{khabarname.email}}</a></td>
+                                            <td><a href="{% url 'cms:newsletter_detail' newsletter.id %}">{{newsletter.email}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

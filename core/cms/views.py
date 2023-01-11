@@ -1,10 +1,16 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect , get_object_or_404
+from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.db.models import ProtectedError
 from django.views.generic import (
-    CreateView, ListView  , UpdateView , View)
+    CreateView, ListView  , UpdateView , View,TemplateView)
 from home.models import NavOne,NavTwo,FooterOne,FooterTwo,OnSale,SiteSetting,Slider,Tabligh
 from aboutus.models import AboutUsGeneral , AboutUsProgressBar , AboutUsProperty
+from contactus.models import Newsletter , ContactUsKeeper 
+from product.models import Product,Category,Comment,Color,GalleryImage,Size,TagProduct
+from .forms import ProductForm , ColorForm , SizeForm , GalleryImageForm
+
 # Create your views here.
 
 #-----------Start---------NavOne-----------------
@@ -314,3 +320,299 @@ class AboutUsPropertyDeleteView(View):
         messages.success(self.request,'با موفقیت حذف شد')
         return redirect("cms:aboutus_property_list")
 #--------------End----------AboutUsProperty--------------
+
+#--------------Start----------Newsletter--------------
+class NewsletterListView(ListView):
+    model = Newsletter
+    template_name = 'cms/newsletter/newsletter_list.html'
+    context_object_name = 'newsletter_list'
+
+class NewsletterView(UpdateView):
+    model = Newsletter
+    template_name = 'cms/newsletter/newsletter_detail.html'
+    context_object_name = 'newsletter'
+    fields="__all__"
+    success_url = reverse_lazy("cms:newsletter_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class NewsletterCreateView(CreateView):
+    model = Newsletter
+    fields = "__all__"
+    template_name = 'cms/newsletter/add_newsletter.html'
+    success_url = reverse_lazy("cms:newsletter_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class NewsletterDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        Newsletter.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:newsletter_list")
+#--------------End----------Newsletter--------------
+
+#--------------Start----------ContactUs--------------
+class ContactUsListView(ListView):
+    model = ContactUsKeeper
+    template_name = 'cms/contactus/contactus_list.html'
+    context_object_name = 'contactus_list'
+
+class ContactUsView(UpdateView):
+    model = ContactUsKeeper
+    template_name = 'cms/contactus/contactus_detail.html'
+    context_object_name = 'contactus'
+    fields="__all__"
+    success_url = reverse_lazy("cms:contactus_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class ContactUsDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        ContactUsKeeper.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:contactus_list")
+#--------------End----------ContactUs--------------
+
+# START----------------PRODUCT------------------
+
+class ProductList(ListView):
+    model = Product
+    template_name = 'cms/product/product_list.html'
+    context_object_name = 'products'
+
+class ProductView(TemplateView):
+    template_name = 'cms/product/product_view.html'
+
+    def post(self, request, *args, **kwargs):
+        form = ProductForm(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'محصول جدید با موفقیت اضافه شد')
+            return redirect('cms:product_list')
+        else:
+            messages.error(request, 'مشکلی پیش امده است لطفا دوباره امتحان کنید.' )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ProductForm()
+        return context 
+
+class ProductDetail(TemplateView):
+    template_name = 'cms/product/product_detail.html'
+    def post(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, id=kwargs['id'])
+        form = ProductForm(request.POST,request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
+            return redirect('cms:product_list')
+        else:
+            print(form.errors)
+            messages.error(request, 'مشکلی پیش امده است لطفا دوباره امتحان کنید.' )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = get_object_or_404(Product, id=kwargs['id'])
+        context['form'] = ProductForm(instance=product)
+        context['product'] = product
+        context['size_form'] = SizeForm()
+        context['color_form'] = ColorForm()
+        context['image_form'] = GalleryImageForm()
+
+        return context 
+
+class ProductDelete(View):
+    def get(self, request, *args, **kwargs):
+        product = get_object_or_404(Product, id=kwargs['id'])
+        try:
+            product.delete()
+            messages.success(request, 'محصول شما با موفقیت حذف شد')
+        except ProtectedError:
+            messages.error(request, 'لطفا قبل از حذف محصول عکس ها , رنگ ها و سایز های اضافی ان را حذف کنید' ) 
+            return redirect('cms:product_detail',id=kwargs['id'])
+        except Exception as e:
+            messages.error(request, 'مشکلی پیش امده است لطفا دوباره امتحان کنید.' )     
+        return redirect('cms:product_list')
+
+class ProductAddSize(View):
+    def post(self, request, *args, **kwargs):
+        product_id = request.POST.get('product_id')
+        product = Product.objects.get(id=product_id)
+        product.size_set.all().delete()
+        
+        size_deleted_list = request.POST.getlist('is_delete')
+        size_name_list = request.POST.getlist('size')
+        size_ekhtelaf_list = request.POST.getlist('Ekhtelaf')
+        size_list = dict(zip(size_name_list,size_ekhtelaf_list))
+        
+        Size.objects.bulk_create([
+            Size(product=product,size=size,Ekhtelaf=size_list[size])\
+            for size in size_list\
+            if size not in size_deleted_list 
+            ])
+        
+        messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
+        return redirect('cms:product_detail',id=product_id)
+
+class ProductAddColor(View):
+    def post(self, request, *args, **kwargs):
+        product_id = request.POST.get('product_id')
+        product = Product.objects.get(id=product_id)
+        product.color_set.all().delete()
+        
+        color_deleted_list = request.POST.getlist('is_delete')
+        color_name_list = request.POST.getlist('color')
+        color_ekhtelaf_list = request.POST.getlist('Ekhtelaf')
+        color_list = dict(zip(color_name_list,color_ekhtelaf_list))
+        
+        Color.objects.bulk_create([
+            Color(product=product,color=color,Ekhtelaf=color_list[color])\
+            for color in color_list\
+            if color not in color_deleted_list 
+            ])
+
+        
+        messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
+        return redirect('cms:product_detail',id=product_id)
+
+class ProductAddImage(View):
+    def post(self, request, *args, **kwargs):
+        product_id = request.POST.get('product_id')
+        product = Product.objects.get(id=product_id)
+        
+        image_deleted_list = request.POST.getlist('is_delete')
+        image_name_list = request.FILES.getlist('image')
+        image_alt_list = request.POST.getlist('alt')
+        image_list = dict(zip(image_name_list,image_alt_list))
+        
+        # delete checkmarked images
+        for image in image_deleted_list:
+            GalleryImage.objects.filter(image=image).delete()  
+        
+        #create new image
+        for image in image_list : 
+            x = GalleryImage.objects.bulk_create([
+                GalleryImage(product=product,image=image,alt=image_list[image]) 
+                ])
+            # save thumnail for new images
+            x[0].save()
+
+           
+        messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
+        return redirect('cms:product_detail',id=product_id)
+
+class ProductCahngeAltAjax(View):
+    def get(self, request, *args, **kwargs):
+        img = request.GET.get('img')
+        alt = request.GET.get('val')
+        id = request.GET.get('id')
+        product = Product.objects.get(id = id)
+        product.galleryimage_set.filter(image=img).update(alt=alt)
+        messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
+        return JsonResponse({})
+
+def search_name(request):
+    if request.method == 'GET':
+        name = request.GET.get('name')
+        products = Product.objects.filter(name__icontains=name)
+    context = {
+        'products': products,
+    }
+    return render(request, 'cms/product/product_list.html', context) 
+
+
+# END----------------PRODUCT------------------
+
+#--------------Start----------Category--------------
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'cms/category/category_list.html'
+    context_object_name = 'category_list'
+
+class CategoryView(UpdateView):
+    model = Category
+    template_name = 'cms/category/category_detail.html'
+    context_object_name = 'category'
+    fields="__all__"
+    success_url = reverse_lazy("cms:category_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class CategoryCreateView(CreateView):
+    model = Category
+    fields = "__all__"
+    template_name = 'cms/category/add_category.html'
+    success_url = reverse_lazy("cms:category_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class CategoryDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        Category.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:category_list")
+#--------------End----------Category--------------
+
+#--------------Start----------TagProduct--------------
+class TagProductListView(ListView):
+    model = TagProduct
+    template_name = 'cms/tag/tag_list.html'
+    context_object_name = 'tag_list'
+
+class TagProductView(UpdateView):
+    model = TagProduct
+    template_name = 'cms/tag/tag_detail.html'
+    context_object_name = 'tag'
+    fields="__all__"
+    success_url = reverse_lazy("cms:tag_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class TagProductCreateView(CreateView):
+    model = TagProduct
+    fields = "__all__"
+    template_name = 'cms/tag/add_tag.html'
+    success_url = reverse_lazy("cms:tag_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class TagProductDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        TagProduct.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:tag_list")
+#--------------End----------TagProduct--------------
+
+#--------------Start----------Comment--------------
+class CommentListView(ListView):
+    model = Comment
+    template_name = 'cms/comment/comment_list.html'
+    context_object_name = 'comment_list'
+
+class CommentView(UpdateView):
+    model = Comment
+    template_name = 'cms/comment/comment_detail.html'
+    context_object_name = 'comment'
+    fields="__all__"
+    success_url = reverse_lazy("cms:comment_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+
+class CommentDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        Comment.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:comment_list")
+#--------------End----------Comment--------------

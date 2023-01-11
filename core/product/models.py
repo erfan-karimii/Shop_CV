@@ -36,7 +36,6 @@ class Product(models.Model):
         ("#000000", "black", ),
     ]
     name = models.CharField(max_length=250)
-    # descriptions = models.CharField(max_length=300)
     image = models.ImageField()
     alt = models.CharField(max_length=100)
     image_2 = models.ImageField(blank=True,null=True)
@@ -45,10 +44,8 @@ class Product(models.Model):
     product_count = models.PositiveBigIntegerField(verbose_name='تعداد محصول',validators=[MinValueValidator(0)])
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
     info = RichTextField()
-    # more_info = RichTextField(null=True)
     tag = models.ManyToManyField(TagProduct)
     discount = models.IntegerField(validators=[MaxValueValidator(100),MinValueValidator(0)],verbose_name='درصد تخفیف',default=0)
-    # on_price = models.BooleanField(default=False)
     orgin_color = ColorField(samples=COLOR_PALETTE)
     orgin_size = models.CharField(max_length=20)
     created  =models.DateTimeField(auto_now_add=True)
@@ -59,9 +56,7 @@ class Product(models.Model):
         return self.name
 
     def main_discount_call(self):
-        # if inti:
         return int(self.price - (self.price * (self.discount/100)))
-        # return self.price - (self.price * (self.takhfif/100))
     
     def save(self):
         super().save()  # saving image first
@@ -98,9 +93,6 @@ class Color(models.Model):
 
     def __str__(self):
         return self.product.name + " " + self.color
-    
-    # def color_price_cal(self):
-    #     return self.Ekhtelaf + self.product.price - (self.product.price * (self.product.takhfif/100))
 
 class GalleryImage(models.Model):
     product = models.ForeignKey(Product,on_delete=models.PROTECT)

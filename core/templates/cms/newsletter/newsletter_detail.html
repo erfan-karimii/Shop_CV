@@ -15,8 +15,7 @@
                     <div class="page-title-box">
                         <div class="float-end">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{% url 'cms:khabarname_list' %}">لیست ایمیل ها</a></li>
-                                
+                                <li class="breadcrumb-item"><a href="{% url 'cms:newsletter_list' %}">لیست ایمیل</a></li>
                             </ol>
                         </div>
                         
@@ -30,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">ایجاد ایمیل</h4>
+                            <h4 class="card-title">ویرایش ایمیل</h4>
 
                         </div><!--end card-header-->
                         <div class="card-body">  
@@ -38,18 +37,21 @@
                                 {% csrf_token %}
                                 <div class="col-lg-11">
                                     <div class="mb-3 row">
-                                        <label class="col-sm-2 col-form-label text-end">ایمیل</label>
+                                        <label class="col-sm-1 col-form-label text-end">نام</label>
                                         <div class="col-sm-6">
-                                            <input name='email' class='form-control'>
+                                            <input name='email' value="{{newsletter.email}}" class='form-control'>
                                         </div>
-                                        <div class="col-sm-4"></div>
+                                    </div>
+                                    <div class="mb-3 row">
                                         <div class='col-sm-2'>
                                             <button type='submit' class='btn btn-success'>ویرایش</button>                                                   
                                         </div>
-                                        
+                                        <div class='col-sm-2'>
+                                            <a href="{% url 'cms:newsletter_delete' newsletter.id %}" class='btn btn-danger'>حذف</a>                                                   
+                                        </div>
                                     </div>
                                 </div>    
-                            </form>                    
+                            </form>                   
                         </div><!--end card-body-->
                     </div><!--end card-->
 
@@ -59,7 +61,8 @@
        <!--Start Footer-->
        <!-- Footer Start -->
        <footer class="footer text-center text-sm-start">
-           &copy; <script>
+           &copy; 
+           <script>
                document.write(new Date().getFullYear())
            </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
                    class="mdi mdi-heart text-danger"></i> دیجی روت</span>

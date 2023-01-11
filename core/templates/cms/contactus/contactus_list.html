@@ -13,11 +13,6 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-title-box">
-                        <div class="float-end">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"></li>
-                            </ol>
-                        </div>
                         <h4 class="page-title">لیست پیام ها</h4>
                     </div>
                     <!--end page-title-box-->
@@ -39,16 +34,16 @@
                                     <thead class="thead-light">
                                         <tr>
                                         <th>نام</th>
-                                        <th>شماره</th>
+                                        <th>ایمیل</th>
                                         <th>موضوع</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for contactus in contactuss %}
+                                        {% for contactus in contactus_list %}
                                         <tr>
-                                            <td><a href="{% url 'cms:contactus_detail' contactus.id %}">{{contactus.name}}</a></td>
-                                            <td><a>{{contactus.phone}}</a></td>
-                                            <td><a>{{contactus.title}}</a></td>
+                                            <td><a href="{% url 'cms:contactus_detail' contactus.id %}">{{contactus.full_name}}</a></td>
+                                            <td><a>{{contactus.email}}</a></td>
+                                            <td><a>{{contactus.subject}}</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
