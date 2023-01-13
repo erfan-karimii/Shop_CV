@@ -1,5 +1,10 @@
 {% extends 'cms/base.html' %}
 {% load static %}
+
+
+
+
+ 
 {% block body %}
 
 
@@ -29,80 +34,99 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">ایجاد User جدید</h4>
+                                <h4 class="card-title">ویرایش کاربری</h4>
 
                             </div><!--end card-header-->
                             
+                            
+                            
+                            
+                            
+                            
+                            
                             <div class="card-body">  
-                                <form method='post' action="" class="row">
+                                <form method='post' action="" enctype="multipart/form-data" class="row">
                                     {% csrf_token %}
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-18">
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">username</label>
-                                            <div class="col-sm-6">
-                                                {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
+                                            <div class="col-sm-4">
+                                                {% comment %} <input name='text_bold' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
                                             {{form.phone_number}}
                                             </div>
                                             
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">password</label>
-                                            <div class="col-sm-6">
-                                                {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">پسوورد hash شده</label>
+                                            <div class="col-sm-4">
+                                                <input name='password' class="form-control" value='{{form.password}}' type="hidden"  id="example-text-input" >
                                             {{form.password}}
-                                            <input type="hidden" name="date_joined" size="10" value='{{now}}'>
                                             </div>
                                             
                                         </div>
+
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_superuser</label>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.is_superuser}}
+                                                {{form.is_superuser}}
                                             </div>
-                                            
+                                            <br>
                                         </div>
+
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_staff</label>
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-4">
                                                 {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
                                             {{form.is_staff}}
                                             </div>
                                             
                                         </div>
+
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_verified</label>
-                                            <div class="col-sm-6">
-                                                {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_verified:</label>
+                                            <div class="col-sm-4">
+                                                {% comment %} <input name='name_button' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
                                             {{form.is_verified}}
                                             </div>
                                             
                                         </div>
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">token</label>
-                                            <div class="col-sm-6">
-                                                {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">token:</label>
+                                            <div class="col-sm-4">
+                                                {% comment %} <input name='name_button' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
                                             {{form.token}}
                                             </div>
                                             
                                         </div>
-                                        <div>
-                                            <div class='col-sm-2'>
-                                                <button type='submit' class='btn btn-success'>ارسال</button>                                                  
+{% comment %} 
+                                        <div class="mb-3 row">
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">time</label>
+                                            <div class="col-sm-6">
+                                                <input type="time" name="date_joined_1"  size="10" >
+                                                {{form.date_joined}}
                                             </div>
-                                        </div>
-                                        
+                                            
+                                        </div> {% endcomment %}
+
+
                                         <div class="mb-3 row">
                                             {% comment %} <label for="tbligh" class="col-sm-2 col-form-label text-end">لینک</label> {% endcomment %}
-                                            <div class="col-sm-6">
-                                                {% comment %} <input name='link' class="form-control" type="text" value="" id="tbligh"> {% endcomment %}
-                                            </div>
+                                            
 
+                                            
+                                                <div class='col-sm-3'>
+                                                    <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
+                                                </div>
+                                                <div class='col-sm-3'>
+                                                    {% comment %} <a href="{% url 'cms:DeleteUser' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                   {% endcomment %}
+                                                </div> 
                                             
                                         </div>
                                     </div>    
                                 </form>                   
                             </div><!--end card-body-->
+
 
 
 

@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.db.models import ProtectedError
+import datetime
 from django.views.generic import (
     CreateView, ListView  , UpdateView , View,TemplateView)
 from home.models import NavOne,NavTwo,FooterOne,FooterTwo,OnSale,SiteSetting,Slider,Tabligh
@@ -10,7 +11,7 @@ from aboutus.models import AboutUsGeneral , AboutUsProgressBar , AboutUsProperty
 from contactus.models import Newsletter , ContactUsKeeper 
 from product.models import Product,Category,Comment,Color,GalleryImage,Size,TagProduct
 from .forms import ProductForm , ColorForm , SizeForm , GalleryImageForm
-
+from account.models import Profile,User
 # Create your views here.
 
 #-----------Start---------NavOne-----------------
@@ -616,3 +617,66 @@ class CommentDeleteView(View):
         messages.success(self.request,'با موفقیت حذف شد')
         return redirect("cms:comment_list")
 #--------------End----------Comment--------------
+
+#-------------Start---------Profile----------------
+
+class ProfileListView(ListView):
+    model = Profile
+    template_name = 'cms/user/ProfleList.html'
+    context_object_name = 'users'
+
+
+class ProfileView(UpdateView):
+    model = Profile
+    template_name = 'cms/user/detailprofile.html'
+    context_object_name = 'prof'
+    fields="__all__"
+    success_url = reverse_lazy("cms:ProfileListView")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+#--------------End---------Profile--------------------
+
+#------------Start-----------User-------------------
+
+class UserListView(ListView):
+    model = User
+    template_name = 'cms/user/user_list.html'
+    context_object_name = 'user_list'
+
+class UserCreateView(CreateView):
+    model = User
+    fields = "__all__"
+    template_name = 'cms/user/add_user.html'
+    success_url = reverse_lazy("cms:UserListView")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['now'] =datetime.datetime.now().strftime("%Y-%m-%d"+"T"+"%H:%M"),
+        return context
+
+
+class UserDetailView(UpdateView):
+    model = User
+    template_name = 'cms/user/detail_user.html'
+    context_object_name = 'form'
+    fields="__all__"
+    success_url = reverse_lazy("cms:UserListView")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in the publisher
+        context['now'] =datetime.datetime.now().strftime("%Y-%m-%d"+"T"+"%H:%M"),
+        return context
+
+#------------End-----------User-------------------

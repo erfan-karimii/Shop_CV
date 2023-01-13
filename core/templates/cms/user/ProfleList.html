@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title"> <a href="{% url 'cms:CreateUser' %}">اضافه کردن User جدید</a></h4>
+                            {% comment %} <h4 class="card-title"> <a href="{% url 'cms:CreateUser' %}">اضافه کردن User جدید</a></h4> {% endcomment %}
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -38,17 +38,19 @@
                                     <thead class="thead-light">
                                         <tr>
                                         <th>نام کاربری</th>
-                                        <th>ٍEmail</th>
-                                        <th>staff status</th>
+                                        <th>full_name</th>
+                                        <th>Email</th>
                                         </tr>
                                         
                                     </thead>
                                     <tbody>
                                         {% for x in users %}
                                         <tr>
-                                            <td><a href="{% url 'cms:detail_user' x.id %}">{{x.username}}</a></td>
+                                            {% comment %} <td><a href="{% url 'cms:detail_user' x.id %}">{{x.username}}</a></td> {% endcomment %}
+                                            <td><a href="">{{x.user}}</a></td>
+                                            <td><a href="">{{x.full_name}}</a></td>
                                             <td><a href="">{{x.email}}</a></td>
-                                            <td> <input class="form-check-input" type="checkbox" id="flexCheckChecked" {% if x.is_staff %} checked {% endif %} disabled></td>
+                                            {% comment %} <td> <input class="form-check-input" type="checkbox" id="flexCheckChecked" {% if x.is_staff %} checked {% endif %} disabled></td> {% endcomment %}
                                         </tr>
                                         {% endfor %}
                                     </tbody>

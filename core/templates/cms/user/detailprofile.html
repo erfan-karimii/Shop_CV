@@ -45,14 +45,14 @@
                             
                             
                             <div class="card-body">  
-                                <form method='post' action="{% url 'cms:detail_user' x.id %}" enctype="multipart/form-data" class="row">
+                                <form method='post' action="" enctype="multipart/form-data" class="row">
                                     {% csrf_token %}
                                     <div class="col-lg-18">
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">username</label>
                                             <div class="col-sm-4">
                                                 {% comment %} <input name='text_bold' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.username}}
+                                            {{form.user}}
                                             </div>
                                             
                                         </div>
@@ -66,21 +66,12 @@
                                         </div>
 
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">first name</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">full_name</label>
                                             <div class="col-sm-4">
                                                 {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                                {{form.first_name}}
+                                                {{form.full_name}}
                                             </div>
                                             <br>
-                                        </div>
-
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">last name</label>
-                                            <div class="col-sm-4">
-                                                {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.last_name}}
-                                            </div>
-                                            
                                         </div>
 
                                         <div class="mb-3 row">
@@ -93,58 +84,14 @@
                                         </div>
 
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_active:</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">address:</label>
                                             <div class="col-sm-4">
                                                 {% comment %} <input name='name_button' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.is_active}}
+                                            {{form.address}}
                                             </div>
                                             
                                         </div>
 
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_staff</label>
-                                            <div class="col-sm-4">
-                                                {% comment %} <input name='name_button' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.is_staff}}
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_superuser</label>
-                                            <div class="col-sm-4">
-                                                {% comment %} <input name='name_button' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.is_superuser}}
-                                            </div>
-                                            
-                                        </div>
-                                        <hr>
-                                        <h4 class="card-title">ایجاد المنت های شخصی</h4>
-                                        <hr>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">phone </label>
-                                            <div class="col-sm-4">
-                                                {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.phone}}
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">Token</label>
-                                            <div class="col-sm-4">
-                                                {% comment %} <input name='url_title' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
-                                            {{form.token}}
-                                            </div>
-                                            
-                                        </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">is_verify</label>
-                                            <div class="col-sm-4">
-                                                {% comment %} <textarea name='text' class="form-control" type="text" value="" id="example-text-input"> </textarea> {% endcomment %}
-                                           {{form.is_verify}}
-                                           <input type="hidden" name="date_joined" size="10" value='{{now}}'>
-                                            </div>
-                                            
-                                        </div>
                                         
                                        
 
@@ -168,7 +115,7 @@
                                                     <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
                                                 </div>
                                                 <div class='col-sm-3'>
-                                                    <a href="{% url 'cms:DeleteUser' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                  
+                                                    {% comment %} <a href="{% url 'cms:DeleteUser' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                   {% endcomment %}
                                                 </div> 
                                             
                                         </div>
