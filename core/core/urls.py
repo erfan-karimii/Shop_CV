@@ -28,6 +28,7 @@ urlpatterns = [
     path('',include('aboutus.urls')),
     path('',include('contactus.urls')),
     path('cms/', include('cms.urls')),
+    path('', include('cart.urls')),
 
 ]
 

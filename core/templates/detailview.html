@@ -131,18 +131,22 @@
                             </ul>
                         </div>
                         
-                        <form class="variations_form cart kapee-swatches-wrap" id="product-id" action="#" method="post" enctype="multipart/form-data">
+                        <form class="variations_form cart kapee-swatches-wrap" id="product-id" action="{% url 'cart:add_user_order' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{post.id}}">
+                            <input type="hidden" name="size" id="hiiden_size" value="">
+                            <input type="hidden" name="color"  id="hiiden_color" value="">
                             <table class="variations">
                                 <tr>
                                     <td class="label f-vazir-bold"><label>رنگ</label></td>
                                     <td class="value with-swatches">
                                         <div class="bigbazar-swatches">
-                                            <span class="swatch swatch-color swatch-circle swatch-selected" data-bs-toggle="tooltip" data-bs-placement="top" >
+                                            <span class="swatch swatch-color swatch-circle swatch-selected" data-val="{{post.orgin_color}}" data-bs-toggle="tooltip" data-bs-placement="top" >
                                                 <span class="bigbazar-tooltip color-bd" style="background-color:{{post.orgin_color}}" title="{{post.orgin_color}}"></span>
                                             </span>
                                             {% for color in post.color_set.all %}
-                                            <span class="swatch swatch-color term-{{color.id}} swatch-circle"  data-term="{{color.id}}">
-                                                <span class="bigbazar-tooltip color-bd" style="background-color:{{color.color}}" title="{{color.color}}"></span>
+                                            <span class="swatch swatch-color term-{{color.id}} swatch-circle" data-val="{{color.color}}"  data-term="{{color.id}}">
+                                                <span class="bigbazar-tooltip color-bd"  style="background-color:{{color.color}}" title="{{color.color}}"></span>
                                             </span>
                                             {% endfor %}
                                         </div>
@@ -152,9 +156,9 @@
                                     <td class="label f-vazir-bold"><label>سایز</label></td>
                                     <td class="value with-swatches">
                                         <div class="bigbazar-swatches">
-                                            <span class="swatch swatch-label size-bd swatch-circle swatch-selected"><span title='{{post.orgin_size}}'>{{post.orgin_size}}</span></span>
+                                            <span class="swatch swatch-label size-bd swatch-circle swatch-selected" data-val="{{post.orgin_size}}" ><span title='{{post.orgin_size}}'>{{post.orgin_size}}</span></span>
                                             {% for size in post.size_set.all %}
-                                            <span class="swatch swatch-label size-bd swatch-circle"><span title='{{size.size}}'>{{size.size}}</span></span>
+                                            <span class="swatch swatch-label size-bd swatch-circle" data-val="{{size.size}}"><span title='{{size.size}}'>{{size.size}}</span></span>
                                             {% endfor %}
                                         </div>
                                     </td>
@@ -162,10 +166,10 @@
                             </table>
                             <div class="single_variation_wrap">
                                 <div class="quantity">
-                                    <input type="number" min="1" max="{{post.product_count}}" step="1" value="1">
+                                    <input type="number" name="count" min="1" max="{{post.product_count}}" step="1" value="1">
                                 </div>
                                 <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-enabled">
-                                    <button type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button">افزودن به سبد</button>
+                                    <button id="btn-cart" type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button">افزودن به سبد</button>
                                     <div class="bigbazar-quick-buy">
                                         <button class="bigbazar_quick_buy_button bigbazar_quick_buy_variable bigbazar_quick_buy_58" value="Buy Now">همین حالا خرید کن!</button>
                                     </div>
@@ -358,6 +362,17 @@ $(document).ready(function(){
         $(this).addClass('swatch-selected')
     })
 });
+
+$(document).ready(function(){
+    $("#btn-cart").click(function(){
+        color= $('#product-id').find('.swatch-selected').eq(0).data('val');
+        $("#hiiden_color").val(color);
+        
+        size = $('#product-id').find('.swatch-selected').eq(1).data('val');
+        $("#hiiden_size").val(size);
+    })
+
+})
 
 $(document).ready(function(){
     $('#wish-list').click(function(){

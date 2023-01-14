@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'aboutus',
     'contactus',
+    'cart',
 
     #-----------package--------
     'ckeditor',
