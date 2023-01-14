@@ -1,13 +1,21 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from django.utils import timezone
+from django.http import JsonResponse
 import json
+import copy
 
 from .models import Order,OrderDetail
 from product.models import Product
 from .forms import NewOrderForm
 
 # Create your views here.
+
+def get_order_id(request):
+    x = Order.objects.create()
+    y = copy.copy(x.id)
+    x.delete()
+    return JsonResponse({'order_id':y})
 
 def total_priceCA(product_id,color,size):
     price_color = 0
@@ -37,43 +45,29 @@ def add_user_order(request):
             return redirect('/')
         
         total_price = total_priceCA(product_id,color,size)
-        
-        
-        try:
-            x = request.COOKIES['OrderDetail']
-            y = request.COOKIES['Order']
-            jsonstyle = json.loads(x)
-            order = Order.objects.create(id=y)
-            orderdetail = OrderDetail.objects.create(order=order,product=product,color=color,count=count,size=size,price=total_price)
-            order.delete()
 
-            for x in jsonstyle:
-                if jsonstyle[x]['id'] == product_id and jsonstyle[x]['color'] == color and jsonstyle[x]['size'] == size:
-                    jsonstyle[x] = {'id':product_id,'color':color,'size':size,'count':count}
-                    break
-            else:
-                jsonstyle[orderdetail.id] = {'id':product_id,'color':color,'size':size,'count':count}
+        x = request.COOKIES['OrderDetail']
+        y = request.COOKIES['Order']
+        jsonstyle = json.loads(x)
+        order = Order.objects.create(id=y)
+        orderdetail = OrderDetail.objects.create(order=order,product=product,color=color,count=count,size=size,price=total_price)
+        order.delete()
 
-            orderdetail.delete()
-            jsonstyle2 = json.dumps(jsonstyle)
-            response = redirect('/cart')
-            response.delete_cookie('OrderDetail')
-            response.set_cookie('OrderDetail',jsonstyle2,172800)
-            return response 
-        except Exception as e:
-            print(e)
-            order = Order.objects.create()
-            orderdetail = OrderDetail.objects.create(order=order,product=product,color=color,count=count,size=size,price=total_price)
-            x = {orderdetail.id:{'id':product_id,'color':color,'size':size,'count':count}}
-            orderdetail.delete()
-            jsonstyle = json.dumps(x)
-            response = redirect('/cart')
-            response.set_cookie('OrderDetail',jsonstyle,172800)
-            response.set_cookie('Order',order.id,172800)
-            order.delete()
-            return response 
+        for x in jsonstyle:
+            if jsonstyle[x]['id'] == product_id and jsonstyle[x]['color'] == color and jsonstyle[x]['size'] == size:
+                jsonstyle[x] = {'id':product_id,'color':color,'size':size,'count':count}
+                break
+        else:
+            jsonstyle[orderdetail.id] = {'id':product_id,'color':color,'size':size,'count':count}
+
+        orderdetail.delete()
+        jsonstyle2 = json.dumps(jsonstyle)
+        response = redirect('/cart')
+        response.delete_cookie('OrderDetail')
+        response.set_cookie('OrderDetail',jsonstyle2,172800)
+        return response 
+
     else:
-        print(form.errors)
         return redirect('/')
 
 def user_open_order(request):
@@ -84,23 +78,22 @@ def user_open_order(request):
     'sum':0,
     }
     total_price = 0
-    try:
-        detail = request.COOKIES['OrderDetail']
-        z = json.loads(detail)
-        for det in z:
-            id = z[det]['id']
-            product = Product.objects.get(id=id)
-            if z[det]['count'] > product.product_count:
-                z[det]['count'] = product.product_count
+    detail = request.COOKIES['OrderDetail']
+    z = json.loads(detail)
+    print(z)
+    for det in z:
+        id = z[det]['id']
+        product = Product.objects.get(id=id)
+        if z[det]['count'] > product.product_count:
+            z[det]['count'] = product.product_count
 
-            total_price_single = total_priceCA(z[det]['id'],z[det]['color'],z[det]['size'])
-            total_price += total_price_single * z[det]['count']
+        total_price_single = total_priceCA(z[det]['id'],z[det]['color'],z[det]['size'])
+        total_price += total_price_single * z[det]['count']
 
-        context['details'] = z
-        context['total'] = total_price
-    except:
-        print("erer")
-    return render(request,'cart.html',context)
+    context['details'] = z
+    context['total'] = total_price
+
+    return render(request,'cart.html',context) 
 
 def remove_from_cookie(request,id):
     order_detail = request.COOKIES['OrderDetail']
@@ -129,31 +122,16 @@ def update_In_open_order(request):
         
         total_price = total_priceCA(product_id,color,size)
 
-        try:
-            x = request.COOKIES['OrderDetail']
-            jsonstyle = json.loads(x)
+        x = request.COOKIES['OrderDetail']
+        jsonstyle = json.loads(x)
 
-            for x in jsonstyle:
-                if jsonstyle[x]['id'] == product_id and jsonstyle[x]['color'] == color and jsonstyle[x]['size'] == size:
-                    jsonstyle[x] = {'id':product_id,'color':color,'size':size,'count':count}
-            
-            jsonstyle2 = json.dumps(jsonstyle)
-            messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
-            response = redirect('/cart')
-            response.delete_cookie('OrderDetail')
-            response.set_cookie('OrderDetail',jsonstyle2,172800)
-            return response 
-        except:
-            order = Order.objects.create()
-            orderdetail = OrderDetail.objects.create(product=product,color=color,count=count,size=size,price=total_price)
-            x = {orderdetail.id:{'id':product_id,'color':color,'size':size,'count':count}}
-            orderdetail.delete()
-            jsonstyle = json.dumps(x)
-            response = redirect('/cart')
-            response.set_cookie('OrderDetail',jsonstyle,172800)
-            response.set_cookie('Order',order.id,172800)
-            order.delete()
-            return response 
-    else:
-        print('test')
-        return redirect('/')
+        for x in jsonstyle:
+            if jsonstyle[x]['id'] == product_id and jsonstyle[x]['color'] == color and jsonstyle[x]['size'] == size:
+                jsonstyle[x] = {'id':product_id,'color':color,'size':size,'count':count}
+        
+        jsonstyle2 = json.dumps(jsonstyle)
+        messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
+        response = redirect('/cart')
+        response.delete_cookie('OrderDetail')
+        response.set_cookie('OrderDetail',jsonstyle2,172800)
+        return response

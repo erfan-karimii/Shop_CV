@@ -120,6 +120,42 @@
             {% endif %}
         {% endfor %}
     </script>
+    <script>
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        a = getCookie('Order')
+        b = getCookie('OrderDetail')
+        if (a == null || a == undefined){
+            $.ajax({
+            type : 'GET',
+            url : '{% url "cart:get_order_id" %}',
+            dataType : 'json',
+            success : function (data) {
+                document.cookie = `Order=${data.order_id};path=/;`;
+            },  
+            error: function(data){
+                alert('error')
+            }                                
+            })
+            alert('ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ')
+        }
+        if (b == null || b == undefined){
+            document.cookie = "OrderDetail={};path=/;";
+        }
+    </script>
 </body>
 
 

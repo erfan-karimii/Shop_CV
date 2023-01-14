@@ -48,7 +48,8 @@ def show_name(details,det):
 @register.simple_tag
 def total_price(details):
     price  = 0
-    for det in details:
-        price += show_price(details,det,'True')
+    if details:
+        for det in details:
+            price += show_price(details,det,'True')
     
     return price
