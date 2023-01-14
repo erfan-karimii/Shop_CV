@@ -101,10 +101,13 @@ urlpatterns = [
     #------------------Profile-------------------------------------------
     path('profile_list/', views.ProfileListView.as_view(),name='ProfileListView'),
     path('detail/profile/<pk>/', views.ProfileView.as_view(),name='ProfileView'),
+    
 
     #-----------------UserList----------------------------------------
     path('user_list/', views.UserListView.as_view(),name='UserListView'),
     path('user/', views.UserCreateView.as_view(),name='UserCreateView'),
     path('detail/user/<pk>/', views.UserDetailView.as_view(),name='UserDetailView'),
+    path('delete/user/<pk>',views.UserDeleteView.as_view(),name='user_delete'),
+
 
 ]

@@ -125,7 +125,10 @@
                             <div class="collapse " id="sidebarCharts">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        {% comment %} <a class="nav-link" href="{% url 'cms:UserView' %}">مشخصات کاربران</a> {% endcomment %}
+                                        <a class="nav-link" href="{% url 'cms:UserListView' %}">لیست کاربران</a>
+                                    </li><!--end nav-item-->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'cms:ProfileListView' %}">لیست پروفایل کاربران</a>
                                     </li><!--end nav-item-->
                                 </ul><!--end nav-->
                                 

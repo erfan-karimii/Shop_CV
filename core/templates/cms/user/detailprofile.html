@@ -34,7 +34,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">ویرایش کاربری</h4>
+                                <h4 class="card-title">ویرایش پروفایل کاربر</h4>
 
                             </div><!--end card-header-->
                             
@@ -54,17 +54,7 @@
                                                 {% comment %} <input name='text_bold' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
                                             {{form.user}}
                                             </div>
-                                            
                                         </div>
-                                        <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">پسوورد hash شده</label>
-                                            <div class="col-sm-4">
-                                                <input name='password' class="form-control" value='{{x.password}}' type="hidden"  id="example-text-input" >
-                                            {{x.password}}
-                                            </div>
-                                            
-                                        </div>
-
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">full_name</label>
                                             <div class="col-sm-4">
@@ -73,16 +63,13 @@
                                             </div>
                                             <br>
                                         </div>
-
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">email</label>
                                             <div class="col-sm-4">
                                                 {% comment %} <input name='text' class="form-control" type="text" value="" id="example-text-input"> {% endcomment %}
                                             {{form.email}}
                                             </div>
-                                            
                                         </div>
-
                                         <div class="mb-3 row">
                                             <label for="example-text-input" class="col-sm-2 col-form-label text-end">address:</label>
                                             <div class="col-sm-4">
@@ -91,46 +78,20 @@
                                             </div>
                                             
                                         </div>
-
                                         
-                                       
-
-{% comment %} 
                                         <div class="mb-3 row">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label text-end">time</label>
-                                            <div class="col-sm-6">
-                                                <input type="time" name="date_joined_1"  size="10" >
-                                                {{form.date_joined}}
-                                            </div>
-                                            
-                                        </div> {% endcomment %}
-
-
-                                        <div class="mb-3 row">
-                                            {% comment %} <label for="tbligh" class="col-sm-2 col-form-label text-end">لینک</label> {% endcomment %}
-                                            
-
-                                            
                                                 <div class='col-sm-3'>
                                                     <button type='submit' class='btn btn-success'>ویرایش</button>                                                  
                                                 </div>
                                                 <div class='col-sm-3'>
                                                     {% comment %} <a href="{% url 'cms:DeleteUser' x.id %}" type='submit' class='btn btn-danger'>حذف</a>                                                   {% endcomment %}
                                                 </div> 
-                                            
                                         </div>
                                     </div>    
                                 </form>                   
                             </div><!--end card-body-->
-
-
-
-
-
                         </div><!--end card-->
-
                 </div><!--end row-->
-
             </div><!-- container -->
            <!--Start Footer-->
            <!-- Footer Start -->

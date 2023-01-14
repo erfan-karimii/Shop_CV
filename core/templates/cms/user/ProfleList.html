@@ -19,7 +19,7 @@
                 <div class="col-sm-12">
                     <div class="page-title-box">
 
-                        <h4 class="page-title">لیست کابران سایت</h4>
+                        <h4 class="page-title">لیست پروفایل کابران سایت</h4>
                     </div>
                     <!--end page-title-box-->
                 </div>
@@ -46,11 +46,9 @@
                                     <tbody>
                                         {% for x in users %}
                                         <tr>
-                                            {% comment %} <td><a href="{% url 'cms:detail_user' x.id %}">{{x.username}}</a></td> {% endcomment %}
-                                            <td><a href="">{{x.user}}</a></td>
+                                            <td><a href="{% url 'cms:ProfileView' x.id %}">{{x.user}}</a></td>
                                             <td><a href="">{{x.full_name}}</a></td>
                                             <td><a href="">{{x.email}}</a></td>
-                                            {% comment %} <td> <input class="form-check-input" type="checkbox" id="flexCheckChecked" {% if x.is_staff %} checked {% endif %} disabled></td> {% endcomment %}
                                         </tr>
                                         {% endfor %}
                                     </tbody>

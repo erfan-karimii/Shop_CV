@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect , get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
+from django.contrib.auth.hashers import make_password
 from django.urls import reverse_lazy
 from django.db.models import ProtectedError
 import datetime
@@ -651,6 +652,19 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy("cms:UserListView")
 
     def form_valid(self,form):
+        password = form.cleaned_data['password']
+        password = make_password(password)
+        user = form.save(commit=False)
+        user.password = password
+        user.save()
+
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+    
+    def form_invalid(self,form):
+        print(form.errors)
+        return super().form_invalid(form)
+
         messages.success(self.request,'با موفقیت ثبت شد')
         return super().form_valid(form)
     
@@ -661,11 +675,10 @@ class UserCreateView(CreateView):
         context['now'] =datetime.datetime.now().strftime("%Y-%m-%d"+"T"+"%H:%M"),
         return context
 
-
 class UserDetailView(UpdateView):
     model = User
     template_name = 'cms/user/detail_user.html'
-    context_object_name = 'form'
+    context_object_name = 'user'
     fields="__all__"
     success_url = reverse_lazy("cms:UserListView")
     def form_valid(self,form):
@@ -679,4 +692,9 @@ class UserDetailView(UpdateView):
         context['now'] =datetime.datetime.now().strftime("%Y-%m-%d"+"T"+"%H:%M"),
         return context
 
+class UserDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        User.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:UserListView")
 #------------End-----------User-------------------

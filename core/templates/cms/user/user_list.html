@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header">
-                            {% comment %} <h4 class="card-title"> <a href="{% url 'cms:CreateUser' %}">اضافه کردن User جدید</a></h4> {% endcomment %}
+                            <h4 class="card-title"><a href="{% url 'cms:UserCreateView' %}">اضافه کردن User جدید</a></h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -47,14 +47,11 @@
                                     <tbody>
                                         {% for x in user_list %}
                                         <tr>
-                                            {% comment %} <td><a href="{% url 'cms:detail_user' x.id %}">{{x.username}}</a></td> {% endcomment %}
-                                            <td><a href="">{{x.phone_number}}</a></td>
+                                            <td><a href="{% url 'cms:UserDetailView' x.id %}">{{x.phone_number}}</a></td>
                                             <td> <input class="form-check-input" type="checkbox" id="flexCheckChecked" {% if x.is_superuser %} checked {% endif %} disabled></td>
                                             <td> <input class="form-check-input" type="checkbox" id="flexCheckChecked" {% if x.is_staff %} checked {% endif %} disabled></td>
                                             <td> <input class="form-check-input" type="checkbox" id="flexCheckChecked" {% if x.is_verified %} checked {% endif %} disabled></td>
-
-                                            <td><a href="">{{x.email}}</a></td>
-                                            <td><a href="">{{x.email}}</a></td>
+                                            <td></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
