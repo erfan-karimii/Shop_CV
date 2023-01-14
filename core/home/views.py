@@ -5,7 +5,7 @@ from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishL
 from product.models import Product ,Category
 from account.models import Profile
 from django.contrib import messages
-
+import json
 
 # Create your views here.
 
@@ -29,12 +29,19 @@ def header_view(request):
     wishlist_count = 0
     if request.user.is_authenticated:
         wishlist_count = WishList.objects.filter(account__user=request.user).count()
+    try:
+        detail = request.COOKIES['OrderDetail']
+        count = json.loads(detail)
+        count = len(count)
+    except :
+        count = 0
 
     context = {
         'NavOne':NavOne.objects.all(),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
         'wishlist_count' : wishlist_count,
-        'categories':Category.objects.all()
+        'categories':Category.objects.all(),
+        'count':count ,
     }
     return render(request,'header.html',context)
 
