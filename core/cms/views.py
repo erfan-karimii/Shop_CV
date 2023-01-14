@@ -449,12 +449,12 @@ class ProductAddSize(View):
         size_deleted_list = request.POST.getlist('is_delete')
         size_name_list = request.POST.getlist('size')
         size_ekhtelaf_list = request.POST.getlist('Ekhtelaf')
-        size_list = dict(zip(size_name_list,size_ekhtelaf_list))
+        size_list = zip(size_name_list,size_ekhtelaf_list)
         
         Size.objects.bulk_create([
-            Size(product=product,size=size,Ekhtelaf=size_list[size])\
+            Size(product=product,size=size[0],Ekhtelaf=size[1])\
             for size in size_list\
-            if size not in size_deleted_list 
+            if size[0] not in size_deleted_list 
             ])
         
         messages.success(request, 'تغییرات شما با موفقیت اعمال شد')
@@ -469,12 +469,12 @@ class ProductAddColor(View):
         color_deleted_list = request.POST.getlist('is_delete')
         color_name_list = request.POST.getlist('color')
         color_ekhtelaf_list = request.POST.getlist('Ekhtelaf')
-        color_list = dict(zip(color_name_list,color_ekhtelaf_list))
-        
+        color_list = zip(color_name_list,color_ekhtelaf_list)
+    
         Color.objects.bulk_create([
-            Color(product=product,color=color,Ekhtelaf=color_list[color])\
+            Color(product=product,color=color[0],Ekhtelaf=color[1])\
             for color in color_list\
-            if color not in color_deleted_list 
+            if color[0] not in color_deleted_list 
             ])
 
         
@@ -489,18 +489,19 @@ class ProductAddImage(View):
         image_deleted_list = request.POST.getlist('is_delete')
         image_name_list = request.FILES.getlist('image')
         image_alt_list = request.POST.getlist('alt')
-        image_list = dict(zip(image_name_list,image_alt_list))
+        image_list = zip(image_name_list,image_alt_list)
         
         # delete checkmarked images
         for image in image_deleted_list:
             GalleryImage.objects.filter(image=image).delete()  
         
         #create new image
-        for image in image_list : 
-            x = GalleryImage.objects.bulk_create([
-                GalleryImage(product=product,image=image,alt=image_list[image]) 
-                ])
-            # save thumnail for new images
+        x = GalleryImage.objects.bulk_create([
+            GalleryImage(product=product,image=image[0],alt=image[1]) \
+        for image in image_list
+            ])
+        # save thumnail for new images
+        if x:
             x[0].save()
 
            
