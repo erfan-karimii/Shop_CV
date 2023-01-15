@@ -104,8 +104,6 @@
                 height: 550,
             });
         });
-    </script>
-    <script>
         {% for message in messages %}
             {% if message.level == 40 %}
             Swal.fire({
@@ -150,10 +148,10 @@
                 alert('error')
             }                                
             })
-            alert('ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ')
         }
         if (b == null || b == undefined){
             document.cookie = "OrderDetail={};path=/;";
+            alert('ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ')
         }
     </script>
 </body>

@@ -1,10 +1,11 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from django.utils import timezone
-from django.http import JsonResponse
+from django.http import JsonResponse , HttpResponse
 from django.contrib.auth.decorators import login_required
 import json
 import copy
+import datetime
 
 from .models import Order,OrderDetail
 from product.models import Product
@@ -148,17 +149,35 @@ def check_out_view(request):
 def how_user_pay(request):
     payment_method = request.POST.get('payment_method')
     if payment_method == 'cash':
-        return redirect('cart:pay_by_cash')
+        c = request.COOKIES['OrderDetail']
+        cookie = json.loads(c)
+        o = request.COOKIES['Order']
+        full_name = request.POST.get('full_name')
+        address = request.POST.get('address')
+        phone_number = request.POST.get('phone_number')
+        if not full_name or not address or not phone_number:
+            return redirect('/')
+        order = Order.objects.create(id=o,owner=request.user,full_name=full_name,address=address,\
+            phone_number=phone_number,is_paid=True,payment_date=datetime.datetime.now())
+        for key , value in cookie.items():
+            product = Product.objects.get(id=value['id'])
+            product.product_count -= value['count']
+            product.save()
+            price = total_priceCA(value['id'],value['color'],value['size'])
+            OrderDetail.objects.create(id=key,order=order,product=product,price=price,color=value['color'],\
+                size=value['size'],count=value['count'])
+
+        messages.success(request,'خرید شما با موفقیت انجام شد.')
+        response = redirect('home:home')
+        response.set_cookie('OrderDetail',{},72*60*60)
+        response.delete_cookie('Order')
+        return response
+
     elif payment_method == 'pay_online':
-        pass
+        return HttpResponse('done')
     else : 
         messages.error(request,'متاسفانه مشکلی پیش امده است لطفا دوباره امتحان کنید.')
         return redirect('cart:check_out')
 
+    
 
-def pay_by_cash(request):
-    messages.success(request,'خرید شما با موفقیت انجام شد.')
-    response = redirect('home:home')
-    response.set_cookie('OrderDetail',{},72*60*60)
-    response.set_cookie('Order',{},72*60*60)
-    return response

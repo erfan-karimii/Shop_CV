@@ -32,7 +32,7 @@ class Order(models.Model):
         return amount
 
     def __str__(self):
-        return str(self.owner)
+        return str(self.id) +" "+str(self.owner)
 
 class OrderDetail(models.Model):
     order = models.ForeignKey(Order,on_delete=models.CASCADE)
