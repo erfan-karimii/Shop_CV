@@ -44,6 +44,11 @@ def show_name(details,det):
     x = Product.objects.get(id=details[det]['id'])
     return x.name
 
+@register.simple_tag
+def show_count(details,det):
+    x = Product.objects.get(id=details[det]['id'])
+    return x.product_count
+
 
 @register.simple_tag
 def total_price(details):

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load cart_tags %}
+
 {% block body %}
 <!-- breadcrumb -->
 <div class="full-row bg-light py-5">
@@ -65,7 +66,7 @@
                                 </td>
                                 <td class="product-quantity">
                                     <div class="quantity">
-                                        <input type="number" name="count" value="{% show details det 'count' %}">
+                                        <input type="number" name="count" max="{% show_count details det %}" value="{% show details det 'count' %}">
                                     </div>
                                 </td>
                                 <td class="product-subtotal">
@@ -116,7 +117,7 @@
                             </tr>
                         </table>
                         <div class="wc-proceed-to-checkout">
-                            <a href="#" class="checkout-button">ادامـه خرید</a>
+                            <a href="{% url 'cart:check_out' %}" id="check-out" class="checkout-button">ادامـه خرید</a>
                         </div>
                     </div>
                 </div>
@@ -127,3 +128,29 @@
 <!--==================== Cart Section End ====================-->
 {% include 'layout/newsletter.html' %}
 {% endblock %}
+
+{% block js %}
+{% if  request.user.is_authenticated %}
+{% else %}
+<script>
+    $(document).ready(function(){
+        $('#check-out').click(function(e){
+            e.preventDefault()
+            Swal.fire({
+                icon: 'info',
+                text: 'لطفا قبل از تسویه حساب لطفا وارد حساب کاربری خود شوید.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'بله',
+                showCancelButton: true,
+                cancelButtonColor: '#d33',
+                cancelButtonText : 'انصراف',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href="/account/login/"
+                }
+            })
+        })
+    })
+</script>
+{% endif %}
+{% endblock js %}

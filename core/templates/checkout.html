@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart_tags %}
+
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="full-row bg-light py-5">
+    <div class="container">
+        <div class="row text-secondary">
+            <div class="col-sm-6">
+                <h3 class="mb-2 text-secondary font-large">تسویه حساب</h3>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home ms-1"></i>خانه</a></li>
+                        <li class="breadcrumb-item active aria-current=page">تسویه حساب</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!--==================== Checkout Section Start ====================-->
+<div id="main-content" class="full-row site-content">
+    <div class="container">
+        <div class="row ">
+            <div id="primary" class="content-area col-md-12">
+                <article id="post-19" class="post-19 page type-page status-publish hentry">
+                    <div class="entry-content">
+                        <div class="woocommerce">
+                            <form method="post" class="checkout woocommerce-checkout" action="{% url 'cart:how_user_pay' %}"  novalidate="novalidate">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        <div class="col2-set" id="customer_details">
+                                            <div class="woocommerce-billing-fields">
+                                                <h3 class="f-vazir font-large">جزئیات صورت حساب</h3>
+                                                <div class="woocommerce-billing-fields__field-wrapper">
+                                                    <p class="form-row form-row-first validate-required" id="billing_first_name_field" data-priority="10">
+                                                        <label for="billing_first_name" class="">نام&nbsp;و نام خانوادگی&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                                        <span class="woocommerce-input-wrapper">
+                                                            <input type="text" class="input-text " name="billing_first_name" id="billing_first_name" placeholder="" value="" autocomplete="given-name">
+                                                        </span>
+                                                    </p>
+                                                    <p class="form-row address-field validate-required form-row-wide" id="billing_address_1_field" data-priority="50">
+                                                        <label for="billing_address_1" class="">ادرس کامل&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                                        <span class="woocommerce-input-wrapper">
+                                                            <input type="text" class="input-text " name="billing_address_1" id="billing_address_1" placeholder="استان / شهر / خیابان اصلی / خیابان فرعی / پلاک " value="" autocomplete="address-line1" data-placeholder="خیابان نواب صفوی شمالی">
+                                                        </span>
+                                                    </p>
+                                                    <p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field" data-priority="100">
+                                                        <label for="billing_phone" class="">شماره تماس&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                                        <span class="woocommerce-input-wrapper">
+                                                            <input type="tel" class="input-text " name="billing_phone" id="billing_phone" placeholder="*********09" value="" autocomplete="tel">
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="order-review-inner">
+                                            <h3 id="order_review_heading" class="f-vazir font-large">سبد خرید شما</h3>
+                                            <div id="order_review" class="woocommerce-checkout-review-order">
+                                                <table class="shop_table woocommerce-checkout-review-order-table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="product-name">نام کالا</th>
+                                                            <th class="product-total">قیمت</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for det in details %}
+                                                        <tr class="cart_item">
+                                                            <td class="product-name">
+                                                                {% show_name details det %}&nbsp; <strong class="product-quantity">×&nbsp;{% show details det 'count' %}</strong> </td>
+                                                                <td class="product-total">
+                                                                    <span class="woocommerce-Price-amount amount"><bdi>{% show_price details det 'True' %}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr class="cart-subtotal">
+                                                            <th>قیمت کالاها</th>
+                                                            <td><span class="woocommerce-Price-amount amount"><bdi>{% total_price details %}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="woocommerce-shipping-totals shipping">
+                                                            <th>نحوه ارسال</th>
+                                                            <td data-title="Shipping">
+                                                                <ul id="shipping_method" class="woocommerce-shipping-methods">
+                                                                    <li>
+                                                                        <input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_free_shipping1" value="free_shipping:1" class="shipping_method" checked="checked">
+                                                                        <label for="shipping_method_0_free_shipping1">ارسال رایگان</label>
+                                                                    </li>
+                                                                    <li>
+                                                                        <input type="radio" name="shipping_method[0]" data-index="0" id="shipping_method_0_flat_rate2" value="flat_rate:2" class="shipping_method">
+                                                                        <label for="shipping_method_0_flat_rate2">ارسال سریع</label>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="order-total">
+                                                            <th>جمع نهایی</th>
+                                                            <td><strong><span class="woocommerce-Price-amount amount"><bdi>{% total_price details %}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi></span></strong> </td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <div id="payment" class="woocommerce-checkout-payment">
+                                                    <ul class="wc_payment_methods payment_methods methods">
+                                                        <li class="wc_payment_method payment_method_cheque active">
+                                                            <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="pay_online" checked="checked" data-order_button_text="">
+
+                                                            <label for="payment_method_cheque">
+                                                پرداخت انلاین 	</label>
+                                                            <div class="payment_box payment_method_cheque">
+                                                                <p>ما از درگاه بانکی زرین پال برای تسویه حساب استفاده می کنیم.</p>
+                                                            </div>
+                                                        </li>
+                                                        <li class="wc_payment_method payment_method_cod">
+                                                            <input id="payment_method_cod" type="radio" class="input-radio" name="payment_method" value="cash" data-order_button_text="">
+
+                                                            <label for="payment_method_cod">
+                                                پرداخت درب منزل 	</label>
+                                                            <div class="payment_box payment_method_cod">
+                                                                <p>پرداخت نقدی هنگام تحویل سفارشات</p>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="form-row place-order">
+                                                        <noscript>
+                                                    از آنجایی که مرورگر شما از جاوا اسکریپت پشتیبانی نمی‌کند یا غیرفعال است، لطفاً قبل از ثبت سفارش، روی دکمه <em>به‌روزرسانی </em> کلیک کنید. در صورت عدم انجام این کار ممکن است بیش از مبلغ ذکر شده در بالا از شما هزینه دریافت شود.<br/>
+                                                    <button type="submit" class="button alt" name="woocommerce_checkout_update_totals" value="Update totals">بروزرسانی</button>
+                                                </noscript>
+                                                        <div class="woocommerce-terms-and-conditions-wrapper">
+                                                            <div class="woocommerce-privacy-policy-text"></div>
+                                                        </div>
+
+                                                        <button type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="Place order" data-value="Place order">ثبت نهایی</button>
+
+                                                        <!-- <input type="hidden" id="woocommerce-process-checkout-nonce" name="woocommerce-process-checkout-nonce" value="a44d43c9ca"><input type="hidden" name="_wp_http_referer" value="/wordpress/foden/?wc-ajax=update_order_review">  -->                                                               
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- .entry-content -->
+                </article>
+                <!-- #post-## -->
+            </div>
+            <!-- .entry-content-wrapper -->
+        </div>
+        <!-- .row -->
+    </div>
+    <!-- .container -->
+</div>
+<!--==================== Checkout Section End ====================-->
+
+{% endblock body %}

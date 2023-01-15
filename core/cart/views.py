@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 import json
 import copy
 
@@ -135,3 +136,29 @@ def update_In_open_order(request):
         response.delete_cookie('OrderDetail')
         response.set_cookie('OrderDetail',jsonstyle2,172800)
         return response
+
+@login_required(login_url='account:login')
+def check_out_view(request):
+    details = request.COOKIES['OrderDetail']
+    context = {
+        'details': json.loads(details),
+    }
+    return render(request,'checkout.html',context)
+
+def how_user_pay(request):
+    payment_method = request.POST.get('payment_method')
+    if payment_method == 'cash':
+        return redirect('cart:pay_by_cash')
+    elif payment_method == 'pay_online':
+        pass
+    else : 
+        messages.error(request,'متاسفانه مشکلی پیش امده است لطفا دوباره امتحان کنید.')
+        return redirect('cart:check_out')
+
+
+def pay_by_cash(request):
+    messages.success(request,'خرید شما با موفقیت انجام شد.')
+    response = redirect('home:home')
+    response.set_cookie('OrderDetail',{},72*60*60)
+    response.set_cookie('Order',{},72*60*60)
+    return response
