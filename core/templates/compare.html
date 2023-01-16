@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load product_tags %}
+
 {% block body %}
 <!-- breadcrumb -->
 <div class="full-row bg-light overlay-dark py-5" style="background-image: url({% static 'assets/images/background/4.png' %}); background-position: center center; background-size: cover;">
@@ -19,42 +21,6 @@
         </div>
     </div>
 </div>
-{% comment %} <div class="full-row">
-    <div class="container">
-        <div class="row">
-            <table class="table">
-                <thead>
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> {% endcomment %}
 <section class="ftco-section bg-light">
     <div class="container">
         <div class="row justify-content-center pb-5 mb-3">
@@ -67,12 +33,13 @@
                     <div class="img" style="background-image: url(/thumbnail/{{product_1.image}});"></div>
                     <div class="text-center p-4">
                         <span class="excerpt d-block">{{product_1.category.name}}</span>
-                        <span class="price"><span class="number">{{product_1.main_discount_call}}</span>تومان</span>
+                        <span class="price"><span class="number">{% if product_1.instock %}{{product_1.main_discount_call}}</span>تومان{% endif %}</span>
                         <ul class="pricing-text mb-5">
                             <li>{{product_1.name}}</li>
                             <li style="background-color: {{product_1.orgin_color}}">رنگ : {{product_1.orgin_color}}</li>
                             <li>سایز : {{product_1.orgin_size}}</li>
-                            <li>وضعیت : {% if product_1.product_count %}موجود{% else %}ناموجود{% endif %}</li>
+                            <li>وضعیت : {% if product_1.instock %}موجود{% else %}ناموجود{% endif %}</li>
+                            <li>فروش : {{product_1|sell_count}}</li>
                         </ul>
                     </div>
                 </div>
@@ -94,12 +61,13 @@
                     <div class="img" style="background-image: url(/thumbnail/{{product_2.image}});"></div>
                     <div class="text-center p-4">
                         <span class="excerpt d-block">{{product_2.category.name}}</span>
-                        <span class="price"><span class="number">{{product_2.main_discount_call}}</span>تومان</span>
+                       <span class="price"><span class="number"> {% if product_2.instock %}{{product_2.main_discount_call}}</span>تومان{% endif %}</span>
                         <ul class="pricing-text mb-5">
                             <li>{{product_2.name}}</li>
                             <li style="background-color: {{product_2.orgin_color}}">رنگ : {{product_2.orgin_color}}</li>
                             <li>سایز : {{product_2.orgin_size}}</li>
                             <li>وضعیت : {% if product_2.product_count %}موجود{% else %}ناموجود{% endif %}</li>
+                            <li>فروش : {{product_2|sell_count}}</li>
                         </ul>
                     </div>
                 </div>

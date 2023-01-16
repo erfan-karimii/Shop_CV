@@ -40,10 +40,10 @@ class OrderDetail(models.Model):
     price = models.IntegerField()
     color = ColorField(null=True)
     size = models.CharField(max_length=20,null=True)
-    count = models.IntegerField()
+    orderdetail_count = models.IntegerField()
 
     def get_detail_sum(self):
-        return self.count * self.price
+        return self.orderdetail_count * self.price
 
     def __str__(self):
         return str(self.order) + " " + str(self.product)

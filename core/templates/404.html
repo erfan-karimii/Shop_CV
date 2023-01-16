@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<!-- breadcrumb -->
+<div class="full-row bg-light py-5">
+    <div class="container">
+        <div class="row text-secondary">
+            <div class="col-sm-6">
+                <h3 class="mb-2 text-secondary">صفحه 404</h3>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="fas fa-home ms-1"></i>خانه</a></li>
+                        <li class="breadcrumb-item"><a href="#">صفحات</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">صفحه 404</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!--==================== Error Section Start ====================-->
+<div class="full-row" style="padding: 100px 0">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="text-center">
+                    <span class="fa fa-exclamation-triangle text-primary" style="font-size: 60px"></span>
+                    <h2 class="my-4">صفحه موردنظر یافت نشد!</h2>
+                    <p>صفحه ای که به دنبال آن هستید وجود ندارد یا خطای دیگری رخ داده است لطفا به خانه یا صفحه ی دیگری بروید.</p>
+                    <a class="btn btn-secondary mt-5" href="/">بازگشت به خانه</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== Error Section Form Start ====================-->
+
+{% include 'layout/newsletter.html' %}
+
+{% endblock body %}

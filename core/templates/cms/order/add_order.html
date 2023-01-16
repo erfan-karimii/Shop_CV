@@ -1,0 +1,86 @@
+{% extends 'cms/base.html' %}
+{% load static %}
+{% block body %}
+    <div class="page-wrapper">
+        <!-- Page Content-->
+        <div class="page-content-tab">
+            <div class="container-fluid">
+                <!-- end page title end breadcrumb -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">ایجاد سبد خرید</h4>
+                            </div><!--end card-header-->
+                            <div class="card-body">  
+                                <form method='post' action="" class="row">
+                                    {% csrf_token %}
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">مالک</label>
+                                        <div class="col-sm-6">
+                                            {{form.owner}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">نام گیرنده</label>
+                                        <div class="col-sm-6">
+                                            {{form.full_name}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">ادرس</label>
+                                        <div class="col-sm-6">
+                                            {{form.address}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">شماره تلفن</label>
+                                        <div class="col-sm-6">
+                                            {{form.phone_number}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">پرداخت شده؟</label>
+                                        <div class="col-sm-6">
+                                            {{form.is_paid}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <label for="example-text-input" class="col-sm-1 col-form-label text-end">تاریخ پرداخت</label>
+                                        <div class="col-sm-6">
+                                            {{form.payment_date}}
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row">
+                                        <div class='col-sm-2'>
+                                            <button type='submit' class='btn btn-success'>ثبت</button>                                                  
+                                        </div>
+                                    </div>    
+                                </form>                    
+                            </div><!--end card-body-->
+                        </div><!--end card-->
+                    </div>
+                </div><!--end row-->
+
+            </div><!-- container -->
+           <!--Start Footer-->
+           <!-- Footer Start -->
+           <footer class="footer text-center text-sm-start">
+               &copy; <script>
+                   document.write(new Date().getFullYear())
+               </script> یونیکت <span class="text-muted d-none d-sm-inline-block float-end">ساخته شده با <i
+                       class="mdi mdi-heart text-danger"></i> دیجی روت</span>
+           </footer>
+           <!-- end Footer -->                
+           <!--end footer-->
+        </div>
+        <!-- end page content -->
+    </div>
+    <!-- end page-wrapper -->
+
+{% endblock %}
+
+ 
+
+<!-- Mirrored from digi-root.ir/Unikit_RTL/forms-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Sep 2022 08:48:47 GMT -->
+</html>

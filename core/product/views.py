@@ -14,7 +14,8 @@ def listview(request):
     number = 2
     if request.GET.get('show-number'):
         number = request.GET.get('show-number')
-    posts = Product.objects.filter(is_active=True).order_by('-created')
+    posts = Product.objects.filter(is_active=True).order_by('-instock','-created')
+    count = posts.count()
     option_value = ''
     if request.GET.get('orderby'):
         option_value = request.GET.get('orderby')
@@ -24,7 +25,7 @@ def listview(request):
     posts = paginator.get_page(page_number)
     context = {
         'posts':posts,
-        'count' : Product.objects.filter(is_active=True).count(),
+        'count' : count,
         'number' : number,
         'op':option_value,
     }
@@ -45,7 +46,7 @@ def detailview(request,id):
     else:
         comment_form = CommentForm()
     ids=post.tag.values_list('id',flat=True)
-    products = Product.objects.filter(tag__in=ids).exclude(id=id)
+    products = Product.objects.filter(tag__in=ids,instock=True).exclude(id=id)
     products = products.annotate(s_count=Count('tag')).order_by('-s_count','-created')[:6]
     
     context = {
@@ -61,9 +62,9 @@ def SearchView(request):
     search = request.GET.get('search')
     category = request.GET.get('category')
     if category == 'all':
-        products=Product.objects.filter(name__icontains=search)
+        products=Product.objects.filter(name__icontains=search).order_by('-instock','-created')
     else:
-        products=Product.objects.filter(name__icontains=search,category=category)
+        products=Product.objects.filter(name__icontains=search,category=category).order_by('-instock','-created')
     
 
     context = {

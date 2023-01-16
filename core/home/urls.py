@@ -19,6 +19,4 @@ urlpatterns = [
     path('compare/<id>',compare_view_2,name='compare_2'),
     path('compare/<id_1>/<id_2>',compare_view_3,name='compare_3'),
 
-
-
 ]

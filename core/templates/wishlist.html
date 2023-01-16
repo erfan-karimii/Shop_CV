@@ -38,7 +38,6 @@
                                 <th class="product-price"> <span class="nobr"> رنگ </span></th>
                                 <th class="product-price"> <span class="nobr"> سایز </span></th>
                                 <th class="product-stock-status"> <span class="nobr"> وضعیت موجود </span></th>
-                                <th class="product-add-to-cart"> <span class="nobr"> </span></th>
                             </tr>
                         </thead>
                         <tbody class="wishlist-items-wrapper">
@@ -66,13 +65,6 @@
                             </span>
                                 </td>
                                 <td class="product-stock-status"> <span class="wishlist-in-stock">{% if wish.product.product_count %}موجود در انبار{% else %}ناموجود{% endif %}</span></td>
-                                <td class="product-add-to-cart">
-                                    <!-- Date added -->
-                                    <!-- Add to cart button --><a href="#" data-quantity="1" class="button add_to_cart_button ajax_add_to_cart add_to_cart alt" data-product_id="103"
-                                        data-product_sku="" aria-label="Add “Navy Blue-Silver-White Multifunction Analog Watch” to your cart" rel="nofollow">افزودن به سبد</a>
-                                    <!-- Change wishlist -->
-                                    <!-- Remove from wishlist -->
-                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>

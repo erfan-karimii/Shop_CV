@@ -42,6 +42,7 @@ class Product(models.Model):
     alt_2 = models.CharField(max_length=100,null=True,blank=True)
     price = models.IntegerField(verbose_name='قیمت اصلی')
     product_count = models.PositiveBigIntegerField(verbose_name='تعداد محصول',validators=[MinValueValidator(0)])
+    instock = models.BooleanField(null=True)
     category = models.ForeignKey(Category,on_delete=models.PROTECT)
     info = RichTextField()
     tag = models.ManyToManyField(TagProduct)
@@ -57,11 +58,13 @@ class Product(models.Model):
 
     def main_discount_call(self):
         return int(self.price - (self.price * (self.discount/100)))
-    
+
+
     def save(self):
+        self.instock = bool(self.product_count)
         super().save()  # saving image first
         img = Image.open(self.image.path)  # Open image using self 
-        new_image = img.resize((350, 280))
+        new_image = img.resize((456,250))
         x = photo_path(str(self.image))   
         new_image.save(x)  # saving image at the thumnail path
 

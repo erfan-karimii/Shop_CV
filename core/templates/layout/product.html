@@ -24,6 +24,7 @@
             <div class="product-info">
                 <div class="product-cats"><a href="#">{{product.category.name}}</a></div>
                 <h3 class="product-title"><a href="{% url 'product:detailview' product.id %}">{{product.name}}</a></h3>
+                {% if product.product_count %}
                 {% if product.discount %}
                 <div class="product-price">
                     <div class="price">
@@ -39,6 +40,13 @@
                     </div>
                 </div>
                 {% endif %}
+                {% else %}
+                <div class="product-price">
+                    <div class="price">
+                        <p>ناموجود</p>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
                 <div class="shipping-feed-back">
                     <div class="star-rating">
@@ -49,12 +57,9 @@
                             <a href="#">({{product.comment_set.count}})</a>
                         </div>
                     </div>
-                    <div class="sold-items"><span>142</span> <span>فروش</span></div>
+                    <div class="sold-items"><span>{{product.id|sell_count}}</span> <span>فروش</span></div>
                 </div>
                 <div class="hover-area">
-                    <div class="cart-button">
-                        <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                    </div>
                     <div class="wishlist-button">
                         <a class="add_to_wishlist" {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}>افزودن به علاقه مندی</a>
                     </div>

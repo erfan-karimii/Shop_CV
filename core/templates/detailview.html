@@ -86,9 +86,10 @@
                                 </div>
                             </div>
                         </div>
+                        {% if post.product_count %}
                         <p class="price">
                             <span class="woocommerce-Price-amount amount">
-                                <bdi>{{post.main_discount_call}}<span class="woocommerce-Price-currencySymbol"> تومان</span></bdi>
+                                <bdi><span class="woocommerce-Price-currencySymbol" id="nprice">{{post.main_discount_call}} </span>تومان</bdi>
                             </span>
                         </p>
                         {% if post.discount %}
@@ -114,6 +115,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                         {% endif %}
                         
                         {% if post.product_count %}
@@ -141,11 +143,11 @@
                                     <td class="label f-vazir-bold"><label>رنگ</label></td>
                                     <td class="value with-swatches">
                                         <div class="bigbazar-swatches">
-                                            <span class="swatch swatch-color swatch-circle swatch-selected" data-val="{{post.orgin_color}}" data-bs-toggle="tooltip" data-bs-placement="top" >
+                                            <span class="swatch swatch-color swatch-circle swatch-selected" data-val="{{post.orgin_color}}" data-bs-toggle="tooltip" data-bs-placement="top" onclick="ChangeColor('0')">
                                                 <span class="bigbazar-tooltip color-bd" style="background-color:{{post.orgin_color}}" title="{{post.orgin_color}}"></span>
                                             </span>
                                             {% for color in post.color_set.all %}
-                                            <span class="swatch swatch-color term-{{color.id}} swatch-circle" data-val="{{color.color}}"  data-term="{{color.id}}">
+                                            <span class="swatch swatch-color term-{{color.id}} swatch-circle" data-val="{{color.color}}"  data-term="{{color.id}}" onclick="ChangeColor({{color.Ekhtelaf}})">
                                                 <span class="bigbazar-tooltip color-bd"  style="background-color:{{color.color}}" title="{{color.color}}"></span>
                                             </span>
                                             {% endfor %}
@@ -156,9 +158,9 @@
                                     <td class="label f-vazir-bold"><label>سایز</label></td>
                                     <td class="value with-swatches">
                                         <div class="bigbazar-swatches">
-                                            <span class="swatch swatch-label size-bd swatch-circle swatch-selected" data-val="{{post.orgin_size}}" ><span title='{{post.orgin_size}}'>{{post.orgin_size}}</span></span>
+                                            <span class="swatch swatch-label size-bd swatch-circle swatch-selected" data-val="{{post.orgin_size}}" onclick="ChangeSize('0')"><span title='{{post.orgin_size}}'>{{post.orgin_size}}</span></span>
                                             {% for size in post.size_set.all %}
-                                            <span class="swatch swatch-label size-bd swatch-circle" data-val="{{size.size}}"><span title='{{size.size}}'>{{size.size}}</span></span>
+                                            <span class="swatch swatch-label size-bd swatch-circle" data-val="{{size.size}}" onclick="ChangeSize({{size.Ekhtelaf}})"><span title='{{size.size}}'>{{size.size}}</span></span>
                                             {% endfor %}
                                         </div>
                                     </td>
@@ -166,13 +168,10 @@
                             </table>
                             <div class="single_variation_wrap">
                                 <div class="quantity">
-                                    <input type="number" name="count" min="1" max="{{post.product_count}}" step="1" value="1">
+                                    <input type="number" name="count" min="0" max="{{post.product_count}}" step="1" {% if post.product_count %}value="1"{% else %}value="0"{% endif %} >
                                 </div>
                                 <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-enabled">
-                                    <button id="btn-cart" type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button">افزودن به سبد</button>
-                                    <div class="bigbazar-quick-buy">
-                                        <button class="bigbazar_quick_buy_button bigbazar_quick_buy_variable bigbazar_quick_buy_58" value="Buy Now">همین حالا خرید کن!</button>
-                                    </div>
+                                    <button id="btn-cart" type="submit" class="single_add_to_cart_button button alt single_add_to_cart_ajax_button" {% if not post.product_count %}disabled{% endif %}>افزودن به سبد</button>
                                 </div>
                             </div>
                         </form>
@@ -184,7 +183,7 @@
                                 <a class="compare button" href="{% url 'home:compare_2' post.id %}" data-bs-toggle="tooltip" data-bs-placement="left" title="" data-bs-original-title="مقایسه کالا" aria-label="Compare">مقایسه کالا</a>
                             </div>
                         </div>
-                        <div class="product_meta"><span class="posted_in">دسته بندی: <a href="#" rel="tag">{{post.category.name}}</a></span> 
+                        <div class="product_meta"><span class="posted_in">دسته بندی: <a href="{% url 'product:SearchView' %}?search=&category={{ post.category.id }}" rel="tag">{{post.category.name}}</a></span> 
                         <span class="tagged_as">برچسب: 
                             {% for tag in post.tag.all %}
                             <a rel="tag">{{tag.name}}</a>,
@@ -397,9 +396,19 @@ $(document).ready(function(){
                 alert('error')
             }                                
         })
-    })
+    });
+    
 });
-
+var size_temp = 0
+var color_temp = 0
+function ChangeColor(color_price){
+    color_temp = color_price
+    $("#nprice").html({{post.main_discount_call}} + parseInt(color_temp) + parseInt(size_temp)+ " ")
+}
+function ChangeSize(size_price){
+    size_temp = size_price
+    $("#nprice").html({{post.main_discount_call}} + parseInt(color_temp) + parseInt(size_temp)+ " ")
+}
 </script>
 
 

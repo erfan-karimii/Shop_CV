@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
 {% load static %}
+{% load product_tags %}
+
 
 {% block body %}
 
@@ -60,12 +61,14 @@
                                     <div class="product-info">
                                         <div class="product-cats"><a href="#">{{post.category.name}}</a></div>
                                     <h3 class="product-title"><a href="#">{{post.name}}</a></h3>
+                                    {% if post.product_count %}
                                     {% if post.discount %}
                                     <div class="product-price">
                                         <div class="price">
                                             <ins>{{post.main_discount_call}} تومان</ins>
                                             <del>{{post.price}} تومان</del>
                                         </div>
+                                        <div class="on-sale"><span>{{post.discount}}</span><span>% تخفیف</span></div>
                                     </div>
                                     {% else %}
                                     <div class="product-price">
@@ -74,14 +77,21 @@
                                         </div>
                                     </div>
                                     {% endif %}
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>12000 تومان</span> </div>
+                                    {% else %}
+                                    <div class="product-price">
+                                        <div class="price">
+                                            <p>ناموجود</p>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span> </div>
                                         <div class="shipping-feed-back">
                                             <div class="star-rating">
                                                 <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.85</span></a>
+                                                    <a href="#"><i class="fas fa-star"></i><span> {{post.id|average_star}}</span></a>
                                                 </div>
                                                 <div class="rating-counts-wrap">
-                                                    <a href="#">(132)</a>
+                                                    <a href="#">({{post.comment_set.count}})</a>
                                                 </div>
                                             </div>
                                             <div class="sold-items">
@@ -89,9 +99,6 @@
                                             </div>
                                         </div>
                                         <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
                                             <div class="wishlist-button">
                                                 <a class="add_to_wishlist" href="{% url 'home:wishlist-add' user=request.user product_id=post.id color=post.orgin_color size=post.orgin_size %}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
                                             </div>

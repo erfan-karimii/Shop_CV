@@ -1,10 +1,12 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse , Http404
+from django.http import JsonResponse 
 from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishList
 from product.models import Product ,Category
 from account.models import Profile
 from django.contrib import messages
+from cart.models import OrderDetail
+from django.db.models import Sum
 import json
 
 # Create your views here.
@@ -43,14 +45,14 @@ def header_view(request):
         'categories':Category.objects.all(),
         'count':count ,
     }
-    return render(request,'header.html',context)
+    return render(request,'layout/header.html',context)
 
 def footer_view(request):
     context = {
         'FooterOne':FooterOne.objects.all(),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
     }
-    return render(request,'footer.html',context)
+    return render(request,'layout/footer.html',context)
 
 def quick_view(request,id):
     product = Product.objects.get(id=id)
@@ -113,7 +115,7 @@ def compare_listview(request,cat,id_1):
     # check = Product.objects.get(id=id_1).category
     # if cat != check:
     #     raise Http404
-    posts = Product.objects.filter(category__name=cat,is_active=True,).order_by('-created')
+    posts = Product.objects.filter(category__name=cat,is_active=True,).order_by('-instock','-created')
     context = {
         'posts':posts,
         'id_1':id_1,

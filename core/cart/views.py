@@ -52,7 +52,7 @@ def add_user_order(request):
         y = request.COOKIES['Order']
         jsonstyle = json.loads(x)
         order = Order.objects.create(id=y)
-        orderdetail = OrderDetail.objects.create(order=order,product=product,color=color,count=count,size=size,price=total_price)
+        orderdetail = OrderDetail.objects.create(order=order,product=product,color=color,orderdetail_count=count,size=size,price=total_price)
         order.delete()
 
         for x in jsonstyle:
@@ -73,28 +73,22 @@ def add_user_order(request):
         return redirect('/')
 
 def user_open_order(request):
-    context = {
-    'order':None,
-    'details':None,
-    'total':0,
-    'sum':0,
-    }
+
     total_price = 0
-    detail = request.COOKIES['OrderDetail']
-    z = json.loads(detail)
-    print(z)
-    for det in z:
-        id = z[det]['id']
+    details = json.loads(request.COOKIES['OrderDetail'])
+    for det in details:
+        id = details[det]['id']
         product = Product.objects.get(id=id)
-        if z[det]['count'] > product.product_count:
-            z[det]['count'] = product.product_count
+        if details[det]['count'] > product.product_count:
+            details[det]['count'] = product.product_count
 
-        total_price_single = total_priceCA(z[det]['id'],z[det]['color'],z[det]['size'])
-        total_price += total_price_single * z[det]['count']
+        total_price_single = total_priceCA(details[det]['id'],details[det]['color'],details[det]['size'])
+        total_price += total_price_single * details[det]['count']
 
-    context['details'] = z
-    context['total'] = total_price
-
+    context = {
+    'details':details,
+    'total':total_price,
+    }
     return render(request,'cart.html',context) 
 
 def remove_from_cookie(request,id):
@@ -165,7 +159,7 @@ def how_user_pay(request):
             product.save()
             price = total_priceCA(value['id'],value['color'],value['size'])
             OrderDetail.objects.create(id=key,order=order,product=product,price=price,color=value['color'],\
-                size=value['size'],count=value['count'])
+                size=value['size'],orderdetail_count=value['count'])
 
         messages.success(request,'خرید شما با موفقیت انجام شد.')
         response = redirect('home:home')

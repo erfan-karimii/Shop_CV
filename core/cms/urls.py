@@ -93,7 +93,8 @@ urlpatterns = [
     path('tag/', views.TagProductCreateView.as_view(),name='tag'),
     path('tag_list/', views.TagProductListView.as_view(),name='tag_list'),
     path('delete/tag/<pk>',views.TagProductDeleteView.as_view(),name='tag_delete'),
-        #----------Start-----------Comment---------------------
+    
+    #----------Start-----------Comment---------------------
     path('detail/comment/<pk>/',views.CommentView.as_view(),name='comment_detail'),
     path('comment_list/', views.CommentListView.as_view(),name='comment_list'),
     path('delete/comment/<pk>',views.CommentDeleteView.as_view(),name='comment_delete'),
@@ -102,12 +103,22 @@ urlpatterns = [
     path('profile_list/', views.ProfileListView.as_view(),name='ProfileListView'),
     path('detail/profile/<pk>/', views.ProfileView.as_view(),name='ProfileView'),
     
-
     #-----------------UserList----------------------------------------
     path('user_list/', views.UserListView.as_view(),name='UserListView'),
     path('user/', views.UserCreateView.as_view(),name='UserCreateView'),
     path('detail/user/<pk>/', views.UserDetailView.as_view(),name='UserDetailView'),
     path('delete/user/<pk>',views.UserDeleteView.as_view(),name='user_delete'),
+    
+    #----------Start-----------Order---------------------
+    path('detail/order/<pk>/',views.OrderView.as_view(),name='order_detail'),
+    path('order/', views.OrderCreateView.as_view(),name='order'),
+    path('order_list/', views.OrderListView.as_view(),name='order_list'),
+    path('delete/order/<pk>',views.OrderDeleteView.as_view(),name='order_delete'),
 
+    #----------Start-----------OrderDetail---------------------
+    path('detail/orderdetail/<pk>/',views.OrderDetailView.as_view(),name='orderdetail_detail'),
+    path('orderdetail/', views.OrderDetailCreateView.as_view(),name='orderdetail'),
+    path('orderdetail_list/', views.OrderDetailListView.as_view(),name='orderdetail_list'),
+    path('delete/orderdetail/<pk>',views.OrderDetailDeleteView.as_view(),name='orderdetail_delete'),
 
 ]

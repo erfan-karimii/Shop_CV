@@ -11,6 +11,7 @@ from home.models import NavOne,NavTwo,FooterOne,FooterTwo,OnSale,SiteSetting,Sli
 from aboutus.models import AboutUsGeneral , AboutUsProgressBar , AboutUsProperty
 from contactus.models import Newsletter , ContactUsKeeper 
 from product.models import Product,Category,Comment,Color,GalleryImage,Size,TagProduct
+from cart.models import Order , OrderDetail
 from .forms import ProductForm , ColorForm , SizeForm , GalleryImageForm
 from account.models import Profile,User
 # Create your views here.
@@ -27,6 +28,7 @@ class NavOneCreateView(CreateView):
         return super().form_valid(form)
 
 class NavOneListView(ListView):
+
     model = NavOne
     template_name = 'cms/nav/nav_list.html'
     context_object_name = 'navsone'
@@ -612,7 +614,6 @@ class CommentView(UpdateView):
         messages.success(self.request,'با موفقیت ویرایش شد')
         return super().form_valid(form)
 
-
 class CommentDeleteView(View):
     def get(self, request, *args, **kwargs):
         Comment.objects.get(id=kwargs['pk']).delete()
@@ -621,12 +622,10 @@ class CommentDeleteView(View):
 #--------------End----------Comment--------------
 
 #-------------Start---------Profile----------------
-
 class ProfileListView(ListView):
     model = Profile
     template_name = 'cms/user/ProfleList.html'
     context_object_name = 'users'
-
 
 class ProfileView(UpdateView):
     model = Profile
@@ -699,3 +698,69 @@ class UserDeleteView(View):
         messages.success(self.request,'با موفقیت حذف شد')
         return redirect("cms:UserListView")
 #------------End-----------User-------------------
+
+#--------------Start----------Order--------------
+class OrderListView(ListView):
+    model = Order
+    template_name = 'cms/order/order_list.html'
+    context_object_name = 'order_list'
+
+class OrderView(UpdateView):
+    model = Order
+    template_name = 'cms/order/order_detail.html'
+    context_object_name = 'order'
+    fields="__all__"
+    success_url = reverse_lazy("cms:order_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class OrderCreateView(CreateView):
+    model = Order
+    fields = "__all__"
+    template_name = 'cms/order/add_order.html'
+    success_url = reverse_lazy("cms:order_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class OrderDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        Order.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:order_list")
+#--------------End----------Order--------------
+
+#--------------Start----------OrderDetail--------------
+class OrderDetailListView(ListView):
+    model = OrderDetail
+    template_name = 'cms/orderdetail/orderdetail_list.html'
+    context_object_name = 'orderdetail_list'
+
+class OrderDetailView(UpdateView):
+    model = OrderDetail
+    template_name = 'cms/orderdetail/orderdetail_detail.html'
+    context_object_name = 'orderdetail'
+    fields="__all__"
+    success_url = reverse_lazy("cms:orderdetail_list")
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ویرایش شد')
+        return super().form_valid(form)
+
+class OrderDetailCreateView(CreateView):
+    model = OrderDetail
+    fields = "__all__"
+    template_name = 'cms/orderdetail/add_orderdetail.html'
+    success_url = reverse_lazy("cms:orderdetail_list")
+
+    def form_valid(self,form):
+        messages.success(self.request,'با موفقیت ثبت شد')
+        return super().form_valid(form)
+
+class OrderDetailDeleteView(View):
+    def get(self, request, *args, **kwargs):
+        OrderDetail.objects.get(id=kwargs['pk']).delete()
+        messages.success(self.request,'با موفقیت حذف شد')
+        return redirect("cms:orderdetail_list")
+#--------------End----------OrderDetail--------------

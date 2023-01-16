@@ -84,9 +84,9 @@
     <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'assets/js/wow.js' %}"></script>
     <script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
+    {% block js %}{% endblock js %}
     <script src="{% static 'assets/js/custom.js' %}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {% block js %}{% endblock js %}
 
     <!-- Initializing the slider -->
     <script>
@@ -150,7 +150,9 @@
             })
         }
         if (b == null || b == undefined){
-            document.cookie = "OrderDetail={};path=/;";
+            var now = new Date();
+            now.setTime(now.getTime() + 1 * 3600 * 1000);
+            document.cookie = "OrderDetail={};path=/;expires=" + now.toUTCString() + ";";
             alert('ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ')
         }
     </script>
