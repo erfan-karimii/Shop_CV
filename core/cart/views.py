@@ -173,5 +173,7 @@ def how_user_pay(request):
         messages.error(request,'متاسفانه مشکلی پیش امده است لطفا دوباره امتحان کنید.')
         return redirect('cart:check_out')
 
+def open_old_cart(request):
+    return render(request,'old_cart.html',{})
     
 
