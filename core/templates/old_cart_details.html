@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cart_tags %}
+
+{% block body %}
+<!-- breadcrumb -->
+<div class="full-row bg-light py-5">
+    <div class="container">
+        <div class="row text-secondary">
+            <div class="col-sm-6">
+                <h3 class="mb-2 text-secondary font-large">تاریخچه خرید شما</h3>
+            </div>
+            <div class="col-sm-6">
+                <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
+                    <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
+                        <li class="breadcrumb-item"><a href="/">خانه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'cart:open_old_cart' %}" >سبد خریدهای بسته شده</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">جزییات خرید</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb -->
+
+<!--==================== Cart Section Start ====================-->
+<div class="full-row">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 col-lg-12 col-md-12 col-12">
+                <table class="shop_table cart">
+                    <tr>
+                        <th class="product-thumbnail">&nbsp;</th>
+                        <th class="product-name">نام کالا</th>
+                        <th class="product-price">رنگ</th>
+                        <th class="product-price">سایز</th>
+                        <th class="product-price">قیمت</th>
+                        <th class="product-quantity">تعداد</th>
+                        <th class="product-subtotal">مبلغ</th>
+                    </tr>
+                    {% for det in details %}
+                        <form class="woocommerce-cart-form" action="{% url 'cart:update_In_open_order' %}" method="post">
+                            {% csrf_token %}
+                            <tr class="woocommerce-cart-form__cart-item cart_item">
+                                <td class="product-thumbnail">
+                                    <a href="{% url 'product:detailview' det.product.id %}"><img src="{{det.product.image.url}}" alt="Product image"></a>
+                                </td>
+                                <td class="product-name">
+                                    <a href="{% url 'product:detailview' det.product.id %}" >{{det.product.name}}</a>
+                                </td>
+                                <td class="product-price" style="background-color:{{det.color}}">
+                                    <span><bdi><span>{{det.color}}</span></bdi>
+                                    </span>
+                                </td>
+                                <td class="product-price">
+                                    <span><bdi>{{det.size}}<span></span></bdi>
+                                    </span>
+                                </td>
+                                <td class="product-price">
+                                    <span><bdi>{{det.price}}<span> تومان</span></bdi>
+                                    </span>
+                                </td>
+                                <td class="product-price">
+                                    <span><bdi>{{det.orderdetail_count}}<span></span></bdi>
+                                    </span>
+                                </td>
+                                <td class="product-subtotal">
+                                    <span><bdi>{% widthratio det.price 1 det.orderdetail_count %}<span> تومان</span></bdi>
+                                    </span>
+                                </td>
+                            </tr>
+                        </form>
+                    {% endfor %} 
+                </table>
+            </div>
+            <div class="col-xl-3 col-lg-12 col-md-12 col-12">
+                <div class="cart-collaterals">
+                    <div class="cart_totals ">
+                        <table>
+                            <tr class="order-total">
+                                <th>به نام</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>{{order.full_name}}<span></span></bdi></span></strong> </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>جمع نهایی</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>{{total}}<span> تومان</span></bdi></span></strong> </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>شماره تماس</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>{{order.phone_number}}<span></span></bdi></span></strong> </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>تاریخ پرداخت</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>{{order.payment_date.year}}-{{order.payment_date.month}}-{{order.payment_date.day}}<span></span></bdi></span></strong> </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>ادرس</th>
+                                <td><strong><span class="woocommerce-Price-amount amount"><bdi>{{order.address}}<span></span></bdi></span></strong> </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== Cart Section End ====================-->
+{% include 'layout/newsletter.html' %}
+{% endblock %}

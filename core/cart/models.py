@@ -22,8 +22,6 @@ class Order(models.Model):
     is_paid = models.BooleanField(default=False)
     payment_date = models.DateTimeField(blank=True,null=True)
 
-
-
     def get_total_price(self):
         amount = 0 
         for detail in self.orderdetail_set.all():

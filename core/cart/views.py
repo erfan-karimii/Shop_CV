@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.http import JsonResponse , HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum ,F
 import json
 import copy
 import datetime
@@ -173,7 +174,23 @@ def how_user_pay(request):
         messages.error(request,'متاسفانه مشکلی پیش امده است لطفا دوباره امتحان کنید.')
         return redirect('cart:check_out')
 
+@login_required(login_url='account:login')
 def open_old_cart(request):
-    return render(request,'old_cart.html',{})
-    
+    user = request.user
+    carts = Order.objects.filter(is_paid=True,owner=user)
+    context = {
+        'carts' : carts,
+    }
+    return render(request,'old_cart.html',context)
 
+@login_required(login_url='account:login')
+def open_old_orderdetail(request,id):
+    order = Order.objects.get(id=id,is_paid=True)
+    orderdetails = OrderDetail.objects.filter(order=order)
+    total = orderdetails.aggregate(total_price=Sum(F('price') * F('orderdetail_count')))
+    context = {
+        'order' : order,
+        'details' : orderdetails,
+        'total' : total['total_price'],
+    }
+    return render(request,'old_cart_details.html',context)

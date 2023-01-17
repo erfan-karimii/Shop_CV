@@ -8,14 +8,14 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-12">
-                <h3 class="mb-2 font-large">نمای تمام صفحه</h3>
+                <h3 class="mb-2 font-large">تاریخچه خرید شما</h3>
             </div>
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
                         <li class="breadcrumb-item"><a href="/">خانه</a></li>
-                        <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">نمای تمام صفحه</li>
+                        <li class="breadcrumb-item"><a href="{% url 'cart:user_open_order' %}">سبدخرید</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">سبد خریدهای بسته شده</li>
                     </ol>
                 </nav>
             </div>
@@ -30,58 +30,25 @@
             <div class="col-12">
                 <div class="showing-products pt-30 pb-50 border-2 border-bottom border-light">
                     <div class="row row-cols-xl-5 row-cols-md-3 row-cols-sm-2 row-cols-1 product-style-3 e-hover-image-zoom e-image-bg-light g-4">
+                        {% for cart in carts %}
                         <div class="col">
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/images/products/squire-79.png' %}" alt="Product Image"></a>
-                                        <div class="product-variations">
-                                            <span class="active"><a href="#" style="background-color: #b78269;"></a></span>
-                                            <span><a href="#" style="background-color: #f1cc4e;"></a></span>
-                                            <span><a href="#" style="background-color: #31749e;"></a></span>
-                                            <span><a href="#" style="background-color: #672a4f;"></a></span>
-                                        </div>
-                                        <div class="product-labels">
-                                            <div class="shape1-badge3"><span>جدید</span></div>
-                                        </div>
+                                        <a href="{% url 'cart:open_old_orderdetail' cart.id %}" class="woocommerce-LoopProduct-link"><img src="{% static 'assets/img/cart2.png' %}" alt="Product Image"></a>
                                     </div>
                                     <div class="product-info">
-                                        <div class="product-cats"><a href="#">پوشاک مردانه</a></div>
-                                        <h3 class="product-title"><a href="#">هودی مردانه به رسم طرح یوونتوس</a></h3>
+                                        <h3 class="product-title"><a href="#">به نام :{{cart.full_name}}</a></h3>
                                         <div class="product-price">
                                             <div class="price">
-                                                <ins>295000 - 685000 تومان</ins>
-                                            </div>
-                                        </div>
-                                        <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>12000 تومان</span> </div>
-                                        <div class="shipping-feed-back">
-                                            <div class="star-rating">
-                                                <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.85</span></a>
-                                                </div>
-                                                <div class="rating-counts-wrap">
-                                                    <a href="#">(132)</a>
-                                                </div>
-                                            </div>
-                                            <div class="sold-items">
-                                                <span>326</span> <span>فروش</span>
-                                            </div>
-                                        </div>
-                                        <div class="hover-area">
-                                            <div class="cart-button">
-                                                <a href="#" class="button add_to_cart_button">افزودن به سبد خرید</a>
-                                            </div>
-                                            <div class="wishlist-button">
-                                                <a class="add_to_wishlist" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">افزودن به علاقه مندی</a>
-                                            </div>
-                                                <div class="compare-button">
-                                                <a class="compare button" href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="مقایسه" aria-label="Compare">مقایسه</a>
+                                                {{cart.payment_date.year}}-{{cart.payment_date.month}}-{{cart.payment_date.day}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
