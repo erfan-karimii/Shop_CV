@@ -74,11 +74,11 @@ def add_user_order(request):
         return redirect('/')
 
 def user_open_order(request):
-
     total_price = 0
     details = json.loads(request.COOKIES['OrderDetail'])
     for det in details:
         id = details[det]['id']
+        print(id)
         product = Product.objects.get(id=id)
         if details[det]['count'] > product.product_count:
             details[det]['count'] = product.product_count
@@ -116,8 +116,6 @@ def update_In_open_order(request):
             messages.error(request, 'متاسقانه مشکلی پیش امئه است لطفا دوباره امتحان کنید.')
             return redirect('/cart/')
         
-        
-        total_price = total_priceCA(product_id,color,size)
 
         x = request.COOKIES['OrderDetail']
         jsonstyle = json.loads(x)
@@ -146,13 +144,16 @@ def how_user_pay(request):
     if payment_method == 'cash':
         c = request.COOKIES['OrderDetail']
         cookie = json.loads(c)
-        o = request.COOKIES['Order']
+
+        order_id = request.COOKIES['Order']
         full_name = request.POST.get('full_name')
         address = request.POST.get('address')
         phone_number = request.POST.get('phone_number')
+
         if not full_name or not address or not phone_number:
             return redirect('/')
-        order = Order.objects.create(id=o,owner=request.user,full_name=full_name,address=address,\
+        
+        order = Order.objects.create(id=order_id,owner=request.user,full_name=full_name,address=address,\
             phone_number=phone_number,is_paid=True,payment_date=datetime.datetime.now())
         for key , value in cookie.items():
             product = Product.objects.get(id=value['id'])
@@ -163,13 +164,22 @@ def how_user_pay(request):
                 size=value['size'],orderdetail_count=value['count'])
 
         messages.success(request,'خرید شما با موفقیت انجام شد.')
-        response = redirect('home:home')
+        response = redirect('cart:home')
         response.set_cookie('OrderDetail',{},72*60*60)
         response.delete_cookie('Order')
         return response
 
     elif payment_method == 'pay_online':
-        return HttpResponse('done')
+        full_name = request.POST.get('full_name')
+        address = request.POST.get('address')
+        phone_number = request.POST.get('phone_number')
+        if not full_name or not address or not phone_number:
+            return redirect('/')
+        information = {"address":address,"full_name":full_name,"phone_number":phone_number}
+        jsonstyle = json.dumps(information)
+        response = redirect('zarinpal:request')
+        response.set_cookie('information',jsonstyle,72*60*60)
+        return response
     else : 
         messages.error(request,'متاسفانه مشکلی پیش امده است لطفا دوباره امتحان کنید.')
         return redirect('cart:check_out')
@@ -177,7 +187,7 @@ def how_user_pay(request):
 @login_required(login_url='account:login')
 def open_old_cart(request):
     user = request.user
-    carts = Order.objects.filter(is_paid=True,owner=user)
+    carts = Order.objects.filter(is_paid=True,owner=user).order_by('-payment_date')
     context = {
         'carts' : carts,
     }

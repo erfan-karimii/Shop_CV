@@ -18,11 +18,11 @@ def index_view(request):
         'tabligh_left':Tabligh.objects.filter(diraction='left').last(),
         'tabligh_right2':Tabligh.objects.filter(diraction='right2').last(),
         'SiteSetting':SiteSetting.objects.filter(active=True).last(),
-        'latest_products' : Product.objects.filter(is_active=True).order_by('-created'),
-        'pants' : Product.objects.filter(category__name = 'شلوار'),
-        'shirts' : Product.objects.filter(category__name = 'پیراهن'),
-        'man_clothes' : Product.objects.filter(category__name = 'لباس مردانه'),
-        'woman_clothes' : Product.objects.filter(category__name = 'لباس زنانه'),
+        'latest_products' : Product.objects.filter(is_active=True).order_by('-instock','-created'),
+        'pants' : Product.objects.filter(category__name = 'شلوار').order_by('-instock'),
+        'shirts' : Product.objects.filter(category__name = 'پیراهن').order_by('-instock'),
+        'man_clothes' : Product.objects.filter(category__name = 'لباس مردانه').order_by('-instock'),
+        'woman_clothes' : Product.objects.filter(category__name = 'لباس زنانه').order_by('-instock'),
         'on_sale_section' : OnSale.objects.filter(is_show=True).last(),
     }
     return render(request,'index.html',context)

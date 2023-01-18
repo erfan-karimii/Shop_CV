@@ -29,6 +29,7 @@ urlpatterns = [
     path('',include('contactus.urls')),
     path('cms/', include('cms.urls')),
     path('', include('cart.urls')),
+    path('', include('zarinpal.urls')),
 
 ]
 
