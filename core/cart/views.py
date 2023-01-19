@@ -1,7 +1,6 @@
-from django.shortcuts import render,get_object_or_404,redirect
+from django.shortcuts import render,redirect
 from django.contrib import messages
-from django.utils import timezone
-from django.http import JsonResponse , HttpResponse
+from django.http import JsonResponse , Http404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum ,F
 import json
@@ -27,13 +26,15 @@ def total_priceCA(product_id,color,size):
         x = product.color_set.get(color=color)
         price_color = x.Ekhtelaf
     except:
-        pass
+        if product.orgin_color != color:
+            raise Http404
     price_size = 0
     try:
         x = product.size_set.get(size=size)
         price_size = x.Ekhtelaf
     except:
-        pass
+        if product.orgin_size != size:
+            raise Http404
     return price_color + price_size + product.main_discount_call()
 
 def add_user_order(request):

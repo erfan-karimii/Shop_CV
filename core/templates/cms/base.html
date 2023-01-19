@@ -42,21 +42,14 @@
         </div>
         <div class="sidebar-user-pro media border-end">                    
             <div class="position-relative mx-auto">
-                <img src="{% static 'assets2/images/users/user-4.jpg' %}" alt="کاربر" class="rounded-circle thumb-md">
                 <span class="online-icon position-absolute end-0"><i class="mdi mdi-record text-success"></i></span>
             </div>
             <div class="media-body ms-2 user-detail align-self-center">
                 <h5 class="font-14 m-0 fw-bold">admin</h5>  
-                <p class="opacity-50 mb-0">mohamadi@example.com</p>          
+                <p class="opacity-50 mb-0">{{request.user.profile_set.last.email}}</p>          
             </div>                    
         </div>
-        <div class="border-end">
-            <ul class="nav nav-tabs menu-tab nav-justified" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#Main" role="tab" aria-selected="true">اصلی</span></a>
-                </li>
-            </ul>
-        </div>
+
         <!-- Tab panes -->
 
         <!--end logo-->
@@ -202,205 +195,15 @@
         <nav class="navbar-custom" id="navbar-custom">    
             <ul class="list-unstyled topbar-nav float-end mb-0">
                 <li class="dropdown">
-                    <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
-                    aria-haspopup="false" aria-expanded="false">
-                    <img src="{% static 'assets2/images/flags/us_flag.jpg' %}" alt="" class="thumb-xxs rounded">
-                </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#"><img src="{% static 'assets2/images/flags/us_flag.jpg' %}" alt="" height="15" class="me-2">فارسی</a>
-                        <a class="dropdown-item" href="#"><img src="{% static 'assets2/images/flags/spain_flag.jpg' %}" alt="" height="15" class="me-2">اسپانیایی</a>
-                        <a class="dropdown-item" href="#"><img src="{% static 'assets2/images/flags/germany_flag.jpg' %}" alt="" height="15" class="me-2">آلمانی</a>
-                        <a class="dropdown-item" href="#"><img src="{% static 'assets2/images/flags/french_flag.jpg' %}" alt="" height="15" class="me-2">فرانسوی</a>
-                    </div>
-                </li><!--end topbar-language-->
-            
-                <li class="dropdown notification-list">
-                    <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="false" aria-expanded="false">
-                        <i class="ti ti-mail"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
-                
-                        <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
-                            ایمیل ها<span class="badge bg-soft-primary badge-pill">3</span>
-                        </h6> 
-                        <div class="notification-menu" data-simplebar>
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">2 دقیقه قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <img src="{% static 'assets2/images/users/user-1.jpg' %}" alt="" class="thumb-sm rounded-circle">
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">سفارش شما ثبت شد</h6>
-                                        <small class="text-muted mb-0">متن ساختگی چاپ و صنعت.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">10 دقیقه قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <img src="{% static 'assets2/images/users/user-4.jpg' %}" alt="" class="thumb-sm rounded-circle">
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">دیدار با طراحان</h6>
-                                        <small class="text-muted mb-0">این یک واقعیت ثابت طولانی مدت است که یک خواننده.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">40 دقیقه قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <img src="{% static 'assets2/images/users/user-2.jpg' %}" alt="" class="thumb-sm rounded-circle">
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">کار UX 3 تکمیل شد.</h6>
-                                        <small class="text-muted mb-0">متن ساختگی چاپ.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">1 ساعت قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <img src="{% static 'assets2/images/users/user-5.jpg' %}" alt="" class="thumb-sm rounded-circle">
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">سفارش شما ثبت شد</h6>
-                                        <small class="text-muted mb-0">این یک واقعیت ثابت طولانی مدت است که یک خواننده.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">2 ساعت قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <img src="{% static 'assets2/images/users/user-3.jpg' %}" alt="" class="thumb-sm rounded-circle">
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">پرداخت با موفقیت انجام شد</h6>
-                                        <small class="text-muted mb-0">متن ساختگی چاپ.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                        </div>
-                        <!-- All-->
-                        <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-                            مشاهده همه <i class="fi-arrow-right"></i>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="dropdown notification-list">
-                    <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="false" aria-expanded="false">
-                        <i class="ti ti-bell"></i>
-                        <span class="alert-badge"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
-                
-                        <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
-                            اعلان ها <span class="badge bg-soft-primary badge-pill">2</span>
-                        </h6> 
-                        <div class="notification-menu" data-simplebar>
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">2 دقیقه قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <i class="ti ti-chart-arcs"></i>
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">سفارش شما ثبت شد</h6>
-                                        <small class="text-muted mb-0">متن ساختگی چاپ و صنعت.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">10 دقیقه قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <i class="ti ti-device-computer-camera"></i>
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">دیدار با طراحان</h6>
-                                        <small class="text-muted mb-0">این یک واقعیت ثابت طولانی مدت است که یک خواننده.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">40 دقیقه قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">                                                    
-                                        <i class="ti ti-diamond"></i>
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">کار UX 3 تکمیل شد.</h6>
-                                        <small class="text-muted mb-0">متن ساختگی چاپ.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">1 ساعت قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <i class="ti ti-drone"></i>
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">سفارش شما ثبت شد</h6>
-                                        <small class="text-muted mb-0">این یک واقعیت ثابت طولانی مدت است که یک خواننده.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                            <!-- item-->
-                            <a href="#" class="dropdown-item py-3">
-                                <small class="float-end text-muted ps-2">2 ساعت قبل</small>
-                                <div class="media">
-                                    <div class="avatar-md bg-soft-primary">
-                                        <i class="ti ti-users"></i>
-                                    </div>
-                                    <div class="media-body align-self-center ms-2 text-truncate">
-                                        <h6 class="my-0 fw-normal text-dark">پرداخت با موفقیت انجام شد</h6>
-                                        <small class="text-muted mb-0">متن ساختگی چاپ.</small>
-                                    </div><!--end media-body-->
-                                </div><!--end media-->
-                            </a><!--end-item-->
-                        </div>
-                        <!-- All-->
-                        <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-                            مشاهده همه <i class="fi-arrow-right"></i>
-                        </a>
-                    </div>
-                </li>
-
-                <li class="dropdown">
-                    <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                    <a class="nav-link nav-user" data-bs-toggle="dropdown" href="#" role="button"
                         aria-haspopup="false" aria-expanded="false">
                         <div class="d-flex align-items-center">
-                            <img src="{% static 'assets2/images/users/user-4.jpg' %}" alt="profile-user" class="rounded-circle me-2 thumb-sm" />
                             <div>
                                 <small class="d-none d-md-block font-11">ادمین</small>
-                                <span class="d-none d-md-block fw-semibold font-12">پریسا محمدی<i
-                                        class="mdi mdi-chevron-down"></i></span>
+                                <span class="d-none d-md-block fw-semibold font-12">{{request.user.profile_set.last.full_name}}</span>
                             </div>
                         </div>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end">
-                        <a class="dropdown-item" href="#"><i class="ti ti-user font-16 me-1 align-text-bottom"></i> نمایه</a>
-                        <a class="dropdown-item" href="#"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> تنظیمات</a>
-                        <div class="dropdown-divider mb-0"></div>
-                        <a class="dropdown-item" href="#"><i class="ti ti-power font-16 me-1 align-text-bottom"></i> خروج </a>
-                    </div>
                 </li><!--end topbar-profile-->
                 <li class="notification-list">
                     <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#Appearance" role="button" aria-controls="Rightbar">
@@ -424,7 +227,6 @@
     {% block body %}{% endblock body %}
     
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    {% comment %} <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> {% endcomment %}
     <script>
         {% for message in messages %}
             {% if message.level == 40 %}
@@ -441,15 +243,16 @@
         {% endfor %}
     </script>
     <script src="{% static 'assets2/js/app.js' %}"></script>
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.3/highlight.min.js"></script>
+    <script type="text/javascript" src="{% static "assets2/js/ckeditor/ckeditor.js" %}"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace("id_info");
+    </script>
+
+    {% comment %} <script type="text/javascript" src="{% static "assets2/js/ckeditor/ckeditor.js.map" %}"></script> {% endcomment %}
+
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="//cdn.ckeditor.com/4.15.1/basic/ckeditor.js"></script>
     <script src="{% static 'assets2/js/jquery.min.js' %}"></script>
     {% block js %}{% endblock js %}
 </body>
 
-
-<!-- Mirrored from digi-root.ir/Unikit_RTL/forms-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 17 Sep 2022 08:48:47 GMT -->
-</html>

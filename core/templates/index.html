@@ -342,13 +342,13 @@
                                         <div class="shipping-feed-back">
                                             <div class="star-rating">
                                                 <div class="rating-wrap">
-                                                    <a href="#"><i class="fas fa-star"></i><span> 4.9</span></a>
+                                                    <a href="#"><i class="fas fa-star"></i><span id='modal-avg-stars'></span></a>
                                                 </div>
                                                 <div class="rating-counts-wrap">
-                                                    <a href="#">(543)</a>
+                                                    <a href="#" id='modal-comment-count'>(543)</a>
                                                 </div>
                                             </div>
-                                            <div class="sold-items"><span>142</span> <span> فروش</span></div>
+                                            <div class="sold-items"><span id='modal-sell-count'></span> <span> فروش</span></div>
                                         </div>
                                         <h5 class="text-secondary my-3">توضیحات</h5>
                                         <p id="modal-info">
@@ -381,7 +381,8 @@ $(document).ready(function(){
         id = $(this).data('id')
         $.ajax({
             type : 'GET',
-            url : `/quick/${id}`,
+            url : '/quick/',
+            data: {'id':id}
             dataType : 'json',
 
             success : function (data) {
@@ -389,7 +390,10 @@ $(document).ready(function(){
                 $('#modal-category').text(data.category)
                 $('#modal-price').text(`${data.price} تومان`)
                 $('#modal-info').html(data.info)
-                $('#modal-moreinfo-href').attr('href',`/det/${data.id}/`)
+                $('#modal-avg-stars').text(data.stars)
+                $('#modal-sell-count').text(data.sell_count)
+                $('#modal-comment-count').text('('+data.comments_count+')')
+                $('#modal-moreinfo-href').attr('href',`/detail/${data.id}/`)
             },  
             error: function(data){
                 alert('error')

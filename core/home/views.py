@@ -1,13 +1,15 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse 
-from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishList
-from product.models import Product ,Category
-from account.models import Profile
 from django.contrib import messages
-from cart.models import OrderDetail
-from django.db.models import Sum
+from django.http import JsonResponse 
+from django.db.models import Sum , Avg
 import json
+
+from .models import SiteSetting,NavOne,Slider,Tabligh,FooterOne , OnSale , WishList
+from product.models import Product ,Category , Comment
+from account.models import Profile
+from cart.models import OrderDetail
+
 
 # Create your views here.
 
@@ -54,8 +56,16 @@ def footer_view(request):
     }
     return render(request,'layout/footer.html',context)
 
-def quick_view(request,id):
+def quick_view_ajax(request):
+    id = request.GET.get('id')
     product = Product.objects.get(id=id)
+    comments = Comment.objects.filter(is_show=True,product_id=id)
+    comments_count = comments.count()
+    avg_star = comments.aggregate(Avg('point')).get('point__avg')
+    stars = avg_star if avg_star is not None else 0
+    orderdetail = OrderDetail.objects.filter(product_id=id).values_list('orderdetail_count',flat=True)
+    orderdetail = orderdetail.aggregate(Sum('orderdetail_count'))
+    sell_count= orderdetail['orderdetail_count__sum'] if orderdetail['orderdetail_count__sum'] is not None else 0
     context = {
         'id' : product.id,
         'category' : product.category.name,
@@ -63,6 +73,9 @@ def quick_view(request,id):
         'price' : product.main_discount_call(),
         'info' : product.info[:360],
         'image' : product.image.url,
+        'stars' : stars,
+        'sell_count':sell_count,
+        'comments_count':comments_count,
     }
     return  JsonResponse(context)
 
@@ -83,7 +96,6 @@ def add_to_wishlist_ajax(request,user,product_id,color,size):
     profile = Profile.objects.get(user__phone_number=user)
     state = WishList.objects.get_or_create(product=product,account=profile,color="#"+color,size=size)
     return JsonResponse({"state":state[1]})
-
 
 @login_required(login_url='/account/login/')
 def wishlist_view(request):

@@ -2,3 +2,4 @@ static/
 thumnail/
 *.pyc
 *.pyo
+*.sqlite

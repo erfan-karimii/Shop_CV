@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,6 +45,7 @@ INSTALLED_APPS = [
     'aboutus',
     'contactus',
     'cart',
+    'cms',
 
     #-----------package--------
     'ckeditor',
