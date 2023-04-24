@@ -1,5 +1,7 @@
 static/
-thumnail/
+thumbnail/
 *.pyc
 *.pyo
 *.sqlite
+htmlcov
+.coverage

@@ -5,6 +5,6 @@ app_name='product'
 
 urlpatterns = [
     path('listview/',listview,name='listview'),
-    path('detail/<id>/',detailview,name='detailview'),
+    path('detail/<int:id>/',detailview,name='detailview'),
     path('search/',SearchView,name='SearchView')
 ]
