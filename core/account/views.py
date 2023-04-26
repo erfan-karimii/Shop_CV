@@ -3,6 +3,7 @@ from .forms import PhoneNumber
 from kavenegar import *
 from django.contrib.auth import get_user_model
 import random
+import string
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -29,6 +30,7 @@ def send_sms_test(request):
             else:
                 MyUser.objects.create(phone_number=phone_number,token=number)
             print(number)
+
             # api = KavenegarAPI('4D526E3432522F42744D47414B3845436D59734377572B71645A455565644575')
             # params = { 'sender' : '10000080808880', 'receptor': f'{phone_number}', 'message' :f'{number}' }
             # try:
@@ -63,7 +65,8 @@ def VerifyChecked(request):
         else :
             messages.error(request,'کدارسالی را درست وارد کنید')
             return redirect('account:verify')
-    return render(request,'account/verify.html')
+    else:
+        return render(request,'account/verify.html')
 
 
 def ComplateProfile(request):
@@ -73,7 +76,7 @@ def ComplateProfile(request):
         except KeyError:
             messages.error(request,'زمان احراز هویت شما به پایان رسیده است ')
             return redirect('account:registerView')
-        password = request.POST.get('password')
+        password = request.POST.get('password','@#$12345random%^&*1234')
         MyUser.objects.filter(phone_number=phone_c).update(
             password=make_password(password)
         )
@@ -82,14 +85,11 @@ def ComplateProfile(request):
         if user.is_verified:
             login(request, user)
             return redirect('/')
-    elif request.method == "GET":
+    else:
         return render(request,'account/complateprofile.html',{})
 
 
-# def respass(request):
-#     return render(request,'account/eghdam.html')
-
-
+# TODO : use kavenegar api
 def SendSmsReset(request):
     number = random.randint(1000, 9999)
     print(number)
@@ -115,10 +115,6 @@ def SendSmsReset(request):
     response = render(request,'account/verify2.html')
     response.set_cookie('phone_number_cookie',phone_number,1000)
     return response
-
-
-# def ResetProfileView(request):
-#     return render(request,'account/ResetPasswordView.html',{})
 
 
 def ResetProfile(request):

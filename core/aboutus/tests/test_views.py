@@ -10,8 +10,8 @@ class TestAboutUsView(TestCase):
     def test_get_url(self):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code,200)
-        self.assertTrue('AboutUsGeneral' in resp.context)
-        self.assertTrue('AboutUsProperty' in resp.context)
-        self.assertTrue('AboutUsProgressBar' in resp.context)
+        self.assertIn('AboutUsGeneral' , resp.context)
+        self.assertIn('AboutUsProperty' , resp.context)
+        self.assertIn('AboutUsProgressBar' , resp.context)
         self.assertTemplateUsed('about.html')
 
