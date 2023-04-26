@@ -1,8 +1,7 @@
 from django.test import TestCase , Client
 from django.urls import reverse
-from product.models import Product , Comment , Category
+from product.models import Product , Category
 from model_bakery import baker
-
 
 class TestListView(TestCase):
     def setUp(self):
@@ -14,6 +13,7 @@ class TestListView(TestCase):
         self.assertEqual(response.context['number'],'2')
         self.assertEqual(response.context['op'],'-created')
         self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'listview.html')
     
     def test_listview_with_kwargs_none_value(self):
         url = self.url + '?show-number=&orderby='
@@ -33,7 +33,6 @@ class TestListView(TestCase):
         self.assertEqual(response.context['number'],'3')
         self.assertEqual(response.context['op'],'-price')
 
-
 class TestDetailView(TestCase):
     def setUp(self):
         self.client = Client()
@@ -43,8 +42,8 @@ class TestDetailView(TestCase):
         baker.make(Product,info='test', _fill_optional=True, _create_files=True)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'detailview.html')
 
-      
 class TestSearchView(TestCase):
     
     def setUp(self):
@@ -61,6 +60,7 @@ class TestSearchView(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertEqual(Category.objects.count(),2)
         self.assertEqual(Product.objects.count(),3)
+        self.assertTemplateUsed(response, 'search_listview.html')
 
     
     def test_searchview_right_kwargs(self):
@@ -72,7 +72,4 @@ class TestSearchView(TestCase):
 
         response = self.client.get(self.url + '?search=A&category=2')
         self.assertEqual(response.context['posts'].count(),1)
-    
-
-
 

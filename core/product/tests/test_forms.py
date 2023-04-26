@@ -59,12 +59,7 @@ class TestDetailViewCommentFormWithSelenium(StaticLiveServerTestCase):
         cls.selenium.implicitly_wait(10)
         baker.make(Product,info='test',_fill_optional=True, _create_files=True)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super().tearDownClass()
-
-    def test_login(self):
+    def test_comment_by_selenium(self):
         self.selenium.get(f"{self.live_server_url}/detail/1")
         Alert(self.selenium).accept()
         self.selenium.find_element('id','id_username').send_keys("erfan")
@@ -75,3 +70,7 @@ class TestDetailViewCommentFormWithSelenium(StaticLiveServerTestCase):
         self.selenium.execute_script("arguments[0].click();", element)
         self.assertEqual(Comment.objects.count(),1)
 
+    @classmethod
+    def tearDownClass(cls):
+        cls.selenium.quit()
+        super().tearDownClass()
