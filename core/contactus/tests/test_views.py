@@ -19,7 +19,7 @@ class TestValidateContactUsView(TestCase):
         self.url = reverse('contactus:save-contact-us')
     
     def test_validate_contact_us(self):
-        resp = self.client.post(self.url,data={'full_name':'ali alizade', 'email':"test@test.com", 'subject':'test','message':'this is test'})
+        resp = self.client.post(self.url,data={'full_name':'Feez Baaz', 'email':"test@test.com", 'subject':'test','message':'this is test'})
         self.assertEqual(ContactUsKeeper.objects.count(),1)
         self.assertEqual(resp.status_code,302)
         self.assertRedirects(resp, '/contact-us/', status_code=302,target_status_code=200)
