@@ -13,5 +13,5 @@ class TestAboutUsView(TestCase):
         self.assertIn('AboutUsGeneral' , resp.context)
         self.assertIn('AboutUsProperty' , resp.context)
         self.assertIn('AboutUsProgressBar' , resp.context)
-        self.assertTemplateUsed('about.html')
+        self.assertTemplateUsed(resp,'about.html')
 

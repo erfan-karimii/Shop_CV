@@ -1,9 +1,7 @@
 from django.shortcuts import render , redirect
 from django.contrib import messages
-from django.http import HttpResponseRedirect
 
 from home.models import SiteSetting
-from .models import ContactUsKeeper ,Newsletter
 from .forms import ContactUsKeeperForm , NewsletterForm
 
 # Create your views here.
@@ -34,4 +32,4 @@ def validate_newsletter(request):
                 messages.error(request, 'این ایمیل قبلا ثبت شده است')
             elif 'Enter a valid email address' in str(form.errors):                
                 messages.error(request, 'ظاهرا مشکلی پیش امده است لطفا دوباره امتحان کنید.')
-        return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+        return redirect(request.META.get('HTTP_REFERER', '/'))
