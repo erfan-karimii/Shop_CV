@@ -17,7 +17,6 @@ def registerView(request):
         return redirect('/')
     return render(request,'account/register.html',{})
 
-
 def send_sms_test(request):
     number = random.randint(1000, 99999)
     if request.method == "POST":
@@ -49,7 +48,6 @@ def send_sms_test(request):
     else :
         return redirect('account:registerView')
 
-
 def VerifyChecked(request):
     if request.method == "POST":
         token = request.POST.get('token')
@@ -68,7 +66,6 @@ def VerifyChecked(request):
     else:
         return render(request,'account/verify.html')
 
-
 def ComplateProfile(request):
     if request.method == "POST":
         try:
@@ -77,9 +74,9 @@ def ComplateProfile(request):
             messages.error(request,'زمان احراز هویت شما به پایان رسیده است ')
             return redirect('account:registerView')
         password = request.POST.get('password','@#$12345random%^&*1234')
-        MyUser.objects.filter(phone_number=phone_c).update(
-            password=make_password(password)
-        )
+        user = MyUser.objects.get(phone_number=phone_c)
+        user.set_password(password)
+        user.save()
         messages.success(request,'پروفایل شما با موفقیت ساخته شد')
         user = MyUser.objects.get(phone_number=phone_c)
         if user.is_verified:
@@ -100,22 +97,16 @@ def SendSmsReset(request):
         else:
             messages.error(request,"اطلاعات ورودی صحیح نمیباشد")
             return redirect('account:send2')
-        print(phone_number)
         if MyUser.objects.filter(phone_number=phone_number):
             MyUser.objects.filter(phone_number=phone_number).update(token=number)
+            response = render(request,'account/verify2.html')
+            response.set_cookie('phone_number_cookie',phone_number,1000)
+            return response
         else:
             messages.error(request,'شما هیج اکانتی ندارید')
             return redirect('account:send2')
     else:
         return render(request,'account/eghdam.html')
-
-    # api = KavenegarAPI('4D526E3432522F42744D47414B3845436D59734377572B71645A455565644575')
-    # params = {'sender' : '10000080808880', 'receptor': f'{phone}', 'message' :f'{number}' }
-    # api.sms_send( params)
-    response = render(request,'account/verify2.html')
-    response.set_cookie('phone_number_cookie',phone_number,1000)
-    return response
-
 
 def ResetProfile(request):
     if request.method == "POST":
@@ -131,7 +122,6 @@ def ResetProfile(request):
         )
         messages.success(request,'عملیات با موفقیت انجام شد')
     return redirect('/')
-
 
 def VerifyChecked2(request):
     if request.method == "POST":
@@ -149,7 +139,6 @@ def VerifyChecked2(request):
             messages.error(request,'!!! کدارسالی را درست وارد کنید')
             return redirect('account:changepass')
     return render(request,'account/ResetPasswordView.html')
-
 
 def Login(request):
     if request.user.is_authenticated:

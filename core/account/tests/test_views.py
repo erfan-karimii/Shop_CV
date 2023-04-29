@@ -15,7 +15,7 @@ class TestRegisterView(TestCase):
     def test_register_view_unauthenticated(self):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code,200)
-        self.assertTemplateUsed('account/register.html')
+        self.assertTemplateUsed(resp,'account/register.html')
     
     def test_register_view_authenticated(self):
         is_verified = self.client.login(phone_number='09123456789', password='1234')
@@ -50,7 +50,7 @@ class TestVerifyChecked(TestCase):
     def test_verify_checked_GET(self):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code,200)
-        self.assertTemplateUsed('account/verify.html')
+        self.assertTemplateUsed(resp,'account/verify.html')
 
     def test_verify_checked_POST_without_cookies(self):
         resp = self.client.post(self.url)
@@ -74,13 +74,12 @@ class TestCompeleteProfile(TestCase):
         self.client = Client()
         self.url = reverse('account:comp')
         self.cookie = SimpleCookie({'phone_number_cookie':'09123456789'})
-        user_model = get_user_model()
-        self.user = user_model.objects.create_user(phone_number='09123456789',password='old-password',is_verified=True)
+        self.user = get_user_model().objects.create_user(phone_number='09123456789',password='old-password',is_verified=True)
 
     def test_compelete_profile_GET(self):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code,200)
-        self.assertTemplateUsed('account/complateprofile.html')
+        self.assertTemplateUsed(resp,'account/complateprofile.html')
     
     def test_compelete_profile_POST_without_cookie(self):
         resp = self.client.post(self.url)
@@ -90,15 +89,28 @@ class TestCompeleteProfile(TestCase):
     def test_compelete_profile_POST_with_cookie_no_data(self):
         self.client.cookies = self.cookie
         resp = self.client.post(self.url)
+        self.assertRedirects(resp, '/', status_code=302,target_status_code=200)
+        self.assertTrue(self.user.check_password("old-password"))
+    
+    def test_compelete_profile_POST_with_cookie_and_data(self):
+        self.client.cookies = self.cookie
+        resp = self.client.post(self.url,data={'password':'new-password'})
         self.assertEqual(resp.status_code,302)
         self.assertRedirects(resp, '/', status_code=302,target_status_code=200)
-        print()
-        self.assertFalse(self.user.check_password("old-password"))
-    
-    # def test_compelete_profile_POST_with_cookie_no_data(self):
-    #     self.client.cookies = self.cookie
-    #     resp = self.client.post(self.url,data={'password':'new-password'})
-    #     self.assertEqual(resp.status_code,302)
-    #     self.assertRedirects(resp, '/', status_code=302,target_status_code=200)
-    #     self.assertNotEqual(self.user_model.objects.first().password,'new-password')
 
+class TestSendResetSMS(TestCase):
+    def setUp(self):
+        self.url = reverse('account:send2')
+        self.client = Client()
+        self.user = get_user_model().objects.create_user(phone_number='09123456789',password='old-password',is_verified=True)
+
+
+    def test_send_reset_sms_GET(self):
+        resp = self.client.get(self.url)
+        self.assertEqual(resp.status_code,200)
+        self.assertTemplateUsed(resp,'account/eghdam.html')
+    
+    def test_send_reset_sms_POST(self):
+        resp = self.client.post(self.url,data={'phone_number':'09123456789'})
+        self.assertEqual(resp.status_code,200)
+        self.assertTemplateUsed(resp,'account/verify2.html')
