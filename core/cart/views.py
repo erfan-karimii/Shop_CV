@@ -66,11 +66,10 @@ def add_user_order(request):
 
         orderdetail.delete()
         jsonstyle2 = json.dumps(jsonstyle)
-        response = redirect('/cart')
+        response = redirect('/cart/')
         response.delete_cookie('OrderDetail')
         response.set_cookie('OrderDetail',jsonstyle2,172800)
         return response 
-
     else:
         return redirect('/')
 
@@ -79,7 +78,6 @@ def user_open_order(request):
     details = json.loads(request.COOKIES['OrderDetail'])
     for det in details:
         id = details[det]['id']
-        print(id)
         product = Product.objects.get(id=id)
         if details[det]['count'] > product.product_count:
             details[det]['count'] = product.product_count

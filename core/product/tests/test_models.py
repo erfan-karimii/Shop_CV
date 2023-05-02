@@ -59,3 +59,5 @@ class TestCommentModel(TestCase):
         
     def test_def_str(self):
         self.assertEqual(str(self.comment),"test")
+
+

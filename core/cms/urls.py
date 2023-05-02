@@ -73,6 +73,7 @@ urlpatterns = [
 
     #--------------- products -------------
     path('list/product/',views.ProductList.as_view(),name='product_list'),
+    path('',views.ProductList.as_view()),
     path('product/',views.ProductView.as_view(),name='product_view'),
     path('detail/product/<id>/',views.ProductDetail.as_view(),name='product_detail'),
     path('delete_product/<id>/',views.ProductDelete.as_view(),name='delete_product'),

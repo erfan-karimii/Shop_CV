@@ -58,8 +58,7 @@ class Product(models.Model):
 
     def main_discount_call(self):
         return int(self.price - (self.price * (self.discount/100)))
-
-
+    
     def save(self):
         self.instock = bool(self.product_count)
         super().save()  # saving image first
