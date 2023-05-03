@@ -25,7 +25,7 @@
 ## شروع-پروژه
 ```bash
 git clone https://github.com/erfan-karimii/Shop_CV
-cd yt_clone
+cd Shop_CV
 pip install -r requirment.txt
 cd core
 python manage.py runserver
