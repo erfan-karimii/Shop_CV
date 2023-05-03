@@ -36,20 +36,20 @@ python manage.py runserver
 ### حساب-کاربری
 برای ساخت حساب کاربری از احراز هویت با استفاده از شماره تلفن استفاده می  شود.
 
+<p align="center">
 <img src="./docs/login.png">
 <img src="./docs/sign-up.png" width="49%" height="100%">
 <img src="./docs/sign-up-auth-code.png" width="49%" height="100%">
+</p>
 
 ### سیستم-مدیریت-محتوا
 
 برای کنترل محتوای سایت ما یک سیستم کنترل محتوای اختصاصی نوشتیم که همه ی مراحل اضافه , اپدیت , حذف قسمت های مختلف سایت اعم از :محصولات , تبلیغات , فوتر , نوبار و ... را پوشش می دهد
 
-<p align="center">
 
 <img src="./docs/cms-create.png">
 <img src="./docs/cms-list.png">
 <img src="./docs/cms-update-&-delete.png">
-</p>
 
 
 ### سبد-خرید
