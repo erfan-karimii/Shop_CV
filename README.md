@@ -19,6 +19,7 @@
 <a href="https://www.djangoproject.com/" target="_blank"> <img src="./docs/django-plain.svg" alt="django" width="40" height="40"/> </a>
 <a href="https://www.selenium.dev/" target="_blank"> <img src="./docs/selenium-original.svg" alt="selenium" width="40" height="40"/> </a>
 <a href="https://sqlite.org/index.html" target="_blank"> <img src="./docs/sqlite-original.svg" alt="sqlite" width="40" height="40"/> </a>
+<a href="https://www.zarinpal.com/" target="_blank"> <img src="./docs/zarinpal.svg" alt="zarinpal" width="40" height="40"/> </a>
 </p>
 
 ## شروع-پروژه
