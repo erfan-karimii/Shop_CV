@@ -53,9 +53,7 @@ def send_request(request):
             response = response.json()
             if response['Status'] == 100:
                 return redirect(ZP_API_STARTPAY + str(response['Authority']))
-            else:
-                return {'status': False, 'code': str(response['Status'])}
-        return response
+        return redirect('/')
     
     except requests.exceptions.Timeout:
         return {'status': False, 'code': 'timeout'}
@@ -100,15 +98,14 @@ def verify(request):
                 OrderDetail.objects.create(id=key,order=order,product=product,price=price,color=value['color'],\
                     size=value['size'],orderdetail_count=value['count'])
             
-            REFID=response['RefID']
-            messages.success(request, f'خرید شما با موفقیت ثبت شد\nREFID:{REFID}')
+            messages.success(request, f'خرید شما با موفقیت ثبت شد')
             response = redirect('cart:open_old_cart')
             response.set_cookie('OrderDetail',{},72*60*60)
             response.delete_cookie('Order')
             response.delete_cookie('information')
             return response
         else:
-            messages.error(request, f'خرید با مشکل مواجه شد یا از طریق کاربر کنسل شد.')
+            messages.error(request,'خرید با مشکل مواجه شد یا از طریق کاربر کنسل شد.')
             response = redirect('cart:user_open_order')
             response.delete_cookie('information')
             return response

@@ -37,21 +37,16 @@ python manage.py runserver
 برای ساخت حساب کاربری از احراز هویت با استفاده از شماره تلفن استفاده می  شود.
 
 <img src="./docs/login.png">
-<p align="center">
-
-<img src="./docs/sign-up.png" width="50%">
-<img src="./docs/sign-up-auth-code.png" width="50%">
-</p>
+<img src="./docs/sign-up.png" width="49%">
+<img src="./docs/sign-up-auth-code.png" width="49%">
 
 ### سیستم-مدیریت-محتوا
 
 برای کنترل محتوای سایت ما یک سیستم کنترل محتوای اختصاصی نوشتیم که همه ی مراحل اضافه , اپدیت , حذف قسمت های مختلف سایت اعم از :محصولات , تبلیغات , فوتر , نوبار و ... را پوشش می دهد
 
-<p align="center">
-<img src="./docs/cms-create.png" width="33%">
-<img src="./docs/cms-list.png" width="33%">
-<img src="./docs/cms-update-&-delete.png" width="33%">
-</p>
+<img src="./docs/cms-create.png">
+<img src="./docs/cms-list.png">
+<img src="./docs/cms-update-&-delete.png">
 
 
 ### سبد-خرید
@@ -64,3 +59,7 @@ python manage.py runserver
 ### خرید-نهایی
 
 با استفاده از درگاه پرداخت زرین پال امکان خرید از سایت وجود دارد. بعد از تایید نهایی , سبد خرید درپروفایل کاربر بخش سبد های خرید قبلی ذخیره می شود.
+
+<img src="./docs/buy.gif">
+
+
