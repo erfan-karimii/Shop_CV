@@ -7,4 +7,3 @@ zeep
 django_render_partial==0.4
 model-bakery==1.9.0
 selenium==4.9.0
-pytest
