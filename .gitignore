@@ -1,5 +1,4 @@
 static/
-thumbnail/
 *.pyc
 *.pyo
 *.sqlite
