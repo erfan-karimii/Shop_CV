@@ -20,6 +20,7 @@ jobs:
         run : |
           python3 core/manage.py test account.tests
           python3 core/manage.py test aboutus.tests
+          python3 core/manage.py test cart.tests
           python3 core/manage.py test contactus.tests
           python3 core/manage.py test home.tests
           python3 core/manage.py test product.tests
