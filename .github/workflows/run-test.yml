@@ -17,4 +17,15 @@ jobs:
       - name: Install requirements
         run: pip install -r requirements.txt
       - name: Execute tests
-        run : python3 core/manage.py test account.tests
+        run : |
+          python3 core/manage.py test account.tests
+          python3 core/manage.py test aboutus.tests
+          python3 core/manage.py test cart.tests
+          python3 core/manage.py test contactus.tests
+          python3 core/manage.py test home.tests
+          python3 core/manage.py test product.tests
+          
+          
+          
+          
+          
