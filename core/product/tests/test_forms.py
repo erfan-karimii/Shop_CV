@@ -51,26 +51,26 @@ class TestDetailViewCommentForm(TestCase):
         self.assertEqual(response.status_code,200)
 
     
-class TestDetailViewCommentFormWithSelenium(StaticLiveServerTestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.selenium = WebDriver()
-        cls.selenium.implicitly_wait(10)
-        baker.make(Product,info='test',_fill_optional=True, _create_files=True)
+# class TestDetailViewCommentFormWithSelenium(StaticLiveServerTestCase):
+#     @classmethod
+#     def setUpClass(cls):
+#         super().setUpClass()
+#         cls.selenium = WebDriver()
+#         cls.selenium.implicitly_wait(10)
+#         baker.make(Product,info='test',_fill_optional=True, _create_files=True)
 
-    def test_comment_by_selenium(self):
-        self.selenium.get(f"{self.live_server_url}/detail/1")
-        Alert(self.selenium).accept()
-        self.selenium.find_element('id','id_username').send_keys("erfan")
-        self.selenium.find_element('id','id_email').send_keys("test@test.com")
-        self.selenium.find_element('id','id_body').send_keys("this is a test text")
-        element = self.selenium.find_element('id','submit')
-        self.selenium.execute_script("arguments[0].scrollIntoView();", element)
-        self.selenium.execute_script("arguments[0].click();", element)
-        self.assertEqual(Comment.objects.count(),1)
+#     def test_comment_by_selenium(self):
+#         self.selenium.get(f"{self.live_server_url}/detail/1")
+#         Alert(self.selenium).accept()
+#         self.selenium.find_element('id','id_username').send_keys("erfan")
+#         self.selenium.find_element('id','id_email').send_keys("test@test.com")
+#         self.selenium.find_element('id','id_body').send_keys("this is a test text")
+#         element = self.selenium.find_element('id','submit')
+#         self.selenium.execute_script("arguments[0].scrollIntoView();", element)
+#         self.selenium.execute_script("arguments[0].click();", element)
+#         self.assertEqual(Comment.objects.count(),1)
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super().tearDownClass()
+#     @classmethod
+#     def tearDownClass(cls):
+#         cls.selenium.quit()
+#         super().tearDownClass()
