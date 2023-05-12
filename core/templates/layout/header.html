@@ -12,7 +12,7 @@
                             <input type="text" class="form-control search-field" name="search" placeholder="جستجوی کالا..." />
                             <div class="select-appearance-none">
                                 <select name='category' class="form-control">
-                                    <option value='all' selected>همه دسته بندی</option>
+                                    <option value='' selected>همه دسته بندی</option>
                                     {% for cat in categories %}
                                     <option value="{{cat.id}}">{{cat.name}}</option>
                                     {% endfor %}

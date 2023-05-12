@@ -25,8 +25,10 @@ description = "توضیحات مربوط به تراکنش را در این قس
 email = 'h410mi3@gmail.com'  # Optional
 mobile = '09024485880'  # Optional
 # Important: need to edit for realy server.
-CallbackURL = 'http://localhost:8000/verify/'
-
+if settings.DEBUG:
+    CallbackURL = 'http://localhost:8000/verify/'
+else:
+    CallbackURL = 'http://big-bazar-shop.ir/verify/'
 
 def send_request(request):
     c = request.COOKIES['OrderDetail']

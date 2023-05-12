@@ -152,7 +152,7 @@
         if (b == null || b == undefined){
             var now = new Date();
             now.setTime(now.getTime() + 1 * 3600 * 1000);
-            document.cookie = "OrderDetail={};path=/;expires=" + now.toUTCString() + ";";
+            document.cookie = `OrderDetail={};path=/;`;
             alert('ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ')
         }
     </script>
