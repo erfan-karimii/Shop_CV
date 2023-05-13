@@ -9,8 +9,8 @@ from django.contrib import messages
 # Create your views here.
 
 def listview(request):
-    number = '2'
-    if request.GET.get('show-number') and request.GET.get('show-number').isdigit():
+    number = '5'
+    if request.GET.get('show-number'):
         number = request.GET.get('show-number')
     option_value = '-created'
     if request.GET.get('orderby') and request.GET.get('orderby') in ('price','-price','-created'):

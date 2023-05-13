@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="product-info">
-                <div class="product-cats"><a href="#">{{product.category.name}}</a></div>
+                <div class="product-cats"><a href="{% url 'product:SearchView' %}?category={{product.category.id}}">{{product.category.name}}</a></div>
                 <h3 class="product-title"><a href="{% url 'product:detailview' product.id %}">{{product.name}}</a></h3>
                 {% if product.product_count %}
                 {% if product.discount %}

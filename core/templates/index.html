@@ -95,10 +95,7 @@
                 <div class="top-collection-tab woocommerce-tabs wc-tabs-wrapper ps-0 mb-5 mt-0 align-self-end">
                     <ul class="nav nav-pills wc-tabs justify-content-center" id="pills-two-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="pills-trending-two-tab" data-bs-toggle="pill" href="#pills-trending-two" role="tab" aria-controls="pills-trending-two" aria-selected="true">کالا های حراج</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="pills-best-selling-two-tab" data-bs-toggle="pill" href="#pills-best-selling-two" role="tab" aria-controls="pills-best-selling-two" aria-selected="true">شلوار</a>
+                            <a class="nav-link active" id="pills-best-selling-two-tab" data-bs-toggle="pill" href="#pills-best-selling-two" role="tab" aria-controls="pills-best-selling-two" aria-selected="true">شلوار</a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="pills-fetured-two-tab" data-bs-toggle="pill" href="#pills-fetured-two" role="tab" aria-controls="pills-fetured-two" aria-selected="true">پیراهن</a>
@@ -111,32 +108,160 @@
                     <div class="col-lg-12">
                         <div class="woocommerce-tabs wc-tabs-wrapper ps-0 mt-0">
                             <div class="tab-content" id="pills-two-tabContent">
-                                <div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-trending-two" role="tabpanel" aria-labelledby="pills-trending-two-tab">
-                                    <div class="products wc-tabs-wrapper product-style-3">
-                                        <div class="row g-4 row-cols-xl-4 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 e-bg-light e-hover-wrapper-absolute">
-                                            {% for product in on_sale_section.products.all  %}
-                                                {% include 'layout/product.html' %}
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-best-selling-two" role="tabpanel" aria-labelledby="pills-best-selling-two-tab">
-                                    <div class="products wc-tabs-wrapper product-style-3 owl-mx-5">
+                                <div class="tab-pane fade show active woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-best-selling-two" role="tabpanel" aria-labelledby="pills-best-selling-two-tab">
                                         <div class="row g-4 row-cols-xl-4 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 e-bg-light e-hover-wrapper-absolute">
                                             {% for product in pants  %}
-                                                {% include 'layout/product.html' %}
+                                                <div class="col">
+                                                    <div class="product type-product">
+                                                        <div class="product-wrapper">
+                                                            <div class="product-image">
+                                                                <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                                                <div class="wishlist-view">
+                                                                    <div class="quickview-button">
+                                                                        <a class="quickview-btn" href="#quick-view" data-id="{{product.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
+                                                                    </div>
+                                                                    <div class="wishlist-button">
+                                                                    <a target="_blank" class="add_to_wishlist"   {% if request.user %}   href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"  {% endif %} data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
+                                                                            افزودن به علاقه مندی
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product-variations">
+                                                                    <span class="active"><a style="background-color: {{product.orgin_color}};"></a></span>
+                                                                    {% for color in product.color_set.all %}
+                                                                    <span><a style="background-color: {{color.color}};"></a></span>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-info">
+                                                                <h3 class="product-title"><a href="{% url 'product:detailview' product.id %}">{{product.name}}</a></h3>
+                                                                {% if product.product_count %}
+                                                                {% if product.discount %}
+                                                                <div class="product-price">
+                                                                    <div class="price">
+                                                                        <ins>{{product.main_discount_call}} تومان</ins>
+                                                                        <del>{{product.price}} تومان</del>
+                                                                    </div>
+                                                                    <div class="on-sale"><span>{{product.discount}}</span><span>% تخفیف</span></div>
+                                                                </div>
+                                                                {% else %}
+                                                                <div class="product-price">
+                                                                    <div class="price">
+                                                                        <p>{{product.price}} تومان</p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endif %}
+                                                                {% else %}
+                                                                <div class="product-price">
+                                                                    <div class="price">
+                                                                        <p>ناموجود</p>
+                                                                    </div>
+                                                                </div>
+                                                                {% endif %}
+                                                                <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
+                                                                <div class="shipping-feed-back">
+                                                                    <div class="star-rating">
+                                                                        <div class="rating-wrap">
+                                                                            <a href="#"><i class="fas fa-star"></i><span> {{product.id|average_star}}</span></a>
+                                                                        </div>
+                                                                        <div class="rating-counts-wrap">
+                                                                            <a href="#">({{product.comment_set.count}})</a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="sold-items"><span>{{product.id|sell_count}}</span> <span>فروش</span></div>
+                                                                </div>
+                                                                <div class="hover-area">
+                                                                    <div class="wishlist-button">
+                                                                        <a class="add_to_wishlist" {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}>افزودن به علاقه مندی</a>
+                                                                    </div>
+                                                                    <div class="compare-button">
+                                                                        <a class="compare button" href="{% url 'home:compare_2' product.id %}">مقایسه</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             {% endfor %}
                                         </div>
-                                    </div>
                                 </div>
                                 <div class="tab-pane fade woocommerce-Tabs-panel woocommerce-Tabs-panel--description" id="pills-fetured-two" role="tabpanel" aria-labelledby="pills-fetured-two-tab">
-                                    <div class="products wc-tabs-wrapper product-style-3 owl-mx-5">
                                         <div class="row g-4 row-cols-xl-4 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 e-bg-light e-hover-wrapper-absolute">
                                             {% for product in shirts  %}
-                                                {% include 'layout/product.html' %}
+                                            <div class="col">
+                                                <div class="product type-product">
+                                                    <div class="product-wrapper">
+                                                        <div class="product-image">
+                                                            <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                                            <div class="wishlist-view">
+                                                                <div class="quickview-button">
+                                                                    <a class="quickview-btn" href="#quick-view" data-id="{{product.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
+                                                                </div>
+                                                                <div class="wishlist-button">
+                                                                <a target="_blank" class="add_to_wishlist"   {% if request.user %}   href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}"  {% endif %} data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="افزودن به علاقه مندی" aria-label="Add to Wishlist">
+                                                                        افزودن به علاقه مندی
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-variations">
+                                                                <span class="active"><a style="background-color: {{product.orgin_color}};"></a></span>
+                                                                {% for color in product.color_set.all %}
+                                                                <span><a style="background-color: {{color.color}};"></a></span>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <div class="product-cats"><a href="#">{{product.category.name}}</a></div>
+                                                            <h3 class="product-title"><a href="{% url 'product:detailview' product.id %}">{{product.name}}</a></h3>
+                                                            {% if product.product_count %}
+                                                            {% if product.discount %}
+                                                            <div class="product-price">
+                                                                <div class="price">
+                                                                    <ins>{{product.main_discount_call}} تومان</ins>
+                                                                    <del>{{product.price}} تومان</del>
+                                                                </div>
+                                                                <div class="on-sale"><span>{{product.discount}}</span><span>% تخفیف</span></div>
+                                                            </div>
+                                                            {% else %}
+                                                            <div class="product-price">
+                                                                <div class="price">
+                                                                    <p>{{product.price}} تومان</p>
+                                                                </div>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% else %}
+                                                            <div class="product-price">
+                                                                <div class="price">
+                                                                    <p>ناموجود</p>
+                                                                </div>
+                                                            </div>
+                                                            {% endif %}
+                                                            <div class="shipping-cost"><span>+هزینه ارسال: </span> <span>رایگان</span></div>
+                                                            <div class="shipping-feed-back">
+                                                                <div class="star-rating">
+                                                                    <div class="rating-wrap">
+                                                                        <a href="#"><i class="fas fa-star"></i><span> {{product.id|average_star}}</span></a>
+                                                                    </div>
+                                                                    <div class="rating-counts-wrap">
+                                                                        <a href="#">({{product.comment_set.count}})</a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="sold-items"><span>{{product.id|sell_count}}</span> <span>فروش</span></div>
+                                                            </div>
+                                                            <div class="hover-area">
+                                                                <div class="wishlist-button">
+                                                                    <a class="add_to_wishlist" {% if request.user %} href="{% url 'home:wishlist-add' user=request.user product_id=product.id color=product.orgin_color size=product.orgin_size %}" {% endif %}>افزودن به علاقه مندی</a>
+                                                                </div>
+                                                                <div class="compare-button">
+                                                                    <a class="compare button" href="{% url 'home:compare_2' product.id %}">مقایسه</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             {% endfor %}
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

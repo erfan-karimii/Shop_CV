@@ -90,14 +90,14 @@
                 <div class="col-xl-2 col-lg-3">
                     <div class="margin-right-1 d-flex align-items-center justify-content-end h-100 align-items-center">
                         <div class="wishlist-view">
-                            <a href="{% url 'home:wishlist' %}" class="position-relative top-quantity d-flex align-items-center text-white text-decoration-none">
+                            <a href="{% url 'home:wishlist' %}" class="position-relative top-quantity d-flex align-items-center text-white text-decoration-none" style="background-color:unset;">
                                 <i class="flaticon-like flat-small text-white"></i>
                                 <span class="header-wishlist-count">{{wishlist_count}}</span>
                             </a>
                         </div>
                         <div class="refresh-view">
-                            <a href="{% url 'home:compare' %}" class="position-relative top-quantity d-flex align-items-center text-white text-decoration-none">
-                                <i class="flaticon-shuffle flat-small text-white"></i>
+                            <a href="{% url 'home:compare' %}" class="position-relative top-quantity d-flex align-items-center text-white text-decoration-none" style="background-color:unset;">
+                                <i class="flaticon-shuffle flat-small text-white" ></i>
                             </a>
                         </div>
                         <div class="header-cart-2">
@@ -182,8 +182,10 @@
                             </a>
                         </div>
                         <div class="header-cart-2">
-                            <a href="cart.html" class="cart has-cart-data" title="View Cart">
-                                <div class="cart-icon"><i class="flaticon-shopping-cart flat-small"></i> <span class="header-cart-count">{{count}}</span></div>
+                            <a href="{% url 'cart:user_open_order' %}" class="cart" title="View Cart">
+                                <div class="cart-icon"><i class="flaticon-shopping-cart flat-small"></i> 
+                                    <span class="header-cart-count">{{count}}</span>
+                                </div>
                                 <div class="cart-wrap">
                                     <span class="header-cart-count">تعداد ({{count}})</span>
                                 </div>
