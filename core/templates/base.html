@@ -118,7 +118,7 @@
             {% endif %}
         {% endfor %}
     </script>
-    <script>
+    <script defer>
         function getCookie(name) {
             var cookieValue = null;
             if (document.cookie && document.cookie != '') {
@@ -153,7 +153,10 @@
             var now = new Date();
             now.setTime(now.getTime() + 1 * 3600 * 1000);
             document.cookie = `OrderDetail={};path=/;`;
-            alert('ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ')
+            Swal.fire({
+                icon: 'info',
+                text: 'ما برای تجربه بهتر در استفاده از سایت از کوکی استفاده میکنیم ',
+            })
         }
     </script>
 </body>
