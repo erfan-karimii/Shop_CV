@@ -28,15 +28,21 @@ def send_sms_test(request):
                 MyUser.objects.filter(phone_number=phone_number).update(token=number)
             else:
                 MyUser.objects.create(phone_number=phone_number,token=number)
-            print(number)
+            # print(number)
 
-            # api = KavenegarAPI('4D526E3432522F42744D47414B3845436D59734377572B71645A455565644575')
-            # params = { 'sender' : '10000080808880', 'receptor': f'{phone_number}', 'message' :f'{number}' }
-            # try:
-            #     api.sms_send( params)
-            # except:
-            #     messages.success(request,'درست وارد کنید')
-            #     return render(request,'account/register.html')
+            api = KavenegarAPI('61442F31622B6F695438514E3865524965345A395068304D6455444952526E6161653570554752357378673D')
+            params = {'receptor': '09024485880', 'message' : 'test' }
+            try:
+                api.sms_send(params)
+            except APIException as e: 
+                print(e)
+                return render(request,'account/register.html')
+            except HTTPException as e: 
+                print(e)
+            except Exception as e:
+                print(e)
+                messages.success(request,'درست وارد کنید')
+                return render(request,'account/register.html')
 
             response = render(request,'account/verify.html')
             

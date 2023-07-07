@@ -28,7 +28,7 @@ mobile = '09024485880'  # Optional
 if settings.DEBUG:
     CallbackURL = 'http://localhost:8000/verify/'
 else:
-    CallbackURL = 'http://big-bazar-shop.ir/verify/'
+    CallbackURL = ''
 
 def send_request(request):
     c = request.COOKIES['OrderDetail']
@@ -37,7 +37,7 @@ def send_request(request):
     for key , value in cookie.items():
         price = total_priceCA(value['id'],value['color'],value['size'])
         amount += price
-    amount = amount *10
+    amount = amount * 10
     data = {
         "MerchantID": MERCHANT,
         "Amount": amount,
