@@ -1,4 +1,4 @@
-Django==4.2.3
+Django==4.2.11
 Pillow==9.3.0
 django-ckeditor==6.5.1
 django-colorfield==0.7.2
