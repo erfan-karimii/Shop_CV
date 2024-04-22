@@ -19,7 +19,7 @@
                 {{slider.text1}}
             </p>
 
-            <img width="488" height="530" src="{{slider.image.url}}" alt="{{slider.alt}}" style="top: 55%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
+            <img loading="lazy" width="488" height="530" src="{{slider.image.url}}" alt="{{slider.alt}}" style="top: 55%; right: 75%;" class="ls-l" data-ls="offsetxin:400; delayin:700; parallax:false; parallaxlevel:1;" />
 
             <p
                 style="width: 480px; font-weight: 500; font-size: 18px; line-height: 30px; top: 57%; right: 32px; white-space: normal;"
@@ -115,7 +115,7 @@
                                                     <div class="product type-product">
                                                         <div class="product-wrapper">
                                                             <div class="product-image">
-                                                                <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                                                <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img loading="lazy" src="{{product.image.url}}" alt="{{product.alt}}" /></a>
                                                                 <div class="wishlist-view">
                                                                     <div class="quickview-button">
                                                                         <a class="quickview-btn" href="#quick-view" data-id="{{product.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -192,7 +192,7 @@
                                                 <div class="product type-product">
                                                     <div class="product-wrapper">
                                                         <div class="product-image">
-                                                            <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img src="{{product.image.url}}" alt="{{product.alt}}" /></a>
+                                                            <a href="{% url 'product:detailview' product.id %}" class="woocommerce-LoopProduct-link"><img loading="lazy" src="{{product.image.url}}" alt="{{product.alt}}" /></a>
                                                             <div class="wishlist-view">
                                                                 <div class="quickview-button">
                                                                     <a class="quickview-btn" href="#quick-view" data-id="{{product.id}}" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="نگاه سریع" aria-label="Quick View">نگاه سریع</a>
@@ -280,7 +280,7 @@
             
             <div class="col-lg-8 md-my-10 d-none d-sm-block">
                 <div class="banner-wrapper banner-nine hover-img-zoom h-100">
-                    <div class="banner-image overflow-hidden transation"><img src="{{tabligh_right.image.url}}" alt="Banner Image" /></div>
+                    <div class="banner-image overflow-hidden transation"><img loading="lazy" src="{{tabligh_right.image.url}}" alt="Banner Image" /></div>
                     <div class="banner-content">
                         <h4 class="mb-2"><a href="{{tabligh_right.link}}" class="text-secondary">{{tabligh_right.text}}</a></h4>
                         <a href="{{tabligh_right.link}}" class="btn-link text-secondary mt-2">{{tabligh_right.text2}}</a>
@@ -289,7 +289,7 @@
             </div>
             <div class="col-lg-4 md-my-10">
                 <div class="banner-wrapper banner-nine hover-img-zoom h-100">
-                    <div class="banner-image overflow-hidden transation"><img src="{{tabligh_left.image.url}}" alt="Banner Image" /></div>
+                    <div class="banner-image overflow-hidden transation"><img loading="lazy" src="{{tabligh_left.image.url}}" alt="Banner Image" /></div>
                     <div class="banner-content">
                         <h4 class="mb-2"><a href="{{tabligh_left.link}}" class="text-secondary">{{tabligh_left.text}}</a></h4>
                         <a href="{{tabligh_left.link}}" class="btn-link text-secondary mt-2">{{tabligh_left.text2}}</a>
@@ -375,7 +375,7 @@
             </div>
             <div class="col-xl-5 col-lg-5 offset-xl-1">
                 <div class="xs-mt-30">
-                    <img src="{{on_sale_section.image.url}}" alt="{{on_sale_section.alt}}" >
+                    <img loading="lazy" src="{{on_sale_section.image.url}}" alt="{{on_sale_section.alt}}" >
                 </div>
             </div>
         </div>
@@ -444,7 +444,7 @@
                             <div class="product type-product">
                                 <div class="product-wrapper">
                                     <div class="product-image">
-                                        <a href="#" class="woocommerce-LoopProduct-link"><img id="modal-image" src=""  /></a>
+                                        <a href="#" class="woocommerce-LoopProduct-link"><img loading="lazy" id="modal-image" src=""  /></a>
                                         <ul class="position-absolute quick-meta">
                                         </ul>
                                     </div>
