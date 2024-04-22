@@ -1,6 +1,4 @@
-static/
 *.pyc
 *.pyo
-*.sqlite
 htmlcov
 .coverage

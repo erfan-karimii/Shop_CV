@@ -1,0 +1,197 @@
+/*==================================
+Theme Color All Codes Variable
+==================================*/
+
+:root {
+    --theme-general-color: #818181;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-primary-color: #e66363;
+    /* theme primary color ok*/
+}
+
+:root {
+    --theme-secondary-color: #113982;
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-white-color: #fff;
+    /* theme white font color ok*/
+}
+
+:root {
+    --theme-light-color: #f1f1f1;
+    /* theme light gray color */
+}
+
+:root {
+    --theme-gray-color: #e7e7e8;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-dark-color: #1a1c1e;
+    /* theme dark color ok*/
+}
+
+:root {
+    --theme-extra-color: #f43838;
+    /* theme extra color ok*/
+}
+
+:root {
+    --theme-extra1-color: #3ba82a;
+    /* theme extra1 color ok*/
+}
+
+
+/*==================================
+Font Variable
+==================================*/
+
+:root {
+    --theme-general-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-hiperlink-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-highlight-font: 'IRANSans', sans-serif;
+    /* Font used in title or special area ok*/
+}
+
+:root {
+    --theme-extra-font: 'IRANSans', sans-serif;
+    /* Font use for Extra1 text ok*/
+}
+
+:root {
+    --theme-extra2-font: 'Damion', cursive;
+    /* Font use for Extra2 text ok*/
+}
+
+body {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.product-wrapper .product-info .product-title, 
+.product-wrapper .product-info .product-title a {
+	font-family: vazir;
+	font-size: 15px;
+	color: var(--theme-dark-color);
+}
+
+.ecommerce-header .top-links li a {
+    color: var(--theme-dark-color);
+}
+
+[class*="product-search-"] .form-inline button {
+    background-color: var(--theme-primary-color);
+}
+
+.ecommerce-header .wishlist-view a.top-quantity span,
+.ecommerce-header .refresh-view a.top-quantity span,
+.ecommerce-header .cart-view a.top-quantity span {
+    color: var(--theme-white-color);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-family: var(--theme-highlight-font);
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.slider-content {
+    padding: 150px 0;
+    width: 850px;
+}
+
+.dot-active-one .owl-dots button.owl-dot.active {
+    border-color: var(--theme-primary-color);
+    background-color: var(--theme-primary-color) !important;
+}
+
+.dot-active-one .owl-dots button.owl-dot.active span {
+    background-color: var(--theme-white-color)
+}
+
+.nav-arrow-middle .owl-nav .nav-btn {
+    background-color: var(--theme-white-color);
+    border: 1px solid var(--theme-light-color)
+}
+
+.border .section-head,
+.section-head.border {
+    margin-bottom: 0;
+}
+
+.woocommerce-tabs .nav-pills .nav-link:hover::before,
+.woocommerce-tabs .nav-pills .nav-link.active::before {
+    display: none;
+}
+
+.woocommerce-tabs .nav-pills .nav-link {
+    border-bottom: 0 !important;
+    padding-bottom: 0;
+}
+
+.owl-carousel .owl-dots {
+    margin-top: 20px;
+}
+
+.search-view > a,
+.wishlist-view > a,
+.refresh-view > a,
+.header-cart-1 .cart-icon, 
+.header-cart-6 .cart-icon,
+.sign-in > a {
+    padding: 2px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: var(--theme-white-color);
+}
+
+@media screen and (max-width: 1199px) {
+    .search-view > a,
+	.wishlist-view > a,
+	.refresh-view > a,
+	.cart-view > a,
+	.sign-in > a {
+		line-height: 35px;
+		width: 35px;
+		height: 35px;
+	}
+}
+
+@media screen and (max-width: 991px) {
+    .slider-content .slide-title {
+        font-size: 50px !important;
+    }
+    .slider-content {
+        width: 750px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .slider-content {
+        width: 550px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .slider-content {
+        width: 100%;
+        padding: 80px 0;
+    }
+}

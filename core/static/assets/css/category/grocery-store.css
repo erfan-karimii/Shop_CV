@@ -1,0 +1,144 @@
+/*==================================
+Theme Color All Codes Variable
+==================================*/
+
+:root {
+    --theme-general-color: #818181;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-primary-color: #f76d1d;
+    /* theme primary color ok*/
+}
+
+:root {
+    --theme-secondary-color: #251f32;
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-white-color: #fff;
+    /* theme white font color ok*/
+}
+
+:root {
+    --theme-light-color: #f4f5f6;
+    /* theme light gray color */
+}
+
+:root {
+    --theme-gray-color: #e7e7e8;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-dark-color: #1a1c1e;
+    /* theme dark color ok*/
+}
+
+:root {
+    --theme-extra-color: #f43838;
+    /* theme extra color ok*/
+}
+
+:root {
+    --theme-extra1-color: #35a249;
+    /* theme extra1 color ok*/
+}
+
+
+/*==================================
+Font Variable
+==================================*/
+
+:root {
+    --theme-general-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-hiperlink-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-highlight-font: 'Tanha', sans-serif;
+    /* Font used in title or special area ok*/
+}
+
+:root {
+    --theme-extra-font: 'IRANSans', sans-serif;
+    /* Font use for Extra1 text ok*/
+}
+
+.ecommerce-header .top-header {
+	font-size: 14px;
+}
+
+body,
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.ecommerce-header .top-links li a {
+    color: var(--theme-general-color) !important;
+}
+
+[class*="product-search-"] .form-inline button {
+    background-color: var(--theme-primary-color);
+}
+
+.ecommerce-header .wishlist-view a.top-quantity span,
+.ecommerce-header .refresh-view a.top-quantity span,
+.ecommerce-header .cart-view a.top-quantity span {
+    color: var(--theme-white-color);
+}
+
+[class*="product-search-"] .form-inline {
+	background-color: var(--theme-light-color);
+}
+
+.woocommerce-tabs .nav-pills .nav-link:hover, 
+.woocommerce-tabs .nav-pills .nav-link.active {
+	color: var(--theme-primary-color);
+}
+
+.slider-content {
+    padding: 150px 0;
+    width: 850px;
+}
+
+.dot-active-one .owl-dots button.owl-dot.active {
+    border-color: var(--theme-primary-color);
+    background-color: var(--theme-primary-color) !important;
+}
+
+.dot-active-one .owl-dots button.owl-dot.active span {
+    background-color: var(--theme-white-color)
+}
+
+.nav-arrow-middle .owl-nav .nav-btn {
+    background-color: var(--theme-white-color);
+    border: 1px solid var(--theme-light-color)
+}
+
+.border .section-head,
+.section-head.border {
+    margin-bottom: 0;
+}
+
+.woocommerce-tabs .nav-pills .nav-link:hover::before,
+.woocommerce-tabs .nav-pills .nav-link.active::before {
+    display: none;
+}
+
+.woocommerce-tabs .nav-pills .nav-link {
+    border-bottom: 0 !important;
+    padding-bottom: 0;
+}
+
+.owl-carousel .owl-dots {
+    margin-top: 20px;
+}

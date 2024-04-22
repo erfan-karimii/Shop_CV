@@ -1,0 +1,210 @@
+/*==================================
+Theme Color All Codes Variable
+==================================*/
+
+:root {
+    --theme-general-color: #818181;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-primary-color: #f1e63d;
+    /* theme primary color ok*/
+}
+
+:root {
+    --theme-secondary-color: #113982;
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-white-color: #fff;
+    /* theme white font color ok*/
+}
+
+:root {
+    --theme-light-color: #f8f8f8;
+    /* theme light gray color */
+}
+
+:root {
+    --theme-gray-color: #f5f5f5;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-dark-color: #1a1c1f;
+    /* theme dark color ok*/
+}
+
+:root {
+    --theme-extra-color: #f43838;
+    /* theme extra color ok*/
+}
+
+:root {
+    --theme-extra1-color: #0f1f48;
+    /* theme extra1 color ok*/
+}
+
+
+/*==================================
+Font Variable
+==================================*/
+
+:root {
+    --theme-general-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-hiperlink-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-highlight-font: 'IRANSans', sans-serif;
+    /* Font used in title or special area ok*/
+}
+
+:root {
+    --theme-extra-font: 'IRANSans', sans-serif;
+    /* Font use for Extra1 text ok*/
+}
+
+.product-wrapper .product-image .wishlist-view > * {
+	width: 30px;
+	height: 30px;
+}
+.product-wrapper .product-image [class*="product-labels"] [class*="badge1"]{
+	text-transform: uppercase;
+}
+
+.down-line-white, .down-line-secondary, .down-line {
+    padding-bottom: 10px;
+}
+
+.navbar-nav .tooltip {
+	color: var(--theme-dark-color);
+}
+
+.product-wrapper .product-image [class*="product-labels"] [class*="badge1"],
+.header-sticky.bg-white [class*="header-cart-"] .cart-icon, 
+.header-sticky.bg-white .search-view>a, .wishlist-view>a, 
+.header-sticky.bg-white .refresh-view>a, .sign-in>a,
+.product-style-1 .product-wrapper .hover-area [class*="-button"] a:hover,
+.btn-primary {
+	color: var(--theme-dark-color);
+}
+
+.product-style-3 .product-wrapper .hover-area [class*="-button"] a:hover,
+.product-style-2 .product-wrapper .product-info .hover-area [class*="-button"] a:hover {
+    color: var(--theme-extra-color);
+}
+
+body,
+.categories-banner ul li a,
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.woocommerce-tabs .nav-pills .nav-link:hover, 
+.woocommerce-tabs .nav-pills .nav-link.active,
+.section-head-side-title {
+	border-bottom-color: var(--theme-secondary-color);
+}
+a,
+a:hover {
+    color: var(--theme-secondary-color);
+}
+
+.middle-header [class*="product-search-"] .form-inline {
+    border: 2px solid var(--theme-secondary-color);
+}
+
+.btn {
+	border-radius: 0;
+}
+
+.wishlist-view span.header-wishlist-count, 
+.refresh-view span.header-compare-count,
+[class*="header-cart-"] .cart .cart-icon .header-cart-count {
+    color: var(--theme-dark-color);
+}
+
+.main-nav [class*="header-cart-"] .cart .cart-icon,
+.main-nav [class*="header-cart-"] .cart .cart-wrap {
+    color: var(--theme-white-color);
+}
+
+.product-search-pill form button {
+    background-color: var(--theme-secondary-color);
+}
+
+[class*="product-search-"] .form-inline.search-pill-shape {
+    background-color: var(--theme-white-color);
+}
+
+.header-sticky [class*="product-search-"] .form-inline.search-pill-shape {
+    background-color: var(--theme-light-color);
+}
+
+.nav-top-right .owl-nav .nav-btn {
+    color: var(--theme-secondary-color);
+}
+
+.slide-title {
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 60px;
+    margin-bottom: 15px;
+}
+
+.slider-content {
+    padding: 150px 0 150px 50px;
+    width: 480px;
+}
+
+.btn-cart-wishlist .cart-button .button.add_to_cart_button {
+    border: 2px solid var(--theme-primary-color);
+    background-color: var(--theme-primary-color);
+}
+
+.tab-active-pill.woocommerce-tabs .nav-pills .nav-link:hover,
+.tab-active-pill.woocommerce-tabs .nav-pills .nav-link.active {
+    background-color: var(--theme-primary-color);
+}
+
+.categories-menu ul.menu li a:hover {
+    color: var(--theme-secondary-color);
+}
+
+@media screen and (max-width: 991px) {
+    .slider-content {
+        padding: 100px 0 100px 50px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .slider-content {
+        padding: 50px 0 50px 20px;
+        width: auto;
+    }
+}
+.new-product{
+	padding-bottom: 10px;
+    position: relative;
+}
+.new-product::before {
+    width: 100px;
+    height: 2px;
+    background: var(--theme-secondary-color);
+    content: "";
+    top: 100%;
+    right: 0;
+    position: absolute;
+}
+.add_to_cart_button {
+	color: var(--theme-secondary-color)
+}

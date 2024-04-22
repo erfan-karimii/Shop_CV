@@ -1,0 +1,259 @@
+/*==================================
+Theme Color All Codes Variable
+==================================*/
+
+:root {
+    --theme-general-color: #767779;
+    /* theme gray color ok*/
+}
+
+:root {
+    --theme-primary-color: #255c39;
+    /* theme primary color ok*/
+}
+
+:root {
+    --theme-secondary-color: #183240;
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-white-color: #fff;
+    /* theme white font color ok*/
+}
+
+:root {
+    --theme-light-color: #e7f8e1;
+    /* theme light gray color ok*/
+}
+
+:root {
+    --theme-gray-color: #e7e7e8;
+    /* theme gray color */
+}
+
+:root {
+    --theme-dark-color: #1f1f1f;
+    /* theme dark color ok*/
+}
+
+:root {
+    --theme-footer-color: #1e2124;
+    /* theme dark color */
+}
+
+:root {
+    --theme-extra-color: #f3612e;
+    /* theme extra color */
+}
+
+:root {
+    --theme-primary-opacity-color: rgba(37, 92, 57, .8);
+    /* theme primary opacity color ok*/
+}
+
+:root {
+    --theme-secondary-opacity-color: rgba(24, 50, 64, .8);
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-dark-opacity-color: rgba(27, 27, 30, .8);
+    /* theme dark opacity color */
+}
+
+:root {
+    --theme-white-opacity-color: rgba(255, 255, 255, 0.5);
+    /* theme white color ok*/
+}
+
+:root {
+    --text-light-color: #a5a5a5;
+    /* text light color */
+}
+
+:root {
+    --text-gray-color: #c3c3c3;
+    /* theme text gray color */
+}
+
+
+/*==================================
+Font Variable
+==================================*/
+
+:root {
+    --theme-general-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text */
+}
+
+:root {
+    --theme-hiperlink-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text */
+}
+
+:root {
+    --theme-highlight-font: 'Tanha', sans-serif;
+    /* Font used in title or special area */
+}
+
+
+/*==================================
+Extra CSS
+==================================*/
+
+.tagline {
+    font-weight: 400;
+}
+
+.ecommerce-header .wishlist-view a.top-quantity span,
+.ecommerce-header .refresh-view a.top-quantity span,
+.ecommerce-header .cart-view a.top-quantity span {
+    color: var(--theme-white-color);
+    background-color: var(--theme-secondary-color);
+    font-size: 14pxpx;
+}
+
+.header-sticky .search-box-shape {
+	background-color: var(--theme-light-color);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-size: 15px;
+    text-transform: uppercase
+}
+
+.main-nav .form-inline input.search-field {
+    padding-left: 25px;
+    font-size: 16px !important
+}
+
+.main-nav .form-inline input.search-field::placeholder,
+.header-sticky .form-inline input.search-field::placeholder {
+    color: var(--theme-secondary-color);
+    font-size: 16px !important
+}
+
+.product-wrapper .product-info .product-title,
+.product-wrapper .product-info .product-title a {
+    font-family: var(--theme-general-font);
+    font-weight: 400;
+    font-size: 17px;
+}
+
+.product-wrapper .product-info .product-price .price ins {
+    font-weight: 600;
+    color: var(--theme-primary-color);
+}
+
+.product-wrapper .product-info .product-price .price del {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--theme-general-color);
+}
+
+.footer-widget li a {
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.intro-video {
+    z-index: 9;
+    height: 100%;
+}
+
+.btn {
+    font-weight: 400
+}
+
+body {
+    font-size: 16px;
+}
+
+
+/* Blog Css */
+
+.thumb-blog-simple .post-content {
+    width: 80%;
+    position: relative;
+    margin-top: -50px;
+    background-color: var(--theme-white-color);
+    left: 0;
+    padding: 20px;
+}
+
+.thumb-blog-simple .post-meta {
+    font-weight: 500;
+   /*  letter-spacing: 2px; */
+}
+
+.thumb-blog-simple .post-content .btn-link-down-line {
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.newsleter-banner {
+    border-radius: 30px;
+}
+
+.copyright {
+    border-top: 1px solid #e1e1e1;
+}
+
+.video-popup span {
+    background: var(--theme-primary-color);
+    line-height: 0;
+}
+
+@media screen and (max-width: 1399px) {
+    .organic-item .organit-text {
+        left: -195px;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .organic-item .organit-text {
+        left: -166px;
+    }
+    .thumb-blog-simple .post-content {
+        width: 95%;
+    }
+	.navbar-expand-lg .navbar-nav {
+		margin-left: auto !important;
+	}
+	.navbar-expand-lg .navbar-nav .nav-item:last-child {
+		padding-left: 0
+	}
+}
+
+@media screen and (max-width: 991px) {
+    .organic-item .organit-text {
+        left: 0;
+        width: 100%;
+        padding: 0 20px;
+    }
+    .organic-item {
+        padding-top: 250px;
+    }
+    .organic-item .organit-package {
+        left: 0;
+    }
+    .bg-white-9::after {
+        width: 100%;
+    }
+    .blog-big-title {
+        padding-right: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .organic-item {
+        padding-right: 30px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .newsleter-banner {
+        padding: 20px !important
+    }
+}

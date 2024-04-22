@@ -1,0 +1,220 @@
+/*==================================
+Theme Color All Codes Variable
+==================================*/
+
+:root {
+    --theme-general-color: #545657;
+    /* theme gray color */
+}
+
+:root {
+    --theme-primary-color: #dd6e2b;
+    /* theme primary color */
+}
+
+:root {
+    --theme-secondary-color: #4fba6f;
+    /* theme secondary color ok*/
+}
+
+:root {
+    --theme-white-color: #fff;
+    /* theme white font color ok*/
+}
+
+:root {
+    --theme-light-color: #f8f8f8;
+    /* theme light gray color ok*/
+}
+
+:root {
+    --theme-gray-color: #e7e7e8;
+    /* theme gray color */
+}
+
+:root {
+    --theme-dark-color: #141926;
+    /* theme dark color ok*/
+}
+
+:root {
+    --theme-footer-color: #1e2124;
+    /* theme dark color */
+}
+
+:root {
+    --theme-extra-color: #f43838;
+    /* theme extra color */
+}
+
+:root {
+    --theme-extra2-color: #ffd200;
+    /* theme extra color */
+}
+
+:root {
+    --theme-primary-opacity-color: rgba(247, 188, 62, .8);
+    /* theme secondary color */
+}
+
+:root {
+    --theme-secondary-opacity-color: rgba(17, 57, 130, .8);
+    /* theme secondary color */
+}
+
+:root {
+    --theme-dark-opacity-color: rgba(27, 27, 30, .8);
+    /* theme dark opacity color */
+}
+
+:root {
+    --theme-white-opacity-color: rgba(255, 255, 255, 0.5);
+    /* theme light color */
+}
+
+:root {
+    --text-light-color: #a5a5a5;
+    /* text light color */
+}
+
+:root {
+    --text-gray-color: #c3c3c3;
+    /* theme text gray color */
+}
+
+
+/*==================================
+Font Variable
+==================================*/
+
+:root {
+    --theme-general-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text ok*/
+}
+
+:root {
+    --theme-hiperlink-font: 'IRANSans', sans-serif;
+    /* Font use for normal text and general text */
+}
+
+:root {
+    --theme-highlight-font: 'Tanha', sans-serif;
+    /* Font used in title or special area ok*/
+}
+
+:root {
+    --theme-extra-font: 'IRANSans', sans-serif;
+    /* Font use for Extra1 text ok*/
+}
+
+
+/*==================================
+Extra CSS
+==================================*/
+
+.full-row {
+    padding: 100px 0;
+}
+
+.btn {
+    border-radius: 0 15px !important;
+}
+
+.search-pill-shape button,
+.rounded-right-pill {
+    border-radius: 50rem 0 0 50rem !important;
+}
+
+[class*="btn-link"] {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+ /*    letter-spacing: 2px; */
+}
+
+.sub-title {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.product-wrapper .product-info {
+    padding-bottom: 25px;
+}
+
+.product-wrapper .product-image .on-sale {
+    background-color: var(--theme-secondary-color);
+}
+
+.product-wrapper .product-info .product-title,
+.product-wrapper .product-info .product-title a {
+    color: var(--theme-dark-color);
+    font-weight: 400;
+}
+
+.product-wrapper .product-info .product-price .price ins {
+    font-size: 17px;
+    color: var(--theme-primary-color);
+}
+
+.product-wrapper .product-info .product-price .price del {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.ecommerce-header .cart-view a.top-quantity {
+    color: var(--theme-general-color);
+}
+
+.ecommerce-header .top-links li>a,
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-size: 14px;
+    font-weight: 400
+}
+
+.ecommerce-header .cart-view a.top-quantity {
+    font-weight: 400
+}
+
+.ecommerce-header .cart-view a.top-quantity span {
+    color: #fff;
+}
+
+.cart-popup .mini-cart-item .product-name {
+    color: var(--theme-dark-color);
+}
+
+.top-links .cart-view>a {
+    background: transparent;
+}
+
+.search-view>a,
+.wishlist-view>a,
+.refresh-view>a,
+.header-cart-1 .cart .cart-icon,
+.header-cart-6 .cart .cart-icon,
+.sign-in>a {
+    padding: 2px;
+    line-height: 50px;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background-color: var(--theme-white-color);
+}
+
+[class*="product-search-"] .form-inline {
+	background-color: transparent;
+}
+
+@media screen and (max-width: 1199px) {
+    .search-view>a,
+    .wishlist-view>a,
+    .refresh-view>a,
+    .header-cart-1 .cart .cart-icon,
+    .header-cart-6 .cart .cart-icon,
+    .sign-in>a {
+        line-height: 35px;
+        width: 35px;
+        height: 35px;
+    }
+}
