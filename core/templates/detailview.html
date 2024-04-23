@@ -20,7 +20,7 @@
                 <nav aria-label="breadcrumb" class="d-flex justify-content-sm-end align-items-center h-100">
                     <ol class="breadcrumb mb-0 d-inline-flex bg-transparent p-0">
                         <li class="breadcrumb-item"><a href="/"><i class="fas fa-home ms-1"></i>خانه</a></li>
-                        <li class="breadcrumb-item"><a href="shop-grid-full.html">فروشگاه</a></li>
+                        <li class="breadcrumb-item"><a href="{% url "product:listview" %}">لیست محصولات</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{post.name}}</li>
                     </ol>
                 </nav>
