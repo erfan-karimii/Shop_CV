@@ -278,18 +278,38 @@
                                                         </div>
                                                             <div class="comment-form-comment">
                                                                 <div class="rate">
-                                                                    <input style='display: none;' type="radio" id="star5" name="point" value=5 />
+                                                                    <input type="radio" id="star5" name="point" value=5 />
                                                                     <label for="star5" title="عالی">5 stars</label>
-                                                                    <input style='display: none;' type="radio" id="star4" name="point" value=4 />
+                                                                    <input type="radio" id="star4" name="point" value=4 />
                                                                     <label for="star4" title="خوب">4 stars</label>
-                                                                    <input style='display: none;' type="radio" id="star3" name="point" value=3 />
+                                                                    <input type="radio" id="star3" name="point" value=3 />
                                                                     <label for="star3" title="متوسط">3 stars</label>
-                                                                    <input style='display: none;' type="radio" id="star2" name="point" value=2 />
+                                                                    <input type="radio" id="star2" name="point" value=2 />
                                                                     <label for="star2" title="بد">2 stars</label>
-                                                                    <input style='display: none;' type="radio" id="star1" name="point" value=1 checked="checked" />
+                                                                    <input type="radio" id="star1" name="point" value=1 checked="checked" />
                                                                     <label for="star1" title="خیلی بد">1 star</label>
                                                                 </div>
                                                             </div>
+                                                            <style>
+                                                                .rate {
+                                                                    display: flex;
+                                                                    align-items: center; /* Align items vertically */
+                                                                }
+                                                                
+                                                                .rate input[type="radio"] {
+                                                                    display: none;
+                                                                }
+                                                                
+                                                                .rate label {
+                                                                    font-size: 24px;
+                                                                    cursor: pointer;
+                                                                    color: #ddd;
+                                                                }
+                                                                
+                                                                .rate input[type="radio"]:checked ~ label {
+                                                                    color: #ff9800; /* Change to your desired color */
+                                                                }
+                                                            </style>
                                                         </div>
                                                         
 
