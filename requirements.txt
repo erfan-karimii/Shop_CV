@@ -3,8 +3,7 @@ Pillow==9.3.0
 django-ckeditor==6.5.1
 django-colorfield==0.7.2
 kavenegar
-zeep
+#zeep
 django_render_partial==0.4
-model-bakery==1.9.0
-selenium==4.9.0
+selenium
 django-environ
